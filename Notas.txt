@@ -1,0 +1,97 @@
+Sintaxis Nunjucks
+
+<!-- src/views/index.njk -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+</head>
+<body>
+  <h1>Hola, {{ name }}!</h1>
+</body>
+</html>
+
+
+CONDICIONALES
+{% if usuario %}
+  <p>Hola, {{ usuario }}!</p>
+{% else %}
+  <p>Bienvenido, visitante!</p>
+{% endif %}
+
+BUCLES
+<ul>
+  {% for item in items %}
+    <li>{{ item }}</li>
+  {% endfor %}
+</ul>
+
+
+FILTROS | PIPES
+<p>{{ name | uppercase }}</p>  <!-- Imprime el nombre en mayúsculas -->
+<p>{{ date | date("YYYY-MM-DD") }}</p>  <!-- Formatea una fecha -->
+
+PARTIALS
+<!-- src/views/index.njk -->
+<html>
+  <head><title>{{ title }}</title></head>
+  <body>
+    {% include "header.njk" %}
+    <h1>Bienvenido a mi página</h1>
+    {% include "footer.njk" %}
+  </body>
+</html>
+
+PLANTILLAS
+<!-- src/views/base.njk -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Título Predeterminado{% endblock %}</title>
+</head>
+<body>
+  {% block content %}{% endblock %}
+</body>
+</html>
+
+<!-- src/views/index.njk -->
+{% extends "base.njk" %}
+
+{% block title %}Página Principal{% endblock %}
+
+{% block content %}
+  <h1>Bienvenido a la página principal</h1>
+{% endblock %}
+
+MACROS
+Los macros en Nunjucks son similares a las funciones y te permiten crear bloques reutilizables de código. Son muy útiles cuando necesitas renderizar un patrón repetido.
+
+{% macro renderUsuario(usuario) %}
+  <div class="usuario">
+    <h2>{{ usuario.nombre }}</h2>
+    <p>{{ usuario.email }}</p>
+  </div>
+{% endmacro %}
+
+<!-- Luego lo usas en la plantilla -->
+{{ renderUsuario(usuario) }}
+
+EXTRUCTURA DE PROYECTO
+/mi-proyecto
+  /node_modules
+  /src
+    /views
+      index.njk      <-- Plantilla principal
+      header.njk     <-- Header compartido
+      footer.njk     <-- Footer compartido
+      base.njk       <-- Plantilla base para herencia
+    /public
+      /styles
+        styles.css
+  package.json
+  tsconfig.json
+  index.ts
+

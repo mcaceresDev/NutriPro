@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",                 // Para Node.js
+    "target": "es6",                      // ES6 es adecuado para Node.js
+    "types": ["node"],                    // Asegura que TypeScript use los tipos de Node.js
+    "outDir": "./dist",                    // Directorio de salida para los archivos compilados
+    "rootDir": "./src",                    // Directorio de entrada para el código fuente
+    "sourceMap": true,                     // Generar mapas de fuente para depuración
+    "declaration": true,                   // Generar archivos .d.ts (opcional)
+    "declarationMap": true,                // Mapas de declaración
+    "strict": true,                        // Habilitar todas las comprobaciones estrictas
+    "skipLibCheck": true,                  // Omitir la comprobación de tipos de bibliotecas (mejora el rendimiento)
+    "esModuleInterop": true,               // Asegurar que las importaciones sean compatibles con CommonJS
+    "moduleResolution": "node",            // Resolución de módulos estilo Node.js
+    "resolveJsonModule": true,             // Permite importar archivos JSON
+    "noEmit": false,                       // Evitar la compilación cuando no se emite
+    "isolatedModules": true                // Requerido para uso de `ts-node` y compilación de módulos individuales
+  },
+  "include": [
+    "src/**/*"                             // Incluir todos los archivos en src
+  ],
+  "exclude": [
+    "node_modules"                         // Excluir node_modules
+  ]
+}

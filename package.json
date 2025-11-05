@@ -1,0 +1,28 @@
+{
+  "name": "nutripro",
+  "version": "1.0.0",
+  "description": "Software para evaluacion y guia nutricional de pacientes",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch src --ext ts --exec \"ts-node src/app.ts\""
+  },
+  "author": "Manuel Caceres",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.0",
+    "@types/nunjucks": "^3.2.6",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "express": "^5.1.0",
+    "nunjucks": "^3.2.4",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7"
+  }
+}
