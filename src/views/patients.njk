@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}Nutripro{% endblock %}</title>
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
   {# <link rel="stylesheet" href="/css/tabulator_bootstrap5.min.css"> #}
   {# <script src="/js/tabulator.min.js"></script> #}
   {# <script src="/js/tabulatorTLang.js"></script>
   <script src="/js/sweetalert2.all.min.js"></script> #}
 </head>
 <body>
-  {% block content %}
-    
-  {% endblock %}
+    {% block pagetitle %}Pacientes{% endblock %}
+    {% block content %}
+        <button class="btn btn-sm btn-primary">Agregar paciente <i class="fa-solid fa-plus"></i></button>
+    {% endblock %}
 </body>
 <script src="/js/bootstrap.bundle.min.js"></script>
 </html>

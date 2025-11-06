@@ -5,7 +5,7 @@
   "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch src --ext ts --exec \"ts-node src/app.ts\""
+    "dev": "nodemon --watch src --ext ts,css,js,njk --exec \"ts-node src/app.ts\""
   },
   "author": "Manuel Caceres",
   "license": "ISC",
@@ -19,7 +19,9 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
     "bootstrap": "^5.3.8",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "nunjucks": "^3.2.4",
     "sequelize": "^6.37.7",
