@@ -14,6 +14,29 @@
     {% block content %}
         <button class="btn btn-sm btn-primary">Agregar paciente <i class="fa-solid fa-plus"></i></button>
     {% endblock %}
+        <div id="prefixTable"> </div>
 </body>
 <script src="/js/bootstrap.bundle.min.js"></script>
+<script>
+    const opciones={ weekday: 'long' , year: 'numeric' , month: 'short' , day: 'numeric' };
+      {# const data = JSON.parse('<%- JSON.stringify(prefixes) %>') #}
+      const tabla = new Tabulator("#prefixTable", {
+      locale: "es-es",
+      langs: LANG.langs,
+      data: [{nombre: "Maria", apellido:"Gonzalez"}],
+      layout: "fitColumns",
+      pagination: "local",
+      paginationSize: 10,
+      responsiveLayout: "collapse",
+      columns: [
+        { title: "Nombre", field: "nombre", sorter: "string" },
+        { title: "Apellido", field: "apellido", sorter: "string" },
+      ],
+    });
+
+    // tabla.setData(datos); //Para actualizar los datos en la tabla
+    document.getElementById("buscar").addEventListener("input", function () {
+      tabla.setFilter("nombre", "like", this.value);
+    });
+  </script>
 </html>
