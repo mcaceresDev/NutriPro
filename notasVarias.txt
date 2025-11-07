@@ -1,0 +1,4 @@
+ICONOS
+<i class="fa-solid fa-circle-h"></i> // H de historial
+<i class="fa-solid fa-file-medical"></i> //Hoja medica hoja+
+<i class="fa-solid fa-file-waveform"></i> //Hoja + estado de corazon
