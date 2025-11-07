@@ -5,6 +5,7 @@
   <title>{% block title %}Nutripro{% endblock %}</title>
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/fontawesome/all.min.css">
+  <link rel="stylesheet" href="/css/tabulator.min.css">
   <link rel="stylesheet" href="/css/tabulator_bootstrap5.min.css">
   <script src="/js/tabulator.min.js"></script>
   {# <script src="/js/tabulatorTLang.js"></script> #}
@@ -39,11 +40,19 @@
         border-radius: 50px;
         padding: 8px 12px
     }
+    .user-section{
+        background-color: #ffffffba;
+        max-width: 200px;
+    }
   </style>
 </head>
 <body class="main">
-    <header class="header px-3 py-4">
+    <header class="header p-3 d-flex justify-content-between">
         <h3> <i class="fa-solid fa-apple-whole"></i> NUTRIPRO </h3>
+        <div class="user-section rounded px-3 py-2">
+            <span>Manuel Cáceres</span>
+            <img class="h-100" src="/assets/img/doctor-icon.png"></img>
+        </div>
     </header>
 
     <div class="main-container d-flex">
