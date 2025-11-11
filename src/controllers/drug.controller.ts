@@ -1,14 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 
-class PatientController {
+class DrugController {
 
-    getPatients(req:Request, res:Response) {
+    getDrugs(req:Request, res:Response) {
         try {
-            res.render("patients")
+            res.render("drugs", { btnText: "Agregar fármaco" })
         } catch (error:any) {
             console.log(`${error.message}`);
         }
     }
-    
 }
-export default new PatientController()
+export default new DrugController()

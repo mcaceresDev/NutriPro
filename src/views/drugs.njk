@@ -1,0 +1,54 @@
+{% extends "base.njk" %}
+
+{% block pagetitle %} Fármacos {% endblock %}
+
+{% block content %}
+
+    {% include "layouts/content_header.njk"%}
+
+    <div id="" class="mt-4 table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre C</th>
+                    <th>Nombre G</th>
+                    <th>Grupo Farmacológico</th>
+                    <th>Descripción</th>
+                    <th>Interacciones</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Controlip</td>
+                    <td>Atorvastatina</td>
+                    <td>Estatinas</td>
+                    <td>medicamentos que reducen los niveles de colesterol y otras grasas en la sangre</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary">
+                            <i class="fa-solid fa-flask-vial"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-warning">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{# {% %} {% endblock %}
+{% %} {% endblock %}
+{% %} {% endblock %}
+{% %} {% endblock %}
+{% %} {% endblock %} #}
