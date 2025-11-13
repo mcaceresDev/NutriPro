@@ -2,3 +2,65 @@ ICONOS
 <i class="fa-solid fa-circle-h"></i> // H de historial
 <i class="fa-solid fa-file-medical"></i> //Hoja medica hoja+
 <i class="fa-solid fa-file-waveform"></i> //Hoja + estado de corazon
+
+
+BASE DE DATOS
+===============================================================================
+Tablas
+medicamentos
+nutrientes
+interacciones
+(Opcional) enfermedades
+
+-- Crear base de datos
+CREATE DATABASE nutri_interacciones;
+USE nutri_interacciones;
+
+-- Tabla de medicamentos
+CREATE TABLE medicamentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    grupo_farmacologico VARCHAR(100),
+    descripcion TEXT
+);
+
+-- Tabla de nutrientes o alimentos
+CREATE TABLE nutrientes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    tipo ENUM('nutriente', 'alimento') DEFAULT 'nutriente',
+    categoria VARCHAR(100),
+    descripcion TEXT
+);
+
+-- Tabla de enfermedades (opcional, pero útil para relacionar casos como diabetes o dislipidemia)
+CREATE TABLE enfermedades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT
+);
+
+-- Tabla de interacciones
+CREATE TABLE interacciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    medicamento_id INT NOT NULL,
+    nutriente_id INT NOT NULL,
+    enfermedad_id INT NULL,
+    tipo ENUM('positiva', 'negativa') NOT NULL,
+    efecto TEXT NOT NULL,
+    recomendacion TEXT,
+    nivel_evidencia ENUM('alta', 'media', 'baja') DEFAULT 'media',
+    FOREIGN KEY (medicamento_id) REFERENCES medicamentos(id),
+    FOREIGN KEY (nutriente_id) REFERENCES nutrientes(id),
+    FOREIGN KEY (enfermedad_id) REFERENCES enfermedades(id)
+);
+
+
+
+
+{
+  "medicamento": "Metformina",
+  "interaccion": "Disminuye absorción de vitamina B12",
+  "efecto": "Posible anemia megaloblástica",
+  "recomendacion": "Monitorear B12 anual y recomendar alimentos fortificados o suplemento"
+}
