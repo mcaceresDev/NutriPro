@@ -16,6 +16,7 @@
     "@types/nunjucks": "^3.2.6",
     "@types/tabulator-tables": "^6.3.0",
     "nodemon": "^3.1.10",
+    "sequelize-cli": "^6.6.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
@@ -23,6 +24,7 @@
     "@fortawesome/fontawesome-free": "^7.1.0",
     "bootstrap": "^5.3.8",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "nunjucks": "^3.2.4",
     "sequelize": "^6.37.7",
