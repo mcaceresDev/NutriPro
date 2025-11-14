@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('drug', {
+    await queryInterface.createTable('disease', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,13 +12,10 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      generic: {
+      description: {
         type: Sequelize.STRING
       },
-      pharmaGroupId: {
-        type: Sequelize.INTEGER
-      },
-      description: {
+      symptom: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -32,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('drug');
+    await queryInterface.dropTable('disease');
   }
 };
