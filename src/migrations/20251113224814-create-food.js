@@ -99,12 +99,19 @@ module.exports = {
       edibleFraction: {
         type: Sequelize.DECIMAL
       },
+      addedBy: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'user',
+          key: 'id'
+        }
+      },
       createdAt: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.DATE
       }
     });

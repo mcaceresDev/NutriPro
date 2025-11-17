@@ -2,32 +2,29 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('pharmaFoodInteraction', {
+    await queryInterface.createTable('user', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      drugId: {
-        type: Sequelize.INTEGER
-      },
-      foodId: {
-        type: Sequelize.INTEGER
-      },
-      diseaseId: {
-        type: Sequelize.INTEGER
-      },
-      type: {
+      name: {
         type: Sequelize.STRING
       },
-      effect: {
+      lastname: {
         type: Sequelize.STRING
       },
-      recommend: {
+      username: {
         type: Sequelize.STRING
       },
-      evidence: {
+      email: {
+        type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING
+      },
+      gender: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -41,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('pharmaFoodInteraction');
+    await queryInterface.dropTable('user');
   }
 };

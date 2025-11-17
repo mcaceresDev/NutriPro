@@ -43,7 +43,8 @@ module.exports = (sequelize, DataTypes) => {
     vitB12: DataTypes.DECIMAL,
     folicAcid: DataTypes.INTEGER,
     folato: DataTypes.INTEGER,
-    edibleFraction: DataTypes.DECIMAL
+    edibleFraction: DataTypes.DECIMAL,
+    addedBy: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'food',
