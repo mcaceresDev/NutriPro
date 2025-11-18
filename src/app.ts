@@ -19,12 +19,15 @@ nunjucks.configure(path.join(__dirname, 'views'), {
 // Configurar la carpeta para vistas y el motor de plantillas
 app.set('view engine', 'njk');  // Usamos "njk" como la extensión de los archivos de plantillas
 app.set('views', path.join(__dirname, 'views'));
-app.use('/', router)
-
-// Ruta de ejemplo
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Mi Proyecto con Nunjucks', name: 'Juan' });
+  // res.render('index', { title: 'Mi Proyecto con Nunjucks', name: 'Juan' });
+  res.render('login');
 });
+app.use('/', router)
+app.use((req, res) => {
+    res.status(404).render(__dirname + '/views/pages/notFound.njk');
+});
+
 
 // Iniciar servidor
 app.listen(port, () => {

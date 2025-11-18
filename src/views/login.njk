@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Nutripro{% endblock %}</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/fontawesome/all.min.css">
+  <style>
+    .loginbox{
+        width: 300px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .background{
+        background-color: RGBA(136, 192, 208, 0.5);
+    }
+  </style>
+</head>
+<body class="">
+    <main class="background container-fluid vh-100 d-flex">
+        <div class="loginbox m-auto px-2 py-5">
+            <img class="img-fluid" src="assets/img/nutriLifeLogo2.png" />
+            <input type="text" class="my-3 form-control form-control-sm" placeholder="Escribe tu correo institucional" />
+            <input type="password" class="form-control form-control-sm" placeholder="Escribe tu contraseña" />
+        </div>
+    </main>
+</body>
+</html>

@@ -64,3 +64,135 @@ CREATE TABLE interacciones (
   "efecto": "Posible anemia megaloblástica",
   "recomendacion": "Monitorear B12 anual y recomendar alimentos fortificados o suplemento"
 }
+============================================================================
+configuracion general
+============================================================================
+
+require("dotenv").config();
+const axios = require("axios")
+const { DateTime } = require("luxon")
+const { Op } = require('sequelize');
+const { Bitacora } = require("./models");
+const express = require("express")
+const path = require("path")
+const session = require('express-session');
+const router = require("./routes");
+const SQLiteStore = require('connect-sqlite3')(session)
+const cron = require("node-cron")
+
+//VARIABLES DE APP Y MIDDLEWARES
+const app = express()
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, 'public')))
+
+const PORT = process.env.APPLICATION_PORT ? process.env.APPLICATION_PORT : 3000
+
+app.use(session({
+    store: new SQLiteStore({
+        db: 'sessions.sqlite',
+        dir: path.join(__dirname, 'database'),
+        // cleanupInterval: 15 * 60 * 1000 //Revisa y limpia sesiones expiradas cada 15 minutos de acuerdo al maxAge.
+    }),
+    secret: process.env.SECRET_KEY ? process.env.SECRET_KEY : "$2b$10$n3SSI",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // true si usas HTTPS
+    //   cookie: {
+    //     maxAge: 1000 * 60 * 60 * 24 // 1 día (en milisegundos)
+    //   }
+
+}));
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use('/', router)
+app.use((req, res) => {
+    res.status(404).sendFile(__dirname + '/views/pages/notFoundPage.html');
+});
+
+app.listen(PORT, () => {
+    console.log("Servidor corriendo...");
+})
+
+// Ejecutar cada 10 minutos
+cron.schedule("*/15 * * * *", async () => {
+    // console.log("⏳ Iniciando verificación de mensajes...");
+    const ahora = new Date();
+    ahora.setHours(ahora.getHours() - 6)
+    const hace24h = new Date();
+    hace24h.setHours(ahora.getHours() - 26)//Se consulta de hace 26 horas para luego eliminar los que hayan alcanzado las 24 horas o mas sin confirmacion
+
+    try {
+        // 1. Buscar todos los mensajes enviados en las últimas 24h
+        const mensajes = await Bitacora.findAll({
+            where: {
+                status: "Enviado",
+                sendDate: { [Op.gte]: hace24h }
+            }
+        });
+        
+        if (mensajes.length === 0) {
+            // console.log("No hay mensajes pendientes de verificación.");
+            return;
+        }
+
+        // 2. Agrupar referencias en string separado por comas
+        const referencias = mensajes.map(m => m.reference).join(",");
+
+        // 3. Consultar API de Tigo
+        const { data } = await axios.post(`/api/confirmar-lista-sms`, { referencias });
+
+        if (!data || data.length <= 0) {
+            console.warn("⚠️ Respuesta sin lista de estados:", data);
+            return;
+        }
+
+        if (data.estado && data.referencia) { //Significa que solo vino un dato en forma de Objeto
+            const { estado } = data
+            if (estado === "CON") {
+                let fechaConfirmado = new Date()
+                fechaConfirmado.setHours(fechaConfirmado.getHours() - 6)
+                await mensajes[0].update({ status: "Entregado", responseDate: fechaConfirmado });
+            } 
+            else {
+                // calcular horas transcurridas
+                const tiempoEnvio = new Date(mensajes[0].sendDate);
+                const diffHoras = (ahora.getTime() - tiempoEnvio.getTime()) / (1000 * 60 * 60);
+
+                if (diffHoras >= 24) {
+                    await mensajes[0].update({ status: "Fallido" });
+                }
+            }
+            return
+        }
+
+        // 4. Procesar resultados
+        for (const estadoMsg of data) {
+            const { referencia, estado } = estadoMsg;
+
+            // buscar el mensaje en DB
+            const msg = mensajes.find(m => m.reference === referencia);
+            if (!msg) continue;
+
+            if (estado === "CON") {
+                let fechaConfirmado = new Date()
+                fechaConfirmado.setHours(fechaConfirmado.getHours() - 6)
+                await msg.update({ status: "Entregado", responseDate: fechaConfirmado });
+            } else {
+                // calcular horas transcurridas
+                const tiempoEnvio = new Date(msg.sendDate);
+                const diffHoras = (ahora.getTime() - tiempoEnvio.getTime()) / (1000 * 60 * 60);
+                
+                if (diffHoras >= 24) {
+                    await msg.update({ status: "Fallido" });
+                }
+            }
+        }
+
+        console.log(`✅ Verificados ${mensajes.length} mensajes.`);
+    } catch (err) {
+        console.error("❌ Error en verificación de mensajes:", err.message);
+    }
+});
+
