@@ -12,6 +12,7 @@
   "devDependencies": {
     "@types/ejs": "^3.1.5",
     "@types/express": "^5.0.5",
+    "@types/express-session": "^1.18.2",
     "@types/node": "^24.10.0",
     "@types/nunjucks": "^3.2.6",
     "@types/tabulator-tables": "^6.3.0",
@@ -23,9 +24,11 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",
     "bootstrap": "^5.3.8",
+    "connect-sqlite3": "^0.9.16",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
     "nunjucks": "^3.2.4",
     "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7",

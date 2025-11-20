@@ -2,11 +2,13 @@ import express from 'express';
 import * as nunjucks from 'nunjucks';
 import path from 'path';
 import router from './routes/index.routes';
+import { sessionMiddleware } from './config/session';
 
 const app = express();
 const port = 3000;
 
 app.use(express.json())
+app.use(sessionMiddleware);
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -33,3 +35,5 @@ app.use((req, res) => {
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
+
+export default app;
