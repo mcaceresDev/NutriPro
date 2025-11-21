@@ -1,10 +1,17 @@
 import axios from 'axios';
 
+interface baseAxiosParams {
+    method: string;
+    url: string,
+    headers?: Object,
+    data?: string
+}
+
 const config = async({
     method = "get",
     url,
     headers, 
-    data}) => {
+    data}:baseAxiosParams) => {
 
     try {
         const response = await axios({method, url, headers, data})
