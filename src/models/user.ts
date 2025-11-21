@@ -53,7 +53,8 @@ user.init({
     allowNull: false,
     validate: {
       notNull: {msg: "El campo correo no puede ser nulo"},
-      notEmpty: {msg: "El campo correo no puede ir vacío"}
+      notEmpty: {msg: "El campo correo no puede ir vacío"},
+      isEmail: {msg: "La direccion de correo es invalida"}
     }
   },
   password: {

@@ -13,14 +13,14 @@ const dbOptions = {
 const db = new Sequelize(dbOptions.database, dbOptions.username, dbOptions.password, {
     host: dbOptions.host,
     dialect: 'sqlite', //dbOptions.dialect
+    storage: "./src/database/dbdev.sqlite",
     dialectOptions: {
         // useUTC: false,
-        timezone: "local",
+        // timezone: "local",
         bigNumberStrings: true,
         dateStrings: true,
         typeCast: true,
-    },
-    timezone: 'America/Managua'
+    }
 });
 
 export default db
