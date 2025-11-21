@@ -1,0 +1,48 @@
+{% extends "base.njk" %}
+
+{% block pagetitle %} Usuarios {% endblock %}
+
+{% block content %}
+
+    <table border="1" id="tabla-usuarios" cellpadding="8">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Sexo</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-usuarios">
+            <!-- Se llenará por AJAX -->
+        </tbody>
+    </table>
+
+    <script>
+    async function cargarUsuarios() {
+        const res = await fetch("http://localhost:3000/users/all");
+        const data = await res.json();
+
+        const tbody = document.getElementById("tbody-usuarios");
+
+        data.forEach(u => {
+            tbody.innerHTML += `
+                <tr>
+                    <td>${u.id}</td>
+                    <td>${u.name}</td>
+                    <td>${u.lastname}</td>
+                    <td>${u.username}</td>
+                    <td>${u.email}</td>
+                    <td>${u.gender}</td>
+                </tr>
+            `;
+        });
+    }
+
+    // Ejecuta la carga al abrir la página
+    cargarUsuarios();
+</script>
+
+{% endblock %}

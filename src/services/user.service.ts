@@ -18,6 +18,8 @@ class UserService {
 
     readUsers = async () => {
         try {
+            const response = await user.findAll()
+            return response
 
         } catch (error: any) {
             console.log(error);
