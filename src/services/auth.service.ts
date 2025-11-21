@@ -1,32 +1,32 @@
-// const { User } = require("../models");
-// const { encrypt, compare } = require("../utils/cryptHelper");
+import user from "../models/user";
+import { encrypt, compare } from "../utils/cryptHelper";
 
-// class AuthService {
+class AuthService {
 
-//     loginUser = async(username, password) =>{
-//         try {
-//             const findedUser = await User.findOne({
-//                 attributes: ['id', 'username', 'password', 'role', 'providerId'],
-//                 where: {
-//                     username
-//                 }
-//             });
+    loginUser = async(email:string, password:string) =>{
+        try {
+            const findedUser = await user.findOne({
+                attributes: ['id', 'username', 'password', 'email'],
+                where: {
+                    email
+                }
+            });
     
-//             if(findedUser){
-//                 const hashPasword = findedUser.password
-//                 const check = await compare(password, hashPasword)
+            if(findedUser){
+                const hashPasword = findedUser.password
+                const check = await compare(password, hashPasword)
                 
-//                 if(!check) return { status: 400, message:"Contraseña Incorrecta" }
+                if(!check) return { status: 400, message:"Contraseña Incorrecta" }
                 
-//                 return { status: 200, message: "", data: findedUser}
-//             }
-//             return { status: 200, message: "", data: findedUser}
+                return { status: 200, message: "", data: findedUser}
+            }
+            return { status: 200, message: "", data: findedUser}
             
-//         } catch (error) {
-//             console.log("Error: " + error.message);
-//             throw error
-//         }
-//     }
-// }
+        } catch (error:any) {
+            console.log("Error: " + error.message);
+            throw error
+        }
+    }
+}
 
-// module.exports = new AuthService()
+module.exports = new AuthService()

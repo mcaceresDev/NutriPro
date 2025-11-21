@@ -29,7 +29,6 @@ class UserController {
         }
 
         try {
-            console.log("================ ENTRO AL CONTROLADOR ================");
             const response = await userService.createUser(payload)
             
             return res.json(response)
