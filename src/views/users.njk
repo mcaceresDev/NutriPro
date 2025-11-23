@@ -4,6 +4,8 @@
 
 {% block content %}
 
+    <button class="btn btn-primary btn-sm" onclick="crearUsuario()">Crear Usuario de Prueba</button>
+
     <table border="1" id="tabla-usuarios" cellpadding="8">
         <thead>
             <tr>
@@ -39,6 +41,26 @@
                 </tr>
             `;
         });
+    }
+
+
+    async function crearUsuario() {
+        const res = await fetch("http://localhost:3000/users/new-user", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: "Juan",
+                lastname: "Pérez",
+                username: "juanperez",
+                email: "manuel.caceres@gmail.com",
+                password: "securepassword",
+                gender: "M"
+            })
+        });
+        const data = await res.json();
+        console.log("Nuevo usuario creado:", data);        
     }
 
     // Ejecuta la carga al abrir la página
