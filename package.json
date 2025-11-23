@@ -5,6 +5,8 @@
   "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/app.js",
     "dev": "nodemon --watch src --ext ts,css,js,njk --exec \"ts-node src/app.ts\""
   },
   "author": "Manuel Caceres",

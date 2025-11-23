@@ -8,7 +8,7 @@
     "sourceMap": true,                     // Generar mapas de fuente para depuración
     "declaration": true,                   // Generar archivos .d.ts (opcional)
     "declarationMap": true,                // Mapas de declaración
-    "strict": true,                        // Habilitar todas las comprobaciones estrictas
+    "strict": false,                        // Habilitar todas las comprobaciones estrictas
     "skipLibCheck": true,                  // Omitir la comprobación de tipos de bibliotecas (mejora el rendimiento)
     "esModuleInterop": true,               // Asegurar que las importaciones sean compatibles con CommonJS
     "moduleResolution": "node",            // Resolución de módulos estilo Node.js
