@@ -1,10 +1,8 @@
-import { Request, Response } from "express";
-import userService from "../services/user.service";
-import { CreateUserBody } from "../models/interfaces/user.interface";
+const userService = require("../services/user.service")
 
 class UserController {
 
-    getUsers = async (req: Request, res: Response) => {
+    getUsers = async (req, res) => {
         
         try {
             const response = await userService.readUsers()
@@ -12,14 +10,14 @@ class UserController {
             
             return res.json(response)
 
-        } catch (error: any) {
+        } catch (error) {
             console.log(error);
         }
     }
 
-    addUser = async (req: Request, res: Response) => {
+    addUser = async (req, res) => {
         const { name, lastname, username, email, password, gender } = req.body
-        const payload:CreateUserBody = {
+        const payload = {
             name,
             lastname,
             username,
@@ -33,11 +31,11 @@ class UserController {
             
             return res.json(response)
 
-        } catch (error: any) {
+        } catch (error) {
             console.log(error);
             return res.json({message: "Error en el controlador"})
         }
     }
 }
 
-export default new UserController()
+module.exports = new UserController()

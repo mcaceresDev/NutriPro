@@ -1,22 +1,16 @@
-import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional, ForeignKey } from 'sequelize';
-import db from '../config/dbConnection';
+'use strict';
+const { Model } = require('sequelize');
 
-
-class user extends Model<InferAttributes<user>, InferCreationAttributes<user>> {
-  declare id: CreationOptional<number>;
-  declare name: string;
-  declare lastname: string;
-  declare username: string;
-  declare email: string;
-  declare password: string;
-  declare gender: string;
-
-  // declare providerId: ForeignKey<Category['id']> 
-  // timestamps!
-  declare createdAt: CreationOptional<Date>;
-  declare updatedAt: CreationOptional<Date>;
-  declare deletedAt: CreationOptional<Date>;
-}
+module.exports = (sequelize, DataTypes) => {
+  class user extends Model {
+    
+    static associate(models) {
+        // user.belongsTo(models.Provider, {
+        //   as: "Provider",
+        //   foreignKey: "providerId"
+        // })      
+    }
+  }
 
 user.init({
   id: {
@@ -77,10 +71,11 @@ user.init({
   updatedAt: DataTypes.DATE,
   deletedAt: DataTypes.DATE,
 }, {
-  sequelize: db,
+  sequelize,
   modelName: 'user',
   freezeTableName: true,
   paranoid: true
 });
-  
-export default user;
+
+ return user; 
+}

@@ -1,9 +1,9 @@
-import user from "../models/user";
-import { encrypt, compare } from "../utils/cryptHelper";
+const { user } = require("../models/user")
+const { encrypt, compare } = require("../utils/cryptHelper")
 
 class AuthService {
 
-    loginUser = async(email:string, password:string) =>{
+    loginUser = async(email, password) =>{
         try {
             const findedUser = await user.findOne({
                 attributes: ['id', 'username', 'password', 'email'],
@@ -22,7 +22,7 @@ class AuthService {
             }
             return { status: 200, message: "", data: findedUser}
             
-        } catch (error:any) {
+        } catch (error) {
             console.log("Error: " + error.message);
             throw error
         }

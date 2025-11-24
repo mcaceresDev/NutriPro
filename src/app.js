@@ -1,8 +1,8 @@
-import express from 'express';
-import * as nunjucks from 'nunjucks';
-import path from 'path';
-import router from './routes/index.routes';
-import { sessionMiddleware } from './config/session';
+const express = require("express")
+const nunjucks = require('nunjucks');
+const path = require("path")
+const router = require("./routes");
+const { sessionMiddleware } = require('./config/session')
 
 const app = express();
 const port = 3000;

@@ -1,6 +1,6 @@
 {
   "watch": ["src"],           
-  "ext": "ts, njk",                
-  "exec": "ts-node src/app.ts", 
+  "ext": "js, njk",                
+  "exec": "node src/app.js", 
   "ignore": ["node_modules"]      
 }
