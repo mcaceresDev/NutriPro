@@ -38,6 +38,7 @@
     "nunjucks": "^3.2.4",
     "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7",
+    "sweetalert2": "^11.26.3",
     "tabulator-tables": "^6.3.1"
   }
 }

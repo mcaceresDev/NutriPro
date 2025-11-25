@@ -32,7 +32,12 @@
                 </div>
                 <div class="col-4">
                     <label for="" class="form-label">Categoría <span class="text-danger">*</span></label>
-                    <input type="text" required class="form-control form-control-sm" id="" placeholder="">
+                    <select id="providerId" class="form-select" name="providerId" aria-label="Small select example">
+                    <option selected>Seleccione la Categoría de alimento</option>
+                    {# <% providers.forEach((provider, index)=> { %>
+                        <option value=<%= provider.id %>> <%= provider.name %> </option>    
+                    <% }) %> #}
+                  </select>
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Agua <span class="text-danger">*</span></label>
@@ -195,7 +200,9 @@
 
 {% endblock %}
 
-{% block scripts %}{% endblock %}
+{% block scripts %}
+    <script src="/js/sweetalert2.all.min.js"></script>
+{% endblock %}
 {#{% %} {% endblock %}
 {% %} {% endblock %}
 {% %} {% endblock %}
