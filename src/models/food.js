@@ -14,8 +14,24 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   food.init({
-    code: DataTypes.INTEGER,
-    name: DataTypes.STRING,
+    code: {
+      type: DataTypes.INTEGER,
+      unique: true,
+      allowNull: false,
+      validate: {
+      notNull: {msg: "El campo codigo es obligatorio"},
+      notEmpty: {msg: "El campo codigo no puede ir vacío"}
+    }
+    },
+    name: {
+      type: DataTypes.INTEGER,
+      unique: true,
+      allowNull: false,
+      validate: {
+      notNull: {msg: "El campo nombre es obligatorio"},
+      notEmpty: {msg: "El campo nombre no puede ir vacío"}
+    }
+    },
     aqua: DataTypes.DECIMAL,
     energy: DataTypes.INTEGER,
     protein: DataTypes.DECIMAL,
@@ -44,7 +60,8 @@ module.exports = (sequelize, DataTypes) => {
     folicAcid: DataTypes.INTEGER,
     folato: DataTypes.INTEGER,
     edibleFraction: DataTypes.DECIMAL,
-    addedBy: DataTypes.INTEGER
+    addedBy: DataTypes.INTEGER,
+    categoryId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'food',
