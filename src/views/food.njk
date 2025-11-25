@@ -23,21 +23,27 @@
             </div>
             <form class="row g-3">
                 <div class="col-2">
-                    <label for="" class="form-label">Código <span class="text-danger">*</span> </label>
+                    <label for="" class="form-label">Código <span class="text-danger">*</span>
+                    </label>
                     <input type="text" required class="form-control form-control-sm" id="" placeholder="">
-                </div>                
+                </div>
                 <div class="col-6">
                     <label for="" class="form-label">Nombre <span class="text-danger">*</span></label>
                     <input type="text" required class="form-control form-control-sm" id="" placeholder="">
                 </div>
                 <div class="col-4">
                     <label for="" class="form-label">Categoría <span class="text-danger">*</span></label>
-                    <select id="providerId" class="form-select" name="providerId" aria-label="Small select example">
-                    <option selected>Seleccione la Categoría de alimento</option>
-                    {# <% providers.forEach((provider, index)=> { %>
-                        <option value=<%= provider.id %>> <%= provider.name %> </option>    
-                    <% }) %> #}
-                  </select>
+                    <select id="providerId" class="form-select" name="providerId" required aria-label="Small select example">
+                        <option selected>Seleccione la Categoría de alimento</option>
+                        {% if categories %}
+                            {% for item in categories %}
+                            {# <li>{{ name }}: {{ item }}</li> #}
+                            <option value={{item.id}}>{{ item.name }}</option>
+                        {% endfor %}
+                        {% else %}
+                            <option>"No hay elementos para seleccionar"</option>
+                        {% endif %}
+                    </select>
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Agua <span class="text-danger">*</span></label>

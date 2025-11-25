@@ -4,10 +4,13 @@ const { errorPostHandler, genericErrorHandler, notFoundResponse, sendSuccess, ba
 
 class FoodController {
 
-    getFood(req, res) {
+    getFood = async(req, res)=> {
         try {
-            const categories = foodcategoryService.readFoodCategories()
-            res.render("food")
+            const categories = await foodcategoryService.readFoodCategories()
+            if (categories && categories.length > 0) {                
+                return res.render("food", { categories })
+            }
+            return res.render("food")
         } catch (error) {
             console.log(`${error.message}`);
             return
