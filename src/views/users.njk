@@ -24,7 +24,7 @@
 
     <script>
     async function cargarUsuarios() {
-        const res = await fetch("http://localhost:3000/users/all");
+        const res = await fetch("http://nutrilife.mcaceres-dev.com/users/all");
         const data = await res.json();
 
         const tbody = document.getElementById("tbody-usuarios");
@@ -45,7 +45,7 @@
 
 
     async function crearUsuario() {
-        const res = await fetch("http://localhost:3000/users/new-user", {
+        const res = await fetch("http://nutrilife.mcaceres-dev.com/users/new-user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

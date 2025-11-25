@@ -1,13 +1,15 @@
 const express = require("express")
+const cors = require("cors")
 const nunjucks = require('nunjucks');
 const path = require("path")
-const router = require("./routes");
+const router = require("./routes/index.routes");
 const { sessionMiddleware } = require('./config/session')
 
 const app = express();
 const port = 3000;
 
 app.use(express.json())
+app.use(cors())
 app.use(sessionMiddleware);
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
@@ -35,5 +37,3 @@ app.use((req, res) => {
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
-
-export default app;
