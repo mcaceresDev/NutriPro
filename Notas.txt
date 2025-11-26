@@ -170,3 +170,203 @@ Vit. B12
 Ac. Fólico
 Folato Equiv. FD
 Fracción Comestible
+
+=================================================================================
+EJEMPLO DE USO DE TABULATOR
+=================================================================================
+  <script>
+    const opciones={ weekday: 'long' , year: 'numeric' , month: 'short' , day: 'numeric' };
+      const data = JSON.parse('<%- JSON.stringify(prefixes) %>')
+      const tabla = new Tabulator("#prefixTable", {
+      locale: "es-es",
+      langs: LANG.langs,
+      data: data,
+      layout: "fitColumns",
+      pagination: "local",
+      paginationSize: 10,
+      responsiveLayout: "collapse",
+      columns: [
+        { title: "ID", field: "id", visible: false },
+        { title: "Prefijo", field: "initialNumber", sorter: "string" },
+        { title: "Proveedor", field: "Provider.name", sorter: "string" },
+        { title: "Creado en", field: `createdAt`, formatter: function(cell) {
+            const fecha = new Date(cell.getValue());
+            return fecha.toLocaleDateString('es-ES', opciones);
+          }},
+        { title: "Actualizado en", field: "updatedAt", formatter: function(cell) {
+            if (!cell.getValue()) {
+              return ""
+            }
+            else{
+              const fecha = new Date(cell.getValue());
+              return fecha.toLocaleDateString('es-ES', opciones);
+            } 
+          }},
+        {
+          title: "Acciones", headerHozAlign: "center", hozAlign: "center", formatter: function(cell, formatterParams) {
+            const id = cell.getRow().getData().id;
+            const prefix = cell.getRow().getData().initialNumber;
+            const providerId = cell.getRow().getData().providerId;
+            return `
+              <button class="btn btn-sm btn-primary me-1" onclick="abrirEditar(${id}, ${prefix}, ${providerId})">Editar</button>
+              <button class="btn btn-sm btn-danger" onclick="abrirBorrar(${id}, ${prefix})">Eliminar</button>
+            `;
+          }
+        }
+      ],
+    });
+
+    // tabla.setData(datos); //Para actualizar los datos en la tabla
+    document.getElementById("buscar").addEventListener("input", function () {
+      tabla.setFilter("initialNumber", "like", this.value);
+    });
+  </script>
+
+  ============================================================================
+  EJEMPLO DE CRUD
+  ============================================================================
+  const alertType = {
+  success: "success",
+  info: "info",
+  warning: "warning",
+  error: "error"
+}
+const sendFeedBack= (message, alertType)=> {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+
+  return Toast.fire({
+    icon: alertType ? alertType : "success",
+    title: message ? message : ""
+  });
+}
+
+//Funcion de llamado de datos
+  const getPrefixes = async()=>{
+    try {
+        const res = await fetch(`/admin-api/prefixes-only`, {
+          method: "GET"
+        });
+        const data = await res.json();
+  
+        if (res.ok) {
+          //Hace referencia a la tabla cargada con tabulator y la actualiza
+          tabla.setData(data.rows)
+          
+        } else {
+          sendFeedBack(data.message,alertType.error)
+        }
+      } catch (err) {
+        bootstrap.Modal.getInstance(document.getElementById("modalRegistro")).hide();
+        sendFeedBack(err.message,alertType.error)
+      }
+  }
+  
+  // Este código evita que el formulario recargue la página
+  document.getElementById("formRegistrar").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const initialNumber = document.getElementById("prefix").value;
+      const providerId = document.getElementById("providerId").value;
+  
+      try {
+        const res = await fetch(`/admin-api/prefix/new`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ initialNumber, providerId })
+        });
+        const data = await res.json();
+  
+        if (res.ok) {
+          // Cierra el modal y recarga la tabla
+          bootstrap.Modal.getInstance(document.getElementById("modalRegistro")).hide();
+          sendFeedBack(data.message, alertType.success)
+          getPrefixes()
+        } else {
+          bootstrap.Modal.getInstance(document.getElementById("modalRegistro")).hide();
+          sendFeedBack(data.message, alertType.error)
+        }
+      } catch (err) {
+        console.log(err);
+        
+        bootstrap.Modal.getInstance(document.getElementById("modalRegistro")).hide();
+        sendFeedBack(err.message, alertType.error)
+      }
+    });
+
+
+// Funcion para editar info
+document.getElementById("formEditar").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const id = document.getElementById("editId").value;
+  const initialNumber = document.getElementById("editPrefix").value;
+  const providerId = document.getElementById("editProvider").value;
+
+  try {
+    const res = await fetch(`/admin-api/prefix-edit/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ initialNumber, providerId })
+    });
+    const data = await res.json();
+    
+    if (res.ok) {
+      // Cierra el modal y recarga la tabla
+      bootstrap.Modal.getInstance(document.getElementById("modalEditar")).hide();
+      sendFeedBack(data.message, alertType.success)
+      getPrefixes()
+      
+    } else {
+      bootstrap.Modal.getInstance(document.getElementById("modalEditar")).hide();
+      sendFeedBack(data.message, alertType.error)
+    }
+  } catch (err) {
+    bootstrap.Modal.getInstance(document.getElementById("modalEditar")).hide();
+    sendFeedBack(err.message, alertType.error)
+  }
+});
+
+// Funcion para Borrar
+document.getElementById("formBorrar").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const id = document.getElementById("delId").dataset.deleteid;
+  
+  try {
+    const res = await fetch(`/admin-api/prefix-del/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const data = await res.json();
+    
+    if (res.ok) {
+      // Cierra el modal y recarga la tabla
+      bootstrap.Modal.getInstance(document.getElementById("modalBorrar")).hide();
+      sendFeedBack(data.message, alertType.success)
+      getPrefixes()
+      
+    } else {
+      bootstrap.Modal.getInstance(document.getElementById("modalBorrar")).hide();
+      sendFeedBack(data.message, alertType.error)
+    }
+  } catch (err) {
+    console.log(err);
+    bootstrap.Modal.getInstance(document.getElementById("modalBorrar")).hide();
+    sendFeedBack(err.message, alertType.error)
+  }
+});
