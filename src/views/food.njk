@@ -21,25 +21,25 @@
                 <p>Rellene los campos en base a la tabla de composición de alimentos de INCAP. Los campos con "<span class="text-danger">*</span>" son OBLIGATORIOS.
                 </p>
             </div>
-            <form class="row g-3">
+            <form id="formRegistrar" class="row g-3">
                 <div class="col-2">
                     <label for="" class="form-label">Código <span class="text-danger">*</span>
                     </label>
-                    <input type="text" required class="form-control form-control-sm" id="" placeholder="">
+                    <input type="text" required class="form-control form-control-sm" name="code" id="code" placeholder="">
                 </div>
                 <div class="col-6">
                     <label for="" class="form-label">Nombre <span class="text-danger">*</span></label>
-                    <input type="text" required class="form-control form-control-sm" id="" placeholder="">
+                    <input type="text" required class="form-control form-control-sm" name="name" id="name" placeholder="">
                 </div>
                 <div class="col-4">
                     <label for="" class="form-label">Categoría <span class="text-danger">*</span></label>
-                    <select id="providerId" class="form-select" name="providerId" required aria-label="Small select example">
+                    <select name="cacategoryId" id="cacategoryId" class="form-select form-select-sm" name="providerId" required aria-label="Small select example">
                         <option selected>Seleccione la Categoría de alimento</option>
                         {% if categories %}
                             {% for item in categories %}
-                            {# <li>{{ name }}: {{ item }}</li> #}
-                            <option value={{item.id}}>{{ item.name }}</option>
-                        {% endfor %}
+                                {# <li>{{ name }}: {{ item }}</li> #}
+                                <option value={{item.id}}>{{ item.name }}</option>
+                            {% endfor %}
                         {% else %}
                             <option>"No hay elementos para seleccionar"</option>
                         {% endif %}
@@ -47,111 +47,115 @@
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Agua <span class="text-danger">*</span></label>
-                    <input type="number" required class="form-control form-control-sm" id="" placeholder="%">
+                    <input type="number" required class="form-control form-control-sm" name="aqua" id="aqua" placeholder="%">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Energía <span class="text-danger">*</span></label>
-                    <input type="number" required class="form-control form-control-sm" id="" placeholder="Kcal">
+                    <input type="number" required class="form-control form-control-sm" name="energy" id="energy" placeholder="Kcal">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Proteína <span class="text-danger">*</span></label>
-                    <input type="number" required class="form-control form-control-sm" id="" placeholder="g">
+                    <input type="number" required class="form-control form-control-sm" name="protein" id="protein" placeholder="g">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Grasa Total <span class="text-danger">*</span></label>
-                    <input type="number" required class="form-control form-control-sm" id="" placeholder="g">
+                    <input type="number" required class="form-control form-control-sm" name="totalFat" id="totalFat" placeholder="g">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Carbohidratos <span class="text-danger">*</span></label>
-                    <input type="number" required class="form-control form-control-sm" id="" placeholder="g">
+                    <input type="number" required class="form-control form-control-sm" name="carbs" id="carbs" placeholder="g">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Fibra diet. tot.</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="g">
+                    <input type="number" class="form-control form-control-sm" name="dietaryFiber" id="dietaryFiber" placeholder="g">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Ceniza</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="g">
+                    <input type="number" class="form-control form-control-sm" name="ceniza" id="ceniza" placeholder="g">
+                </div>
+                <div class="col-md-2">
+                    <label for="" class="form-label">Calcio</label>
+                    <input type="number" class="form-control form-control-sm" name="calcium" id="calcium" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Fósforo</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="phosphorus" id="phosphorus" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Hierro</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="iron" id="iron" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Tiamina</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="thiamine" id="thiamine" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Riboflavina</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="riboflavin" id="riboflavin" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Niacina</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="niacin" id="niacin" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Vit. C</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="vitC" id="vitC" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Vit A - Retinol</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mcg">
+                    <input type="number" class="form-control form-control-sm" name="vitA" id="vitA" placeholder="mcg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">A. grasos monoI</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="g">
+                    <input type="number" class="form-control form-control-sm" name="monoiFatAcid" id="monoiFatAcid" placeholder="g">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">A. grasos poliI</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="g">
+                    <input type="number" class="form-control form-control-sm" name="poliiFatAcid" id="poliiFatAcid" placeholder="g">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">A. grasos saturados</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="g">
+                    <input type="number" class="form-control form-control-sm" name="satFatAcid" id="satFatAcid" placeholder="g">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Colesterol</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="cholesterol" id="cholesterol" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Potasio</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="potassium" id="potassium" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Sodio</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="sodium" id="sodium" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Zinc</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="zinc" id="zinc" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Magnesio</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="magnesium" id="magnesium" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Vit. B6</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mg">
+                    <input type="number" class="form-control form-control-sm" name="vitB6" id="vitB6" placeholder="mg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Vit. B12</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mcg">
+                    <input type="number" class="form-control form-control-sm" name="vitB12" id="vitB12" placeholder="mcg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Ac. Fólico</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="mcg">
+                    <input type="number" class="form-control form-control-sm" name="folicAcid" id="folicAcid" placeholder="mcg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Folato - FD</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="">
+                    <input type="number" class="form-control form-control-sm" name="folato" id="folato" placeholder="">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Fracción Comestible</label>
-                    <input type="number" class="form-control form-control-sm" id="" placeholder="%">
+                    <input type="number" class="form-control form-control-sm" name="edibleFraction" id="edibleFraction" placeholder="%">
                 </div>
 
                 <div class="col-12">
@@ -161,45 +165,9 @@
         </div>
         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             <div id="" class="mt-4 table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nombre C</th>
-                            <th>Agua</th>
-                            <th>Energía kcal</th>
-                            <th>Grasa Total</th>
-                            <th>Carbohidratos</th>
-                            <th>Proteína</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>QUESO BLANCO FRESCO, LECHE DE CABRA</td>
-                            <td>60.75</td>
-                            <td>268</td>
-                            <td>21.08</td>
-                            <td>0.89</td>
-                            <td>18.52</td>
-                            <td>
-                                <button class="btn btn-sm btn-primary">
-                                    <i class="fa-solid fa-flask-vial"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-warning">
-                                    <i class="fa-solid fa-pen"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="foodTable" class="border">
+                    {# TABLA DINAMICA #}
+                </div>
             </div>
         </div>
     </div>
@@ -208,6 +176,43 @@
 
 {% block scripts %}
     <script src="/js/sweetalert2.all.min.js"></script>
+    <script>
+        const tableData = {{ food | dump | safe}}
+        const table = new Tabulator("#foodTable", {
+            data: tableData,
+            layout: "fitColumns",
+            pagination: "local",
+            paginationSize: 10,
+            responsiveLayout: true,
+            columns: [
+                {
+                    title: "Codigo",
+                    field: "code"
+                }, {
+                    title: "Nombre",
+                    field: "name"
+                }, {
+                    title: "Agua",
+                    field: "aqua"
+                }, {
+                    title: "Energía",
+                    field: "energy"
+                },
+                {
+                    title: "Proteína",
+                    field: "protein"
+                },
+                {
+                    title: "Grasa Total",
+                    field: "energy"
+                },
+                {
+                    title: "Carbohidratos",
+                    field: "carbs"
+                },
+            ]
+        })
+    </script>
 {% endblock %}
 {#{% %} {% endblock %}
 {% %} {% endblock %}
