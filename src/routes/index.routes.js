@@ -5,6 +5,7 @@ const foodRouter = require("./food.routes")
 const foodCategoryRouter = require("./foodcategory.routes")
 const userRoutes = require("./user.routes")
 const pageRouter = require("./pages.routes")
+const authRoutes = require("./auth.routes")
 
 router.use("/pacientes", patientRouter)
 router.use("/farmacos", drugRouter)
@@ -12,5 +13,6 @@ router.use("/nutrientes", foodRouter)
 router.use("/food-categories", foodCategoryRouter)
 router.use("/users", userRoutes)
 router.use("/pages", pageRouter)
+router.use("/auth", authRoutes)
 
 module.exports = router

@@ -1,4 +1,5 @@
-const userService = require("../services/user.service")
+const userService = require("../services/user.service");
+const { genericErrorHandler, errorPostHandler, sendSuccess, customError, badRequestResponse } = require("../validators/httpResponse");
 
 class UserController {
 
@@ -28,12 +29,17 @@ class UserController {
 
         try {
             const response = await userService.createUser(payload)
-            
-            return res.json(response)
+            if (result) {
+                const response = sendSuccess("Usuario creado exitosamente")
+                return res.status(200).json(response)
+            }
+
+            res.status(400)
+            return badRequestResponse
 
         } catch (error) {
-            console.log(error);
-            return res.json({message: "Error en el controlador"})
+            const errorData = errorPostHandler(error)
+            return res.status(400).json(errorData)
         }
     }
 }

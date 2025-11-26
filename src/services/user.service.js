@@ -1,16 +1,18 @@
 const { user } = require("../models")
+const { encrypt } = require("../utils/cryptHelper")
 
 class UserService {
 
     createUser = async (payload) => {
         try {
-            const response = await user.create(payload)
-            console.log(response);
+            const cryptPassword = await encrypt(payload.password)
+            payload.password=cryptPassword
             
+            const response = await user.create(payload)
             return response
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             return {message: "Error en el servicio"}
         }
     }

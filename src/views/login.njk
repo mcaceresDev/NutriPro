@@ -23,10 +23,15 @@
 </head>
 <body class="">
     <main class="background container-fluid vh-100 d-flex">
-        <div class="loginbox m-auto px-2 py-5">
-            <img class="img-fluid" src="assets/img/nutriLifeLogo.png" />
-            <input type="text" class="my-3 form-control form-control-sm" placeholder="Escribe tu correo institucional" />
-            <input type="password" class="form-control form-control-sm" placeholder="Escribe tu contraseña" />
+        <div class="loginbox m-auto px-2 pt-5 pb-3">
+            <form action="/admin-api/login" method="post">
+                <img class="img-fluid" src="assets/img/nutriLifeLogo.png" />
+                <input type="text" class="my-3 form-control form-control-sm" placeholder="Escribe tu correo institucional" />
+                <input type="password" class="form-control form-control-sm" placeholder="Escribe tu contraseña" />
+                <div class="d-flex py-3">
+                    <button class="mx-auto btn btn-sm btn-success">Ingresar</button>
+                </div>
+            </form>
         </div>
     </main>
 </body>

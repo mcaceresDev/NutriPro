@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      {% block title %}Nutripro{% endblock %}
+    </title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/fontawesome/all.min.css">
+    <link rel="stylesheet" href="/css/tabulator.min.css">
+    <link rel="stylesheet" href="/css/tabulator_bootstrap5.min.css">
+    <script src="/js/tabulator.min.js"></script>
+    {# <script src="/js/tabulatorTLang.js"></script> #}
+    <style>
+
+      @media print {
+        /* Contenido del fichero print.css */
+
+        #container {
+          width: 100% !important;
+          margin: 0 !important;
+        }
+
+        #header-section {
+          width: 1300px;
+        }
+
+        #top-values {
+          width: 1300px;
+          /* background-color: red; */
+        }
+
+        #graphic-section {
+          width: 1300px;
+        }
+
+        .extra {
+          /* margin-top: 150px !important; */
+          margin-top: 250px !important;
+        }
+
+        .xxl {
+          margin-top: 350px !important;
+        }
+
+        .report-section {
+          width: 1300px;
+        }
+
+        #countries-section {
+          width: 1300px;
+        }
+
+        .graphic-section {
+          margin-top: 500px;
+        }
+        .graphic-section.services {
+          margin-top: 1000px;
+        }
+        /* .report-section {
+        margin-top: 300px;
+    } */
+        /* ---------- */
+        .title {
+          font-size: 30px !important;
+          font-weight: bold;
+        }
+        .sub-title {
+          font-size: 24px !important;
+        }
+        .sub-title.secondary {
+          font-size: 24px !important;
+          font-weight: bold;
+        }
+        .secondary-title {
+          font-size: 26px !important;
+          font-weight: bold;
+        }
+        .countries {
+          font-size: 22px !important;
+        }
+        .cells {
+          font-size: 22px !important;
+        }
+        .totals {
+          font-size: 28px !important;
+        }
+      }
+
+      @page {
+        size: letter;
+        margin: 20mm;
+      }
+    </style>
+  </head>
+  <body class="main">
+    <header class="header p-3 d-flex justify-content-between">
+      <img class="logo" src="/assets/img/nutriLifeLogo.png"></img>
+      <h3>Manuel Caceres M.</h3>
+    </header>
+    <hr>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>John</td>
+          <td>Doe</td>
+          <td>@social</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/tabulatorLang.js"></script>
+
+  {% block scripts %}{% endblock %}
+</html>

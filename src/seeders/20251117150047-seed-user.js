@@ -10,7 +10,7 @@ module.exports = {
         lastname: 'Cáceres',
         username: 'manuel.caceres',
         email: 'manuel.caceres@est.soyucem.edu.ni',
-        password: 'Temporal-123*',
+        password: '$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72',//Temporal-123*
         gender: 'M',
       },
       {
@@ -18,7 +18,7 @@ module.exports = {
         lastname: 'Blandon',
         username: 'jairo.blandon',
         email: 'jairo.blandon@est.soyucem.edu.ni',
-        password: 'Temporal-123*',
+        password: '$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72',
         gender: 'M',
       },
       {
@@ -26,7 +26,7 @@ module.exports = {
         lastname: 'Blandon',
         username: 'jordanesku.blandon',
         email: 'jordanesku.blandon@est.soyucem.edu.ni',
-        password: 'Temporal-123*',
+        password: '$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72',
         gender: 'M',
       },
       {
@@ -34,7 +34,7 @@ module.exports = {
         lastname: 'Cabrera',
         username: 'noe.cabrera',
         email: 'noe.cabrera@est.soyucem.edu.ni',
-        password: 'Temporal-123*',
+        password: '$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72',
         gender: 'M',
       },
       {
@@ -42,7 +42,7 @@ module.exports = {
         lastname: 'Juarez',
         username: 'fernanda.juarez',
         email: 'fernanda.juarez@est.soyucem.edu.ni',
-        password: 'Temporal-123*',
+        password: '$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72',
         gender: 'F',
       },
       {
@@ -50,7 +50,7 @@ module.exports = {
         lastname: 'Lagos',
         username: 'alejandra.lagos',
         email: 'alejandra.lagos@est.soyucem.edu.ni',
-        password: 'Temporal-123*',
+        password: '$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72',
         gender: 'F',
       },
       {
@@ -58,7 +58,7 @@ module.exports = {
         lastname: 'Rodriguez',
         username: 'lester.rodriguez',
         email: 'lester.rodriguez@est.soyucem.edu.ni',
-        password: 'Temporal-123*',
+        password: '$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72',
         gender: 'M',
       },
       {
@@ -66,7 +66,7 @@ module.exports = {
         lastname: 'Tinoco',
         username: 'alba.tinoco',
         email: 'alba.tinoco@est.soyucem.edu.ni',
-        password: 'Temporal-123*',
+        password: '$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72',
         gender: 'F',
       },
       {
@@ -74,7 +74,7 @@ module.exports = {
         lastname: 'Vargas',
         username: 'ainhoa.vargas',
         email: 'ainhoa.vargas@est.soyucem.edu.ni',
-        password: 'Temporal-123*',
+        password: '$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72',
         gender: 'F',
       },
       {
@@ -82,7 +82,7 @@ module.exports = {
         lastname: 'Venerio',
         username: 'giovani.venerio',
         email: 'giovani.venerio@est.soyucem.edu.ni',
-        password: 'Temporal-123*',
+        password: '$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72',
         gender: 'M',
       },
     ], {});
