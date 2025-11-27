@@ -26,6 +26,16 @@ class FoodService {
             throw error
         }
     }
+    
+    readAllFoodItems = async (userId)=> {
+        try {
+            const response = await food.findAll()
+            return response
+        } catch (error) {
+            // return {message: "Error en el servicio"}
+            throw error
+        }
+    }
 
 }
 

@@ -24,7 +24,7 @@ document.getElementById("formRegistrar").addEventListener("submit", async functi
 
     // Convierte todos los inputs en un objeto
     const payload = Object.fromEntries(formData.entries());
-
+    
     try {
         const res = await fetch(`/nutrientes/add-new`, {
             method: "POST",
@@ -37,7 +37,7 @@ document.getElementById("formRegistrar").addEventListener("submit", async functi
 
         if (res.ok) {
             sendFeedBack(data.message, alertType.success)
-            getPrefixes()
+            getFoodById()
         } else {
             sendFeedBack(data.message, alertType.error)
         }

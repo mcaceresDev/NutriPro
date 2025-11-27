@@ -6,14 +6,20 @@ class FoodController {
 
     getFood = async(req, res)=> {
         try {
+            
+            if (!req.session.user) {
+                return res.render("pages/forbidden")
+            }
+            const { userId } = req.session.user
             const categories = await foodcategoryService.readFoodCategories()
-            const food = await foodService.readFoodItemsByUser(1)           
+            const food = await foodService.readFoodItemsByUser(userId)
             
             if (categories && categories.length > 0) {      
                 return res.render("food", { categories, food: food.length > 0 ? food : [] })
             }
             return res.render("food", { food: food.length > 0 ? food : [] })
         } catch (error) {
+            console.log("del render food")
             console.log(`${error.message}`);
             return
         }
@@ -21,10 +27,26 @@ class FoodController {
     
     getFoodItemsByUser = async (req, res)=> {
         try {
-            const response = await foodService.readFoodItemsByUser(1)
+            const { userId } = req.session.user
+            const response = await foodService.readFoodItemsByUser(userId)
             if (response.length > 0) {
                 // return res.render('users', { users: result, providers });
-                return res.json(response)
+                return res.json({status:200, rows: response})
+            }
+            res.status(404)
+            return res.send(notFoundResponse)
+
+        } catch (error) {
+            const errorData = genericErrorHandler(error)
+            return res.status(400).json(errorData)
+        }
+    }
+    getAllFoodItems = async (req, res)=> {
+        try {
+            const response = await foodService.readAllFoodItems()
+            if (response.length > 0) {
+                // return res.render('users', { users: result, providers });
+                return res.json({status:200, rows: response})
             }
             res.status(404)
             return res.send(notFoundResponse)
@@ -37,7 +59,9 @@ class FoodController {
     
     addFoodItem = async (req, res)=> {
         try {
-            const response = await foodService.createFoodItem(req.body)
+            req.body.addedBy = req.session.user.userId
+            const newFood = await foodService.createFoodItem(req.body)
+            const response = errorPostHandler(newFood)
             return res.json(response)
 
         } catch (error) {

@@ -1,5 +1,6 @@
 const path = require("path")
 const { loginUser } = require("../services/auth.service")
+const { customError, genericErrorHandler } = require("../validators/httpResponse")
 
 class AuthController {
 
@@ -15,7 +16,7 @@ class AuthController {
                 
                 const { id, name, lastname, username, email } = response.data
                 req.session.user = {
-                    userId,
+                    userId: id,
                     name,
                     lastname,
                     username,
@@ -24,10 +25,16 @@ class AuthController {
                 // return res.sendFile(path.join(__dirname, '../public/views/index.html'))
                 return res.redirect('/nutrientes')
             }
+
+            const errorData = customError(400, "error de autenticacion")
+            // return res.status(400).json(errorData)
+            return res.render("pages/forbidden")
             
         } catch (error) {
-            console.log(error)
-            res.send("ERROR")
+            console.log(error);
+            
+           const errorData = genericErrorHandler(error)
+           return res.status(errorData.status).json(errorData)
         }
     }
 

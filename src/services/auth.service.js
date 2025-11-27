@@ -1,4 +1,4 @@
-const { user } = require("../models/user")
+const { user } = require("../models")
 const { encrypt, compare } = require("../utils/cryptHelper")
 
 class AuthService {
@@ -11,6 +11,8 @@ class AuthService {
                     email
                 }
             });
+            console.log(findedUser);
+            
     
             if(findedUser){
                 const hashPasword = findedUser.password
@@ -20,7 +22,7 @@ class AuthService {
                 
                 return { status: 200, message: "", data: findedUser}
             }
-            return { status: 200, message: "", data: findedUser}
+            return { status: 400, message: "Usuario no encontrado", data: {}}
             
         } catch (error) {
             console.log("Error: " + error.message);

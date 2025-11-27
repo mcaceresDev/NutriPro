@@ -181,7 +181,7 @@
     <script src="/js/sweetalert2.all.min.js"></script>
     <script>
         const tableData = {{ food | dump | safe}}
-        const table = new Tabulator("#foodTable", {
+        const tabla = new Tabulator("#foodTable", {
             locale: "es-es",
             langs: LANG.langs,
             data: tableData,
@@ -240,6 +240,8 @@
             table.setFilter("name", "like", e.target.value);
         });
     </script>
+    <script src="/js/sweetAlertHelper.js"></script>
+    <script src="/js/food/foodCrud.js"></script>
 {% endblock %}
 {#{% %} {% endblock %}
 {% %} {% endblock %}
