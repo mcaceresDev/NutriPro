@@ -75,11 +75,14 @@ app.get("/reporte/pdf", async (req, res) => {
 
 app.get('/', (req, res) => {
   // res.render('index', { title: 'Mi Proyecto con Nunjucks', name: 'Juan' });
+  if (req.session.user) {
+    return res.redirect("nutrientes")
+  }
   res.render('login');
 });
 app.use('/', router)
 app.use((req, res) => {
-    res.status(404).render(__dirname + '/views/pages/notFound.njk');
+  res.status(404).render(__dirname + '/views/pages/notFound.njk');
 });
 
 

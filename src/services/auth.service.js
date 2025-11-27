@@ -6,7 +6,7 @@ class AuthService {
     loginUser = async(email, password) =>{
         try {
             const findedUser = await user.findOne({
-                attributes: ['id', 'username', 'password', 'email'],
+                attributes: ['id', 'name', 'lastname', 'username', 'password', 'email'],
                 where: {
                     email
                 }

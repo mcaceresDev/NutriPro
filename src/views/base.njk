@@ -1,116 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>{% block title %}Nutripro{% endblock %}</title>
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/fontawesome/all.min.css">
-  <link rel="stylesheet" href="/css/tabulator.min.css">
-  <link rel="stylesheet" href="/css/tabulator_bootstrap5.min.css">
-  <script src="/js/tabulator.min.js"></script>
-  {# <script src="/js/tabulatorTLang.js"></script> #}
-  <style>
-    .main{
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      {% block title %}Nutripro{% endblock %}
+    </title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/fontawesome/all.min.css">
+    <link rel="stylesheet" href="/css/tabulator.min.css">
+    <link rel="stylesheet" href="/css/tabulator_bootstrap5.min.css">
+    <script src="/js/tabulator.min.js"></script>
+    {# <script src="/js/tabulatorTLang.js"></script> #}
+    <style>
+      .main {
         background-color: RGBA(136, 192, 208, 0.5);
-    }
-    .sidebar{
+      }
+      .sidebar {
         width: 250px;
-        height: 100vh
-    }
-    .header{
+        height: 100vh;
+      }
+      .header {
         height: 80px;
-    }
-    .main-container{
-        
-    }
-    .main-content{
-        box-shadow: 0px 0px 20px 2px rgba(30,28,40,0.1);
-    }
-    .hidden{
-        display: none
-    }
-    .block-menu{
-        font-size: 13px
-    }
-    .link-active{
+      }
+      .main-container {
+        }
+      .main-content {
+        box-shadow: 0 0 20px 2px rgba(30,28,40,0.1);
+      }
+      .hidden {
+        display: none;
+      }
+      .block-menu {
+        font-size: 13px;
+      }
+      .link-active {
         background-color: #ffffffba;
-        border-radius: 10px
-    }
-    #scrollToTopBtn{
+        border-radius: 10px;
+      }
+      #scrollToTopBtn {
         border-radius: 50px;
-        padding: 8px 12px
-    }
-    .user-section{
+        padding: 8px 12px;
+      }
+      .user-section {
         background-color: #ffffffba;
         max-width: 200px;
-    }
-    .search-box{
-      max-width: 200px
-    }
-  </style>
-</head>
-<body class="main">
+      }
+      .search-box {
+        max-width: 200px;
+      }
+    </style>
+  </head>
+  <body class="main">
     <header class="header p-3 d-flex justify-content-between">
-        <img class="h-100" src="/assets/img/nutriLifeLogo.png"></img>
-        {# <h3> <i class="fa-solid fa-apple-whole"></i> NUTRILIFE </h3> #}
-        <div class="user-section rounded px-3 py-2">
-            <span>Manuel Cáceres</span>
+      <img class="h-100" src="/assets/img/nutriLifeLogo.png"></img>
+      {# <h3> <i class="fa-solid fa-apple-whole"></i> NUTRILIFE </h3> #}
+      <div class="btn-group">
+        {# <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button> #}
+        <div class="user-section rounded px-3 py-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <span>{% block username %}Username{% endblock %}</span>
             <img class="h-100" src="/assets/img/doctor-icon.png"></img>
         </div>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="pages/user-info">Perfil</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="/auth/logout">Salir</a></li>
+        </ul>
+      </div>
+
+      {# <div class="user-section rounded px-3 py-2">
+            <span>Manuel Cáceres</span>
+            <img class="h-100" src="/assets/img/doctor-icon.png"></img>
+        </div> #}
     </header>
 
     <div class="main-container d-flex">
-    <aside class="sidebar px-2">
+      <aside class="sidebar px-2">
         <ul class="mt-5 list-unstyled">
-            <li class="m-2"><i class="fa-regular fa-house"></i> Página Principal</li>
+          <li class="m-2">
+            <i class="fa-regular fa-house"></i> Página Principal</li>
 
-            <span class="block-menu text-secondary-emphasis">GESTION</span>
-            <li class="link-active m-2 p-2"><i class="fa-solid fa-users"></i> Clientes</li>
-            <li class="m-2"><i class="fa-brands fa-nutritionix"></i>Agenda</li>
-            <li class="m-2"><i class="fa-solid fa-file-medical"></i>Expedientes</li>
-            
-            <span class="block-menu text-secondary-emphasis">PLANES</span>
-            <li class="m-2"><i class="fa-solid fa-bowl-food"></i> Recetas</li>
-            <li class="m-2"><i class="fa-solid fa-comment-medical"></i> Recomendaciones</li>
+          <span class="block-menu text-secondary-emphasis">GESTION</span>
+          <li class="link-active m-2 p-2">
+            <i class="fa-solid fa-users"></i> Clientes</li>
+          <li class="m-2">
+            <i class="fa-brands fa-nutritionix"></i>Agenda</li>
+          <li class="m-2">
+            <i class="fa-solid fa-file-medical"></i>Expedientes</li>
+
+          <span class="block-menu text-secondary-emphasis">PLANES</span>
+          <li class="m-2">
+            <i class="fa-solid fa-bowl-food"></i> Recetas</li>
+          <li class="m-2">
+            <i class="fa-solid fa-comment-medical"></i> Recomendaciones</li>
         </ul>
-    </aside>
-    <main class="main-content container-fluid p-5 bg-light rounded">
-        <h2 class="">{% block pagetitle %}Inicio{% endblock %}</h2>
+      </aside>
+      <main class="main-content container-fluid p-5 bg-light rounded">
+        <h2 class="">
+          {% block pagetitle %}Inicio{% endblock %}
+        </h2>
         <hr>
 
-        {% block content %}
-            
-        {% endblock %}
+        {% block content %}{% endblock %}
 
-        <button id="scrollToTopBtn" class="bg-primary text-white border-0 rounded-circle position-absolute bottom-0 end-0 m-5"><i class="fa-solid fa-arrow-up"></i></button>
-    </main>
+        <button id="scrollToTopBtn" class="bg-primary text-white border-0 rounded-circle position-absolute bottom-0 end-0 m-5">
+          <i class="fa-solid fa-arrow-up"></i>
+        </button>
+      </main>
     </div>
-</body>
+  </body>
 
-<script>
-  const scrollBtn = document.getElementById("scrollToTopBtn");
+  <script>
+    const scrollBtn = document.getElementById("scrollToTopBtn");
 
-  // Mostrar el botón cuando el usuario baja cierta distancia
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      scrollBtn.classList.add("hidden");
-    } else {
-      scrollBtn.classList.remove("hidden");
-    }
-  });
-
-  // Al hacer clic, volver al inicio con animación suave
-  scrollBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
+    // Mostrar el botón cuando el usuario baja cierta distancia
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollBtn
+          .classList
+          .add("hidden");
+      } else {
+        scrollBtn
+          .classList
+          .remove("hidden");
+      }
     });
-  });
-</script>
-<script src="/js/bootstrap.bundle.min.js"></script>
-<script src="/js/tabulatorLang.js"></script>
 
-{% block scripts %}
-            
-{% endblock %}
+    // Al hacer clic, volver al inicio con animación suave
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({top: 0, behavior: "smooth"});
+    });
+  </script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/tabulatorLang.js"></script>
+
+  {% block scripts %}{% endblock %}
 </html>

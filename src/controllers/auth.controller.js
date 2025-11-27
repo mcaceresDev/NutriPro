@@ -43,7 +43,7 @@ class AuthController {
 
             req.session.destroy(err => {
                 if (err) return res.status(500).json({status: 500, message: "Error al cerrar sesion"})
-                res.redirect('/');
+                return res.redirect('/');
             });
             
         } catch (error) {

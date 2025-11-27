@@ -26,6 +26,20 @@ class UserService {
             console.log(error);
         }
     }
+    
+    readUserInfo = async (userId) => {
+        try {
+            const response = await user.findAll({
+                where: {
+                    id: userId
+                }
+            })
+            return response
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new UserService()

@@ -10,10 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       code: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        unique: true,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true,
       },
       aqua: {
         type: Sequelize.DECIMAL
