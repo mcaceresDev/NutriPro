@@ -23,16 +23,13 @@ class AuthController {
                     email
                 };
                 // return res.sendFile(path.join(__dirname, '../public/views/index.html'))
-                return res.redirect('/nutrientes')
+                // return res.redirect('/nutrientes')
+                return res.json(response)
             }
 
-            const errorData = customError(400, "error de autenticacion")
-            // return res.status(400).json(errorData)
-            return res.render("pages/forbidden")
+            return res.status(400).json(response)
             
         } catch (error) {
-            console.log(error);
-            
            const errorData = genericErrorHandler(error)
            return res.status(errorData.status).json(errorData)
         }

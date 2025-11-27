@@ -47,7 +47,6 @@ class UserController {
         try {
             const { password } = req.body;
             const { userId } = req.session.user
-            console.log("EN EL CONTROLADOR SE PASA EL ID " + userId);
             
             if (!password) {
                 res.status(400)

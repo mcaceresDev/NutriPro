@@ -18,7 +18,7 @@ class AuthService {
                 
                 if(!check) return { status: 400, message:"Contraseña Incorrecta" }
                 
-                return { status: 200, message: "", data: findedUser}
+                return { status: 200, message: `Bienvenido ${findedUser.name.split(" ")[0]}`, data: findedUser}
             }
             return { status: 400, message: "Usuario no encontrado", data: {}}
             
