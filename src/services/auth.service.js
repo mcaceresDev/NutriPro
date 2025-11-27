@@ -10,9 +10,7 @@ class AuthService {
                 where: {
                     email
                 }
-            });
-            console.log(findedUser);
-            
+            });            
     
             if(findedUser){
                 const hashPasword = findedUser.password

@@ -40,6 +40,27 @@ class UserService {
             console.log(error);
         }
     }
+
+    updateSelfPassword = async(id, password) =>{
+        try {
+            const cryptPassword = await encrypt(password)
+    
+            console.log(cryptPassword);
+            
+            const [updatedRows] = await user.update(
+                { password: cryptPassword },
+                { where: { id } }
+            );
+            
+            console.log("respuesta del servicio: " + updatedRows);
+            return updatedRows
+    
+    
+        } catch (error) {
+            console.log("Error: " + error.message);
+            throw error
+        }
+    }
 }
 
 module.exports = new UserService()

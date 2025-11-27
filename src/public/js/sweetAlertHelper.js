@@ -4,7 +4,7 @@ const alertType = {
   warning: "warning",
   error: "error"
 }
-const sendFeedBack= (message, alertType)=> {
+const sendFeedBack = (message, alertType) => {
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -21,4 +21,14 @@ const sendFeedBack= (message, alertType)=> {
     icon: alertType ? alertType : "success",
     title: message ? message : ""
   });
+}
+
+const sendFeedBackBox = (message, alertType) => {
+
+  return Swal.fire({
+    icon: 'success',
+    title: `${message}`,
+    showConfirmButton: false,
+    timer: 1500
+  })
 }

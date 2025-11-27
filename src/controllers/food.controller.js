@@ -11,10 +11,10 @@ class FoodController {
                 return res.render("pages/forbidden")
             }
             const { userId, name, lastname } = req.session.user
+
             const categories = await foodcategoryService.readFoodCategories()
             const food = await foodService.readFoodItemsByUser(userId)
             
-            console.log(req.session.user);
             // console.log(typeof name);
             
             const username = `${name.split(" ")[0]} ${lastname.split(" ")[0]}`
@@ -33,6 +33,7 @@ class FoodController {
     getFoodItemsByUser = async (req, res)=> {
         try {
             const { userId } = req.session.user
+            
             const response = await foodService.readFoodItemsByUser(userId)
             if (response.length > 0) {
                 // return res.render('users', { users: result, providers });

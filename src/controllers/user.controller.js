@@ -7,7 +7,7 @@ class UserController {
         
         try {
             const response = await userService.readUsers()
-            console.log(response);
+            // console.log(response);
             
             return res.json(response)
 
@@ -40,6 +40,32 @@ class UserController {
         } catch (error) {
             const errorData = errorPostHandler(error)
             return res.status(400).json(errorData)
+        }
+    }
+
+    updateSelfPassword = async (req, res) => {
+        try {
+            const { password } = req.body;
+            const { userId } = req.session.user
+            console.log("EN EL CONTROLADOR SE PASA EL ID " + userId);
+            
+            if (!password) {
+                res.status(400)
+                return res.send({ status: 400, message: "Campo contraseña no enviado" })
+            }
+
+            const response = await userService.updateSelfPassword(userId, password)
+
+            if (response === 0) {
+                res.status(404)
+                return res.json(customError(404, "Usuario no encontrado o sin cambios"));
+            } else {
+                return res.json(sendSuccess("Contraseña actualizada correctamente"))
+            }
+
+        } catch (error) {
+            res.status(400)
+            return res.send(genericErrorHandler(error))
         }
     }
 }

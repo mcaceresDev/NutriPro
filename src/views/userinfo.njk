@@ -18,35 +18,37 @@
                 <label class="" for="specificSizeInputGroupUsername">Nombre</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa-solid fa-user-doctor"></i></div>
-                    <input type="text" class="form-control" id="specificSizeInputGroupUsername" value="{{ user.name }} {{ user.lastname }}" disabled placeholder="Username">
+                    <input type="text" class="form-control" id="" value="{{ user.name }} {{ user.lastname }}" disabled placeholder="Username">
                 </div>
             </div>
             <div class="col-sm-6">
                 <label class="" for="specificSizeInputGroupUsername">Username</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa-solid fa-circle-user"></i></div>
-                    <input type="text" class="form-control" id="specificSizeInputGroupUsername" value="{{ user.username }}" disabled placeholder="">
+                    <input type="text" class="form-control" id="" value="{{ user.username }}" disabled placeholder="">
                 </div>
             </div>
             <div class="col-sm-6">
                 <label class="" for="specificSizeInputGroupUsername">Correo</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa-solid fa-envelope"></i></div>
-                    <input type="text" class="form-control" id="specificSizeInputGroupUsername" value="{{ user.email }}" disabled placeholder="">
+                    <input type="text" class="form-control" id="" value="{{ user.email }}" disabled placeholder="">
                 </div>
             </div>
+            <form id="formEditarPass" class="col-12 row" method="PUT">
             <div class="col-sm-6">
                 <label class="" for="specificSizeInputGroupUsername">Contraseña</label>
                 <div class="input-group">
                     <div class="input-group-text"><i class="fa-solid fa-lock"></i></div>
-                    <input type="password" class="form-control" id="specificSizeInputGroupUsername" value="" placeholder="Ingrese nueva contraseña">
+                    <input type="password" class="form-control" id="editPassword" value="" placeholder="Ingrese nueva contraseña">
                 </div>
             </div>
-            <form class="col-sm-6">
+            <div class="col-sm-6">
                 <label class="" for="specificSizeInputGroupUsername"></label>
                 <div class="input-group">
-                    <button class="w-100 btn btn-sm btn-warning">Actualizar contraseña</button>
+                    <button class="w-100 btn btn-warning">Actualizar contraseña</button>
                 </div>
+            </div>
             </form>
 
         </div>
@@ -57,3 +59,10 @@
     </div>
 
 {% endblock %}
+
+
+{% block scripts %}
+<script src="/js/sweetAlertHelper.js"></script>
+<script src="/js/user/userCrud.js"></script>
+{% endblock %}
+
