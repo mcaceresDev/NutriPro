@@ -5,6 +5,9 @@ const path = require("path")
 const router = require("./routes/index.routes");
 const { sessionMiddleware } = require('./config/session');
 const { default: puppeteer } = require("puppeteer");
+// const { morganToPino } = require("./middlewares/morgan.middleware");
+// const requestInfoMiddleware = require("./middlewares/requestInfo.middleware");
+
 
 const app = express();
 const port = 3000;
@@ -15,6 +18,10 @@ app.use(sessionMiddleware);
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
 
+// Morgan 
+// app.use(morganToPino);
+// app.use(requestInfoMiddleware);
+
 // Configuración de Nunjucks
 nunjucks.configure(path.join(__dirname, 'views'), {
   autoescape: true,  // Para escapar automáticamente variables
@@ -24,6 +31,7 @@ nunjucks.configure(path.join(__dirname, 'views'), {
 // Configurar la carpeta para vistas y el motor de plantillas
 app.set('view engine', 'njk');  // Usamos "njk" como la extensión de los archivos de plantillas
 app.set('views', path.join(__dirname, 'views'));
+
 
 // ===========================================================================================
 // LOGICA DE REPORTE

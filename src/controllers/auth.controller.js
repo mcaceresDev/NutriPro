@@ -34,6 +34,7 @@ class AuthController {
                 };
                 // return res.sendFile(path.join(__dirname, '../public/views/index.html'))
                 // return res.redirect('/nutrientes')
+                
                 return res.json(response)
             }
 
