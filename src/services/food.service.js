@@ -27,7 +27,7 @@ class FoodService {
         }
     }
     
-    readAllFoodItems = async (userId)=> {
+    readAllFoodItems = async ()=> {
         try {
             const response = await food.findAll()
             return response
