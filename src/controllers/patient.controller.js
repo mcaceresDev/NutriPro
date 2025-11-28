@@ -3,6 +3,7 @@ const { errorPostHandler, genericErrorHandler, notFoundResponse, sendSuccess, ba
 
 class PatientController {
 
+    // Cargar datos y renderizar vista
     getPatients = async (req, res) => {
         try {
 
