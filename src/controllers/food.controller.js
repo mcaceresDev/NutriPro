@@ -80,24 +80,19 @@ class FoodController {
 
     editFoodItem = async (req, res) => {
         try {
+            const id = req.params.id
+            const response = await foodService.updateFoodItem(req.body, id)
             
-            // const { username, role } = req.body;
-            // const id = req.params.id
-
-            // if (!username || !role) {
-            //     res.status(400)
-            //     return res.send(badRequestResponse)
-            // }
-            // const response = await userService.updateUser(id, username, role)
-
             if (response === 0) {
                 res.status(404)
-                return res.send(customError(404, "Usuario no encontrado o sin cambios"));
+                return res.send(customError(404, "Elemento no encontrado o sin cambios"));
             } else {
                 return res.send(sendSuccess("Registro actualizado"))
             }
 
         } catch (error) {
+            console.log(error);
+            
             const errorData = genericErrorHandler(error)
             return res.status(400).json(errorData)
         }

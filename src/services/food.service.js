@@ -36,6 +36,20 @@ class FoodService {
             throw error
         }
     }
+    
+    updateFoodItem = async (payload, id)=> {
+        try {
+            const [updatedRows] = await food.update(
+                payload,
+                { where: { id } }
+            );
+            return updatedRows
+                
+        } catch (error) {
+            // return {message: "Error en el servicio"}
+            throw error
+        }
+    }
 
 }
 

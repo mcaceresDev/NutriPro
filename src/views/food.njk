@@ -27,7 +27,7 @@
                 <div class="col-2">
                     <label for="" class="form-label">Código <span class="text-danger">*</span>
                     </label>
-                    <input type="text" required class="form-control form-control-sm" name="code" id="code" placeholder="">
+                    <input type="number" required class="form-control form-control-sm" name="code" id="code" placeholder="">
                 </div>
                 <div class="col-6">
                     <label for="" class="form-label">Nombre <span class="text-danger">*</span></label>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-4">
                     <label for="" class="form-label">Categoría <span class="text-danger">*</span></label>
-                    <select name="cacategoryId" id="cacategoryId" class="form-select form-select-sm" name="providerId" required aria-label="Small select example">
+                    <select name="categoryId" id="categoryId" class="form-select form-select-sm" name="providerId" required aria-label="Small select example">
                         <option selected>Seleccione la Categoría de alimento</option>
                         {% if categories %}
                             {% for item in categories %}
@@ -177,6 +177,7 @@
     </div>
 
     {# <button class="btn btn-danger btn-sm eliminar"><i class="fa-solid fa-trash"></i></button> #}
+    {% include "layouts/food_edit.njk"%}
 {% endblock %}
 
 {% block scripts %}
@@ -215,7 +216,7 @@
                 }, {
                     title: "Acciones",
                     formatter: (cell) => `
-                        <button class="btn btn-warning btn-sm editar"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn btn-warning btn-sm editar" data-bs-toggle="modal" data-bs-target="#modalEditar"><i class="fa-solid fa-pen"></i></button>
                     `,
                     width: 140,
                     cellClick: (e, cell) => {
@@ -223,6 +224,7 @@
                             .getRow()
                             .getData();
 
+                        fillModalForm(data);
                         if (e.target.classList.contains("editar")) {
                             console.log("Editar:", data);
                         }
