@@ -102,9 +102,7 @@ class FoodController {
                 return res.send(sendSuccess("Registro actualizado"))
             }
 
-        } catch (error) {
-            console.log(error);
-            
+        } catch (error) {            
             const errorData = genericErrorHandler(error)
             return res.status(400).json(errorData)
         }
