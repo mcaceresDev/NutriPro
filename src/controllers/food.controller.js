@@ -1,6 +1,7 @@
 const foodService = require("../services/food.service");
 const foodcategoryService = require("../services/foodcategory.service");
 const { errorPostHandler, genericErrorHandler, notFoundResponse, sendSuccess, badRequestResponse, customError } = require("../validators/httpResponse");
+const { LogFormat, createLog, logType, errorType } = require("../utils/pinoLogger");
 
 class FoodController {
 
@@ -15,18 +16,14 @@ class FoodController {
             const categories = await foodcategoryService.readFoodCategories()
             const food = await foodService.readFoodItemsByUser(userId)
             
-            // console.log(typeof name);
-            
             const username = `${name.split(" ")[0]} ${lastname.split(" ")[0]}`
-            // const username = ``
+            
             if (categories && categories.length > 0) {      
                 return res.render("food", { categories, food: food.length > 0 ? food : [], username })
             }
             return res.render("food", { food: food.length > 0 ? food : [], username })
         } catch (error) {
-            console.log("del render food")
-            console.log(`${error.message}`);
-            return
+            return res.render("pages/error")
         }
     }
     
@@ -66,8 +63,16 @@ class FoodController {
     addFoodItem = async (req, res)=> {
         try {
             req.body.addedBy = req.session.user.userId
+            const { username } = req.session.user
+
             const newFood = await foodService.createFoodItem(req.body)
             if (newFood) {
+                const newLog = new LogFormat(
+                    `Usuario ${username} ha agregado un nuevo alimento. "${req.body.name}"`,
+                    logType.info,
+                    { ip: req.ip }
+                )
+                createLog(logType.info, newLog, `Usuario ${username} ha agregado un nuevo alimento. "${req.body.name}"`)
                 return res.json(sendSuccess("Registro creado con éxito"))
             }
             res.status(400).json(customError(400, "No se pudo crear el registro"))
@@ -81,12 +86,19 @@ class FoodController {
     editFoodItem = async (req, res) => {
         try {
             const id = req.params.id
+            const { username } = req.session.user
             const response = await foodService.updateFoodItem(req.body, id)
             
             if (response === 0) {
                 res.status(404)
                 return res.send(customError(404, "Elemento no encontrado o sin cambios"));
             } else {
+                const newLog = new LogFormat(
+                    `Usuario ${username} ha actualizado un alimento. "${id} - ${req.body.name}"`,
+                    logType.warning,
+                    { ip: req.ip }
+                )
+                createLog(logType.warning, newLog, `Usuario ${username} ha actualizado un alimento. "${id} - ${req.body.name}"`)
                 return res.send(sendSuccess("Registro actualizado"))
             }
 

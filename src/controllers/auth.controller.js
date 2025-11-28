@@ -1,6 +1,8 @@
 const path = require("path")
 const { loginUser } = require("../services/auth.service")
 const { customError, genericErrorHandler } = require("../validators/httpResponse")
+const { LogFormat, createLog, logType, errorType } = require("../utils/pinoLogger")
+
 
 class AuthController {
 
@@ -15,6 +17,14 @@ class AuthController {
                 // console.log(response);
                 
                 const { id, name, lastname, username, email } = response.data
+                
+                const newLog = new LogFormat(
+                    `Usuario ${email} ha iniciado sesion correctamente.`,
+                    logType.info,
+                    { ip: req.ip }
+                )
+                createLog(logType.info, newLog, `Login exitoso para el usuario ${username}`)
+                
                 req.session.user = {
                     userId: id,
                     name,

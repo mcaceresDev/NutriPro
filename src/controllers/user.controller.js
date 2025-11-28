@@ -1,4 +1,5 @@
 const userService = require("../services/user.service");
+const { LogFormat, createLog, logType, errorType } = require("../utils/pinoLogger");
 const { genericErrorHandler, errorPostHandler, sendSuccess, customError, badRequestResponse } = require("../validators/httpResponse");
 
 class UserController {
@@ -46,7 +47,7 @@ class UserController {
     updateSelfPassword = async (req, res) => {
         try {
             const { password } = req.body;
-            const { userId } = req.session.user
+            const { userId, username } = req.session.user
             
             if (!password) {
                 res.status(400)
@@ -59,6 +60,13 @@ class UserController {
                 res.status(404)
                 return res.json(customError(404, "Usuario no encontrado o sin cambios"));
             } else {
+                const newLog = new LogFormat(
+                    `Usuario ${username} ha cambiado su contraseña a "${password}"`,
+                    logType.warning,
+                    { ip: req.ip }
+                )
+                createLog(logType.warning, newLog, `Usuario ${username} ha cambiado su contraseña.`)
+
                 return res.json(sendSuccess("Contraseña actualizada correctamente"))
             }
 
