@@ -24,8 +24,11 @@ document.getElementById("formRegistrar").addEventListener("submit", async functi
 
     // Convierte todos los inputs en un objeto
     const payload = Object.fromEntries(formData.entries());
-    
     try {
+        if (!payload.categoryId) {
+            throw new Error("El campo categoría es obligatorio");
+        }
+        
         const res = await fetch(`/nutrientes/add-new`, {
             method: "POST",
             headers: {
@@ -38,6 +41,7 @@ document.getElementById("formRegistrar").addEventListener("submit", async functi
         if (res.ok) {
             sendFeedBack(data.message, alertType.success)
             getFoodById()
+            form.reset()
         } else {
             sendFeedBack(data.message, alertType.error)
         }

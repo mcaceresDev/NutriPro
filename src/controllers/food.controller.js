@@ -67,8 +67,10 @@ class FoodController {
         try {
             req.body.addedBy = req.session.user.userId
             const newFood = await foodService.createFoodItem(req.body)
-            const response = errorPostHandler(newFood)
-            return res.json(response)
+            if (newFood) {
+                return res.json(sendSuccess("Registro creado con éxito"))
+            }
+            res.status(400).json(customError(400, "No se pudo crear el registro"))
 
         } catch (error) {
             const errorData = errorPostHandler(error)
