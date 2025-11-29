@@ -8,60 +8,130 @@
 {% block content %}
   <div id="" class="mt-4 table-responsive">
 
-    <input id="searchFood" class="form-control form-control-sm mb-3" placeholder="Buscar alimento..." style="max-width:250px">
-    <div id="patientTable" class="border">
+    <div class="d-flex justify-content-between mb-2">
+      <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">Agregar paciente <i class="fa-solid fa-plus"></i></button>
+      <input type="text" id="searchBox" class="search-box form-control form-control-sm" placeholder="Buscar paciente por nombre" />
+    </div>
+    <div id="patientTable" class="border mt-3">
       {# TABLA DINAMICA #}
     </div>
   </div>
 
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="modalAgregar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar nuevo</h1>
+          <h1 class="modal-title fs-5" id="modalAgregarLabel">Agregar nuevo paciente</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form class="row g-3">
-            <div class="col-md-6">
-              <label for="inputCity" class="form-label">Nombres</label>
-              <input type="text" class="form-control form-control-sm" id="inputCity">
+          <p class="my-2">Los campos con <span class="text-danger">*</span> son obligatorios</p>
+          <form id="formRegistrar" class="row g-3">
+            <div class="col-md-12">
+              <label for="" class="form-label">Nombres <span class="text-danger">*</span></label>
+              <input type="text" name="name" class="form-control form-control-sm" id="">
+            </div>
+            <div class="col-md-12">
+              <label for="" class="form-label">Apellidos <span class="text-danger">*</span></label>
+              <input type="text" name="lastname" class="form-control form-control-sm" id="">
             </div>
             <div class="col-md-6">
-              <label for="inputCity" class="form-label">Apellidos</label>
-              <input type="text" class="form-control form-control-sm" id="inputCity">
+              <label for="inputState" class="form-label">Sexo <span class="text-danger">*</span></label>
+              <select name="gender" id="inputState" class="form-select form-select-sm">
+                <option selected>Seleccionar</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+              </select>
             </div>
+            
             <div class="col-md-6">
-              <label for="inputCity" class="form-label">Teléfono</label>
-              <input type="text" class="form-control form-control-sm" id="inputCity">
+              <label for="" class="form-label">Fecha de nacimiento <span class="text-danger">*</span></label>
+              <input type="date" name="birthdate" class="form-control form-control-sm" id="">
+            </div>
+            <div class="col-6">
+              <label for="" class="form-label">Telefono</label>
+              <input type="text" name="cellphone" class="form-control form-control-sm" id="" placeholder="">
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Email</label>
-              <input type="email" class="form-control form-control-sm" id="inputEmail4">
+              <input type="email" name="email" class="form-control form-control-sm" id="inputEmail4">
+            </div>
+            
+            <div class="col-md-6">
+              <label for="" class="form-label">Referencia</label>
+              <input type="text" name="reference" class="form-control form-control-sm" placeholder="Nombre de responsable" id="">
+            </div>
+            <div class="col-md-6">
+              <label for="" class="form-label">Numero de telefono</label>
+              <input type="text" name="referencePhone" class="form-control form-control-sm" placeholder="Número de emergencia" id="">
             </div>
             <div class="col-12">
-              <label for="inputAddress" class="form-label">Dirección</label>
-              <input type="text" class="form-control form-control-sm" id="inputAddress" placeholder="1234 Main St">
             </div>
-            <div class="col-md-4">
-              <label for="inputState" class="form-label">Sexo</label>
-              <select id="inputState" class="form-select form-select-sm">
-                <option selected>Seleccionar</option>
-                <option>M</option>
-                <option>F</option>
-              </select>
-            </div>
-            <div class="col-md-4">
-              <label for="inputZip" class="form-label">Edad</label>
-              <input type="number" class="form-control form-control-sm" id="inputZip">
-            </div>
-            <div class="col-12">
+            <div class="modal-footer d-flex justify-content-center">
               <button type="submit" class="btn btn-success btn-sm">Guardar</button>
             </div>
           </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+
+  {# Modal editar paciente #}
+  <div class="modal fade" id="modalEditar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modalEditarLabel">Editar informacion del paciente</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="my-2">Los campos con <span class="text-danger">*</span> son obligatorios</p>
+          <form id="formEditar" class="row g-3">
+            <div class="col-md-12">
+              <label for="" class="form-label">Nombres <span class="text-danger">*</span></label>
+              <input type="text" name="name" class="form-control form-control-sm" id="">
+            </div>
+            <div class="col-md-12">
+              <label for="" class="form-label">Apellidos <span class="text-danger">*</span></label>
+              <input type="text" name="lastname" class="form-control form-control-sm" id="">
+            </div>
+            <div class="col-md-6">
+              <label for="inputState" class="form-label">Sexo <span class="text-danger">*</span></label>
+              <select name="gender" id="inputState" class="form-select form-select-sm">
+                <option selected>Seleccionar</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+              </select>
+            </div>
+            
+            <div class="col-md-6">
+              <label for="" class="form-label">Fecha de nacimiento <span class="text-danger">*</span></label>
+              <input type="date" name="birthdate" class="form-control form-control-sm" id="">
+            </div>
+            <div class="col-6">
+              <label for="" class="form-label">Telefono</label>
+              <input type="text" name="cellphone" class="form-control form-control-sm" id="" placeholder="">
+            </div>
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Email</label>
+              <input type="email" name="email" class="form-control form-control-sm" id="inputEmail4">
+            </div>
+            
+            <div class="col-md-6">
+              <label for="" class="form-label">Referencia</label>
+              <input type="text" name="reference" class="form-control form-control-sm" placeholder="Nombre de responsable" id="">
+            </div>
+            <div class="col-md-6">
+              <label for="" class="form-label">Numero de telefono</label>
+              <input type="text" name="referencePhone" class="form-control form-control-sm" placeholder="Número de emergencia" id="">
+            </div>
+            <div class="col-12">
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+            </div>
+          </form>
         </div>
       </div>
 
@@ -82,31 +152,38 @@
       responsiveLayout: true,
       columns: [
         {
-          title: "Codigo",
-          field: "code"
-        }, {
-          title: "Nombre",
+          title: "Nombres",
           field: "name"
         }, {
-          title: "Agua",
-          field: "aqua"
+          title: "Apellidos",
+          field: "lastname"
         }, {
-          title: "Energía",
-          field: "energy"
+          title: "Sexo",
+          field: "gender"
         }, {
-          title: "Proteína",
-          field: "protein"
+          title: "Edad",
+          field: "age"
         }, {
-          title: "Grasa Total",
-          field: "energy"
+          title: "Teléfono",
+          field: "cellphone"
         }, {
-          title: "Carbohidratos",
-          field: "carbs"
+          title: "Correo",
+          field: "email"
+        }, {
+          title: "Responsable",
+          field: "reference"
+        }, {
+          title: "Telefono de responsable",
+          field: "referencePhone"
         }, {
           title: "Acciones",
-          formatter: (cell) => `
+          formatter: (cell) => {
+            const id = cell.getRow().getData().id
+            return `
+                        <a href="${id}" class="btn btn-primary btn-sm editar"><i class="fa-solid fa-file-waveform"></i></a>
                         <button class="btn btn-warning btn-sm editar" data-bs-toggle="modal" data-bs-target="#modalEditar"><i class="fa-solid fa-pen"></i></button>
-                    `,
+                    `
+          },
           width: 140,
           cellClick: (e, cell) => {
             const data = cell
@@ -124,15 +201,14 @@
           }
         }
       ]
-    }) {
-      # Busqueda dinamica #
-    }
+    })
+
     document
-      .getElementById("searchFood")
+      .getElementById("searchBox")
       .addEventListener("keyup", (e) => {
-        table.setFilter("name", "like", e.target.value);
+        tabla.setFilter("name", "like", e.target.value);
       });
   </script>
   <script src="/js/sweetAlertHelper.js"></script>
-  <script src="/js/food/foodCrud.js"></script>
+  <script src="/js/patients/patientsCrud.js"></script>
 {% endblock %}

@@ -1,4 +1,5 @@
 const patientService = require("../services/patient.service");
+const { calculateAge } = require("../utils/dateHelper");
 const { errorPostHandler, genericErrorHandler, notFoundResponse, sendSuccess, badRequestResponse, customError } = require("../validators/httpResponse");
 
 class PatientController {
@@ -10,13 +11,15 @@ class PatientController {
             if (!req.session.user) {
                 return res.render("pages/forbidden")
             }
-            const { name, lastname } = req.session.user
+            const { userId, name, lastname } = req.session.user
 
-            const patients = await patientService.readAllPatients()
+            const patients = await patientService.readPatientsByUser(userId)
             const username = `${name.split(" ")[0]} ${lastname.split(" ")[0]}`
 
             return res.render("patient", { patients: patients.length > 0 ? patients : [], username })
         } catch (error) {
+            console.log(error);
+            
             return res.render("pages/error")
         }
     }
@@ -30,9 +33,34 @@ class PatientController {
             const { userId, name, lastname } = req.session.user
             const patients = await patientService.readPatientsByUser(userId)
 
-            const username = `${name.split(" ")[0]} ${lastname.split(" ")[0]}`
+            if (patients.length > 0) {
+                // return res.render('users', { users: result, providers });
+                return res.json({status:200, rows: patients})
+            }
+            res.status(404)
+            return res.json(notFoundResponse)
 
-            return res.render("patient", { patients: patients.length > 0 ? patients : [], username })
+        } catch (error) {
+            return res.render("pages/error")
+        }
+    }
+    
+    getAllPatients = async (req, res) => {
+        try {
+
+            if (!req.session.user) {
+                return res.render("pages/forbidden")
+            }
+            const { userId, name, lastname } = req.session.user
+            const patients = await patientService.readAllPatients()
+
+            if (patients.length > 0) {
+                // return res.render('users', { users: result, providers });
+                return res.json({status:200, rows: patients})
+            }
+            res.status(404)
+            return res.json(notFoundResponse)
+
         } catch (error) {
             return res.render("pages/error")
         }
@@ -41,6 +69,9 @@ class PatientController {
     addNewPatient = async (req, res)=> {
         try {
             req.body.addedBy = req.session.user.userId
+            
+            console.log(`El controlador pasa la fecha ${req.body.birthdate} desde req.body`)
+            req.body.age = calculateAge(req.body.birthdate)
 
             const newPatient = await patientService.createNewPatient(req.body)
             if (newPatient) {
@@ -49,6 +80,8 @@ class PatientController {
             res.status(400).json(customError(400, "No se pudo crear el registro"))
 
         } catch (error) {
+            console.log(error);
+            
             const errorData = errorPostHandler(error)
             return res.status(400).json(errorData)
         }

@@ -37,7 +37,7 @@ class FoodController {
                 return res.json({status:200, rows: response})
             }
             res.status(404)
-            return res.send(notFoundResponse)
+            return res.json(notFoundResponse)
 
         } catch (error) {
             const errorData = genericErrorHandler(error)
