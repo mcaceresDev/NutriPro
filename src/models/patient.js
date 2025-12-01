@@ -47,6 +47,19 @@ module.exports = (sequelize, DataTypes) => {
     }
     },
     age: DataTypes.INTEGER,
+    height: {
+      type: DataTypes.DECIMAL,
+      validate: {
+      min: {
+        args: [0.5],           // altura mínima aceptada
+        msg: "La estatura no puede ser menor de 0.5 metros"
+      },
+      max: {
+        args: [2.5],
+        msg: "La estatura no puede ser mayor de 2.5 metros"
+      }
+    }
+    },
     cellphone: DataTypes.STRING,
     email: DataTypes.STRING,
     reference: DataTypes.STRING,

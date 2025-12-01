@@ -48,6 +48,10 @@
               <label for="" class="form-label">Fecha de nacimiento <span class="text-danger">*</span></label>
               <input type="date" name="birthdate" class="form-control form-control-sm" id="">
             </div>
+            <div class="col-md-6">
+              <label for="" class="form-label">Estatura (M)</label>
+              <input type="number" step="any" inputmode="decimal" name="height" class="form-control form-control-sm" id="" placeholder="Especificar altura en metros Ej. 1.80">
+            </div>
             <div class="col-6">
               <label for="" class="form-label">Telefono</label>
               <input type="text" name="cellphone" class="form-control form-control-sm" id="" placeholder="">
@@ -58,14 +62,12 @@
             </div>
             
             <div class="col-md-6">
-              <label for="" class="form-label">Referencia</label>
-              <input type="text" name="reference" class="form-control form-control-sm" placeholder="Nombre de responsable" id="">
-            </div>
-            <div class="col-md-6">
-              <label for="" class="form-label">Numero de telefono</label>
+              <label for="" class="form-label">Numero de responsable</label>
               <input type="text" name="referencePhone" class="form-control form-control-sm" placeholder="Número de emergencia" id="">
             </div>
-            <div class="col-12">
+            <div class="col-md-12">
+              <label for="" class="form-label">Nombre de responsable</label>
+              <input type="text" name="reference" class="form-control form-control-sm" placeholder="Contacto de emergencia" id="">
             </div>
             <div class="modal-footer d-flex justify-content-center">
               <button type="submit" class="btn btn-success btn-sm">Guardar</button>
@@ -88,6 +90,7 @@
         <div class="modal-body">
           <p class="my-2">Los campos con <span class="text-danger">*</span> son obligatorios</p>
           <form id="formEditar" class="row g-3">
+            <input type="hidden" class="form-control form-control-sm" name="id" id="id" placeholder="">
             <div class="col-md-12">
               <label for="" class="form-label">Nombres <span class="text-danger">*</span></label>
               <input type="text" name="name" class="form-control form-control-sm" id="">
@@ -109,6 +112,10 @@
               <label for="" class="form-label">Fecha de nacimiento <span class="text-danger">*</span></label>
               <input type="date" name="birthdate" class="form-control form-control-sm" id="">
             </div>
+            <div class="col-md-6">
+              <label for="" class="form-label">Estatura (M)</label>
+              <input type="number" step="any" inputmode="decimal" name="height" class="form-control form-control-sm" id="" placeholder="Especificar altura en metros Ej. 1.80">
+            </div>
             <div class="col-6">
               <label for="" class="form-label">Telefono</label>
               <input type="text" name="cellphone" class="form-control form-control-sm" id="" placeholder="">
@@ -119,14 +126,12 @@
             </div>
             
             <div class="col-md-6">
-              <label for="" class="form-label">Referencia</label>
-              <input type="text" name="reference" class="form-control form-control-sm" placeholder="Nombre de responsable" id="">
-            </div>
-            <div class="col-md-6">
               <label for="" class="form-label">Numero de telefono</label>
               <input type="text" name="referencePhone" class="form-control form-control-sm" placeholder="Número de emergencia" id="">
             </div>
-            <div class="col-12">
+            <div class="col-md-12">
+              <label for="" class="form-label">Nombre de responsable</label>
+              <input type="text" name="reference" class="form-control form-control-sm" placeholder="Contacto de emergencia" id="">
             </div>
             <div class="modal-footer d-flex justify-content-center">
               <button type="submit" class="btn btn-success btn-sm">Guardar</button>
@@ -160,10 +165,16 @@
         }, {
           title: "Sexo",
           field: "gender"
-        }, {
+        },
+        {
           title: "Edad",
           field: "age"
-        }, {
+        }, 
+        {
+          title: "Altura (M)",
+          field: "height"
+        },
+        {
           title: "Teléfono",
           field: "cellphone"
         }, {

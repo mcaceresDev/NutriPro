@@ -42,6 +42,7 @@ document.getElementById("formRegistrar").addEventListener("submit", async functi
             sendFeedBack(data.message, alertType.success)
             getPatientsByUser()
             form.reset()
+            bootstrap.Modal.getInstance(document.getElementById("modalAgregar")).hide();
         } else {
             sendFeedBack(data.message, alertType.error)
         }
@@ -52,45 +53,58 @@ document.getElementById("formRegistrar").addEventListener("submit", async functi
 });
 
 
-// document.getElementById("formEditar").addEventListener("submit", async function (e) {    
-//     e.preventDefault();
-//     const form = e.target;
-//     const formData = new FormData(form);
+document.getElementById("formEditar").addEventListener("submit", async function (e) {    
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
 
-//     // Convierte todos los inputs en un objeto
-//     const payload = Object.fromEntries(formData.entries());
-//     try {
+    // Convierte todos los inputs en un objeto
+    const payload = Object.fromEntries(formData.entries());
+    try {
 
-//         const res = await fetch(`/nutrientes/update-item/${payload.id}`, {
-//             method: "PUT",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify(payload)
-//         });
-//         const data = await res.json();
+        const res = await fetch(`/pacientes/update-infop/${payload.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
 
-//         if (res.ok) {
-//             sendFeedBack(data.message, alertType.success)
-//             getFoodById()
-//             form.reset()
-//             bootstrap.Modal.getInstance(document.getElementById("modalEditar")).hide();
-//         } else {
-//             sendFeedBack(data.message, alertType.error)
-//         }
-//     } catch (err) {
-//         console.log(err);
-//         sendFeedBack(err.message, alertType.error)
-//     }
-// });
+        if (res.ok) {
+            sendFeedBack(data.message, alertType.success)
+            getPatientsByUser()
+            form.reset()
+            bootstrap.Modal.getInstance(document.getElementById("modalEditar")).hide();
+        } else {
+            sendFeedBack(data.message, alertType.error)
+        }
+    } catch (err) {
+        console.log(err);
+        sendFeedBack(err.message, alertType.error)
+    }
+});
 
 function fillModalForm(data) {
+    console.log(data)
     const form = document.getElementById("formEditar");
 
     Object.keys(data).forEach(key => {
         const input = form.querySelector(`[name="${key}"]`);
-        if (input) {
-            input.value = data[key];
+
+        if (!input) return;
+
+        if (input.type === "date") {
+            
+            const value = data.birthdate
+            if (value) {
+                const date = new Date(value);
+                // Convertir a YYYY-MM-DD
+                const formatted = date.toISOString().split("T")[0];
+                input.value = formatted;
+            }
+            return;
         }
+        input.value = data[key];
     });
 }

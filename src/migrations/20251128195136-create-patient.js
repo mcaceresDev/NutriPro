@@ -24,6 +24,9 @@ module.exports = {
       age: {
         type: Sequelize.INTEGER
       },
+      height: {
+        type: Sequelize.DECIMAL
+      },
       cellphone: {
         type: Sequelize.STRING
       },

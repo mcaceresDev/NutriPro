@@ -30,7 +30,8 @@ const genericErrorHandler = (error) => {
         // createLog(logType.error, newLog, error.message)
         return {
             status: 400,
-            message: "Falló la solicitud. Peticion a la BD no completada",
+            // message: "Falló la solicitud. Peticion a la BD no completada",
+            message,
             info: message
         }
     }
