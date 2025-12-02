@@ -1,0 +1,97 @@
+Alergias: Incluyendo a medicamentos, alimentos y otros.
+Medicamentos: Lista de los fármacos que toma, sus dosis y desde cuándo los usa.
+Enfermedades: Padecimientos significativos, con fechas y diagnósticos.
+Cirugías y procedimientos: Cualquier cirugía, tratamiento quirúrgico o procedimiento médico realizado, con sus fechas.
+
+Historia de enfermedades en la familia, como diabetes, cardiopatías o cáncer, para identificar posibles riesgos genéticos
+detalles de la dieta (comidas al día, horario, contenido).
+Uso de alcohol, tabaco y otras drogas.
+
+
+Ejemplo de historia clínica nutricional
+Datos del paciente
+
+    Datos personales
+    Motivo y fecha de la consulta
+
+Información clínica
+
+    Tensión arterial
+    Enfermedades
+    Medicación
+    Alergias
+    Intolerancias
+
+Cuando la paciente está embarazada
+
+    Semana de parto
+    Inmunización Toxoplasma
+
+Antecedentes familiares
+
+    Los antecedentes de Obesidad familar
+    Antecedentes HTA
+    Dislipidemia
+    Historial de Diabetes en la familia
+    Antecedentes de enfermedad cardiovascular
+
+Hábitos alimenticios
+
+    Tipo de alimentación
+    Comidas fuera de casa
+    Ejemplos de desayuno, comida cena, meriendas, media mañana
+    Hábitos (picoteo, consumo de tabaco, alcohol, etc)
+
+Nivel de actividad
+
+    Tipo de  trabajo 
+    Tipo de actividad física
+    Sesiones semanales de actividad
+
+Exploración física 
+
+    Peso
+    Altura
+    Contorno de cintura
+    Gatos energértico
+    IMC
+
+==============================================================================================================================================
+¿Qué datos incluye la historia clínica dental odontológica?
+
+    Información personal y de contacto: Incluye el nombre completo del paciente, fecha de nacimiento, dirección, número de teléfono y correo electrónico.
+    Motivo de la consulta: Puede ser dolor, chequeo rutinario, limpieza dental, entre otros.
+    Historia médica: Incluye información sobre enfermedades sistémicas, alergias, cirugías previas, medicación actual y cualquier condición médica que pueda afectar el tratamiento dental.
+    Historia dental: Recoge información sobre tratamientos dentales previos, frecuencia de visitas al dentista, experiencias previas, y nivel de ansiedad dental.
+    Examen clínico: Incluye una evaluación visual de la cavidad oral, dientes, encías, y estructuras circundantes. Utiliza radiografías, fotografías y otras herramientas diagnósticas para un análisis detallado.
+    Diagnóstico: Basado en la evaluación clínica y la historia dental, se establece y detalla el diagnóstico que guiará el plan de tratamiento.
+    Plan de tratamiento: Detalla los procedimientos recomendados, como por ejemplo: limpiezas, empastes, extracciones, ortodoncia, entre otros. Debe incluir una estimación de costos y el tiempo necesario para cada tratamiento.
+    Consentimiento informado: Registro de la aceptación del paciente para proceder con el plan de tratamiento propuesto, después de haber sido informado sobre los riesgos, beneficios y alternativas.
+
+¿Cuál es el procedimiento para crear la historia odontológica del paciente?
+
+    Preparación inicial: Antes de la llegada del paciente, prepara el entorno de trabajo, asegurando que todo el equipo necesario esté listo y disponible.
+    Recepción y presentación: Saluda al paciente, preséntate y explícale lo que harás en la consulta. Asegúrate de que el ambiente promueva una buena comunicación con el paciente.
+    Recolección de información personal y de contacto: Recoge los datos personales del paciente y asegúrate de tener información de contacto actualizada.
+    Evaluación del motivo de la consulta: Pregunta al paciente sobre el motivo de su visita utilizando preguntas abiertas para permitirle expresar sus preocupaciones y expectativas.
+    Historia médica: Utiliza un cuestionario estructurado para recolectar información sobre su historial médico, incluyendo condiciones preexistentes, alergias y medicamentos actuales.
+    Historia dental: Pregunta sobre tratamientos dentales previos, frecuencia de visitas al dentista y cualquier experiencia negativa que hayan tenido.
+    Examen clínico: Realiza un examen detallado de la cavidad oral, utilizando herramientas diagnósticas como radiografías y fotografías para obtener una evaluación completa.
+    Diagnóstico y plan de tratamiento: Basado en los datos recolectados y el examen clínico, elabora un diagnóstico claro y un plan de tratamiento detallado.
+    Discusión y consentimiento informado: Explica el plan de tratamiento al paciente, incluyendo los procedimientos, costos, y duración estimada. Obtén su consentimiento informado antes de proceder.
+
+Los errores más comunes en la historia dental del paciente
+
+    No recopilar información médica o dental completa, lo que puede llevar a diagnósticos incorrectos y tratamientos inadecuados.
+    No actualizar la historia clínica en cada visita, lo que puede resultar en tratamientos basados en información obsoleta.
+    No explicar adecuadamente los riesgos y beneficios del tratamiento, lo que puede derivar en problemas legales y falta de confianza del paciente.
+    No documentar todos los hallazgos durante el examen clínico.
+    No escuchar activamente las preocupaciones del paciente o no explicar claramente el plan de tratamiento puede afectar la aceptación y satisfacción del paciente.
+
+Importancia de la historia clínica en el diagnóstico y tratamiento del paciente odontológico
+
+La historia clínica dental es crucial para el diagnóstico y tratamiento efectivo del paciente. Proporciona una visión completa del estado de su salud, que permite a los odontólogos, ortodoncistas y otros profesionales dentales identificar problemas subyacentes que pueden afectar al tratamiento.
+
+Además, una historia clínica bien documentada facilita la planificación del tratamiento al proporcionar un registro claro de todos los procedimientos previos y actuales, asegurando la continuidad y consistencia en la atención.
+
+Finalmente, es una herramienta necesaria para garantizar un enfoque integral y coordinado en el cuidado del paciente al mejorar la comunicación entre los miembros del equipo dental y con otros profesionales de la salud. Desde Infomed, el programa de gestión dental, GESDEN, dispone de un módulo de historia clínica donde el doctor anota todo lo referente al paciente. A continuación, puedes ver cómo funciona.
