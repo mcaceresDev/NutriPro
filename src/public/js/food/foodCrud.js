@@ -99,18 +99,6 @@ function fillModalForm(data) {
     Object.keys(data).forEach(key => {
         const input = form.querySelector(`[name="${key}"]`);
         if (input) {
-            if (input.type === "date") {
-            if (value) {
-                const date = new Date(value);
-
-                // Convertir a YYYY-MM-DD
-                const formatted = date.toISOString().split("T")[0];
-
-                input.value = formatted;
-            }
-            return;
-        }
-
             input.value = data[key];
         }
     });

@@ -114,7 +114,7 @@
             </div>
             <div class="col-md-6">
               <label for="" class="form-label">Estatura (M)</label>
-              <input type="number" step="any" inputmode="decimal" name="height" class="form-control form-control-sm" id="" placeholder="Especificar altura en metros Ej. 1.80">
+              <input type="number" step="any" inputmode="decimal" name="height" class="form-control form-control-sm" id="" placeholder="Altura en metros Ej. 1.80">
             </div>
             <div class="col-6">
               <label for="" class="form-label">Telefono</label>
@@ -191,7 +191,7 @@
           formatter: (cell) => {
             const id = cell.getRow().getData().id
             return `
-                        <a href="${id}" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-waveform"></i></a>
+                        <a href="/evaluation/${id}" class="btn btn-primary btn-sm"><i class="fa-solid fa-file-waveform"></i></a>
                         <button class="btn btn-warning btn-sm editar" data-bs-toggle="modal" data-bs-target="#modalEditar"><i class="fa-solid fa-pen"></i></button>
                         <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                     `
