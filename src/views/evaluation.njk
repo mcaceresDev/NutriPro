@@ -31,21 +31,6 @@
         </button>
     </div>
 
-    {# <div class="card my-4">
-        <h5 class="card-header">Información personal</h5>
-        <div class="card-body">
-            <div class="d-flex justify-content-start align-items-center">
-                <h5 class="m-0"> {{ patient.name }} {{ patient.lastname }}</h5>
-                <span class="mx-3"> <i class="fa-solid fa-cake-candles"></i> {{ formattedDate }} ({{ patient.age }} años) <br></span>
-            </div>
-            <div class="p-3 d-flex justify-content-start align-items-center mb-3">
-                <img src="/assets/img/malePatient.png" />
-                <ul class="list-unstyled mx-3"> 
-                </ul>
-            </div>
-        </div>
-    </div> #}
-
     <div class="card my-4">
         <h5 class="card-header">
             <i class="fa-solid fa-notes-medical"></i> Antecedentes Clínicos</h5>
@@ -102,17 +87,16 @@
         <h5 class="card-header">
             <i class="fa-solid fa-ruler-combined"></i> Mediciones y datos relevantes</h5>
         <div class="card-body">
-            <h5>Medidas básicas</h5>
             <form class="row g-3 my-3">
                 <div class="col-md-6 row">
-
+                    <h5>Valores de referencia</h5>
                     <div class="col-md-6">
                         <label for="" class="form-label">Género</label>
                         <input type="text" value="{{patient.gender}}" class="form-control form-control-sm" id="gender">
                     </div>
                     <div class="col-md-6">
                         <label for="" class="form-label">Peso</label>
-                        <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="weight">
+                        <input type="number" required step="any" inputmode="decimal" class="form-control form-control-sm" id="weight">
                     </div>
                     <div class="col-md-6">
                         <label for="" class="form-label">Altura</label>
@@ -123,9 +107,9 @@
                         <input type="number" value="{{patient.age}}" class="form-control form-control-sm" id="age" placeholder="">
                     </div>
                     <div class="col-md-12">
-                        {# <label for="inputState" class="form-label">Estilo de vida (actividad física)</label> #}
-                        <span class="text-success">Elija una variable del filtro donde "bajo" es totalmente sedentario y "muy alto" es muy activo</span>
-                        <select id="inputFa" class="form-select">
+                        <label for="inputState" class="form-label">Estilo de vida (actividad física)</label>
+                        {# <span class="text-success">Elija una variable del filtro donde "bajo" es totalmente sedentario y "muy alto" es muy activo</span> #}
+                        <select id="inputFa" class="form-select form-select-sm">
                             <option selected>Seleccione un factor de actividad</option>
                             <option value="low">Bajo</option>
                             <option value="light">Ligero</option>
@@ -136,23 +120,27 @@
                     </div>
                 </div>
                 <div class="col-md-6 row">
-                    <div class="col-md-12">
+                    <h5>Cálculos</h5>
+                    <div class="col-md-6">
                         <label for="" class="form-label">IMC</label>
                         <input type="text" class="form-control form-control-sm" id="imc" placeholder="">
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="" class="form-label">Gasto Energético Basal</label>
                         <input type="text" class="form-control form-control-sm" id="geb" placeholder="">
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="" class="form-label">Gasto Energético Total</label>
                         <input type="text" class="form-control form-control-sm" id="get" placeholder="">
                     </div>
-                    <button type="button" id="btnCalcMB" class="btn btn-sm btn-info mt-2">Calcular Valores</button>
+                    <div class="col-md-6">
+                        <label for="" class="form-label"></label>
+                        <button type="button" id="btnCalcMB" class="btn btn-sm btn-success mt-2">Calcular Valores</button>
+                    </div>
                 </div>
 
                 <div class="col-12 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
+                    {# <button type="submit" class="btn btn-sm btn-primary">Guardar</button> #}
                 </div>
             </form>
         </div>
@@ -161,45 +149,58 @@
     {# DATOS BIOQUIMICOS #}
     <div class="card">
         <h5 class="card-header">
-            <i class="fa-solid fa-flask-vial"></i> Datos Bioquímicos</h5>
+            <i class="fa-solid fa-flask-vial"></i> Datos Bioquímicos y Medidas Analíticas</h5>
         <div class="card-body">
             <h5>Perfil de Lípidos</h5>
             <form class="row g-3">
                 <div class="col-md-6">
                     <label for="" class="form-label">Colesterol Total</label>
-                    <input type="text" class="form-control form-control-sm" id="">
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="ct">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">Triglicéridos</label>
-                    <input type="text" class="form-control form-control-sm" id="">
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="tgc">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">Colesterol HDL</label>
-                    <input type="text" class="form-control form-control-sm" id="">
-                </div>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Colesterol no HDL</label>
-                    <input type="text" class="form-control form-control-sm" id="">
-                </div>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Colesterol VDL</label>
-                    <input type="text" class="form-control form-control-sm" id="">
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="hdl">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">Colesterol LDL</label>
-                    <input type="text" class="form-control form-control-sm" id="">
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="ldl">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">Hemoglobina Glicosilada</label>
-                    <input type="text" class="form-control form-control-sm" id="">
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="hgl">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">Glucosa media estimada</label>
-                    <input type="text" class="form-control form-control-sm" id="">
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="gl">
                 </div>
+                <hr>
 
+                <div class="col-md-6">
+                    <label for="" class="form-label">Circunferencia de cintura</label>
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="" placeholder="Medida en cm">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Perímetro de pantorrilla</label>
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="" placeholder="Medida en cm">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Presión Sistólica</label>
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="" placeholder="">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Presión Diastólica</label>
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="" placeholder="">
+                </div>
+                <div class="col-md-6">
+                        <label for="" class="form-label"></label>
+                        <button type="button" id="btnCalcDB" class="btn btn-sm btn-success mt-2">Calcular Valores</button>
+                </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
+                    {# <button type="submit" class="btn btn-sm btn-primary">Guardar</button> #}
                 </div>
             </form>
         </div>

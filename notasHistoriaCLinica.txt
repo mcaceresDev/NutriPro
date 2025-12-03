@@ -57,6 +57,15 @@ Exploración física
     IMC
 
 ==============================================================================================================================================
+Sindrome metabolico
+hay varios signos o sintomas
+consta de 5 parametros, si tiene al menos 3 tiene un sindrome metabolico
+y tiene riesgo de diabetes y enfermedades coronarias
+
+relacion entre colesterol y hdl = parametros para bajo riesgo coronario
+
+<31 cm de pantorrilla riesgo de desnutricion o sarcopenia () >31cm normal
+==============================================================================================================================================
 ¿Qué datos incluye la historia clínica dental odontológica?
 
     Información personal y de contacto: Incluye el nombre completo del paciente, fecha de nacimiento, dirección, número de teléfono y correo electrónico.

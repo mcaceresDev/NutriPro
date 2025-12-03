@@ -8,29 +8,30 @@ const activityFactor = {
 }
 
 // Fórmulas de HarrisBenedict para calcular metabolismo basal
-const calcTMB = (gender, weight, height, age, fa)=> {
-    if(gender != 'M' && gender != 'F') return {message: "Género inválido"}
-    
+const calcTMB = (gender, weight, height, age, fa) => {
+    if (gender !== 'M' && gender !== 'F') return { message: "Género inválido" }
+
     let cmHeight = height * 100
 
     if (gender === "M") {
         // Hacer los calculos para hombre
         const GEB = [66 + (13.7 * weight) + (5 * cmHeight) - (6.8 * age)] //Gasto Energetico Basal
-        const GET = GEB*fa //Gasto Energetico Total
+        const GET = GEB * fa //Gasto Energetico Total
+        return { GEB, GET }
     }
     //Hacer calculos para mujer
     const GEB = 655 + (9.6 * weight) + (1.8 * cmHeight) - (4.7 * age)
-    const GET = GEB*fa //Gasto Energetico Total
-    return {GEB, GET}
+    const GET = GEB * fa //Gasto Energetico Total
+    return { GEB, GET }
 }
 
-const calcIMC = (weight, height)=> {
-    const IMC = weight/Math.pow(height,2)
+const calcIMC = (weight, height) => {
+    const IMC = weight / Math.pow(height, 2)
     return IMC
 }
 
 const btnCalcMB = document.getElementById("btnCalcMB")
-btnCalcMB.addEventListener("click", (e)=> {
+btnCalcMB.addEventListener("click", (e) => {
     e.preventDefault()
     const weight = parseFloat(document.getElementById("weight").value)
     const height = parseFloat(document.getElementById("height").value)
@@ -39,11 +40,214 @@ btnCalcMB.addEventListener("click", (e)=> {
     const activityLevel = document.getElementById("inputFa").value
     const fa = activityFactor[activityLevel]
 
-    const {GEB, GET} = calcTMB(gender, weight, height, age, fa)
+    const { GEB, GET } = calcTMB(gender, weight, height, age, fa)
     const imc = calcIMC(weight, height)
-    console.log(GEB);
-    console.log(GET);
-    
+
+    document.getElementById("geb").value = GEB.toFixed(2)
+    document.getElementById("get").value = GET.toFixed(2)
+    document.getElementById("imc").value = imc.toFixed(2)
+})
+
+
+// CALCULOS PARA RIESGO CORONARIO
+// ================================================================
+function calculateCoronaryRisk(gender, totalFat, hdl) {
+    // ---- VALIDACIONES BASE ----
+    if (!gender || totalFat == null || hdl == null) {
+        throw new Error("Los campos: Genero, Colesterol Total y HDL son obligatorios");
+    }
+
+    // Normalizar genero (solo M o F)
+    gender = gender.toUpperCase();
+    if (gender !== "M" && gender !== "F") {
+        throw new Error("El género debe ser 'Masculino' para hombre o 'Femenino' para mujer");
+    }
+
+    // Validaciones numéricas básicas
+    if (isNaN(totalFat) || isNaN(hdl) || totalFat <= 0 || hdl <= 0) {
+        throw new Error("Colesterol Total y HDL deben ser números mayores a 0");
+    }
+
+    // ---- CALCULAR RIESGO ----
+    const risk = Number((totalFat / hdl).toFixed(2));
+
+    // ---- TABLAS DE REFERENCIA ----
+    const reference = {
+        M: [
+            { min: 0, max: 3.8, level: "Muy Bajo" },
+            { min: 3.9, max: 4.7, level: "Bajo" },
+            { min: 4.8, max: 5.9, level: "Moderado" },
+            { min: 6.0, max: 6.9, level: "Alto" },
+            { min: 7.0, max: Infinity, level: "Muy Alto" }
+        ],
+        F: [
+            { min: 0, max: 2.9, level: "Muy Bajo" },
+            { min: 3.0, max: 3.6, level: "Bajo" },
+            { min: 3.7, max: 4.6, level: "Moderado" },
+            { min: 4.7, max: 5.6, level: "Alto" },
+            { min: 5.7, max: Infinity, level: "Muy Alto" }
+        ]
+    };
+
+    // ---- DETERMINAR NIVEL ----
+    const match = reference[gender].find(r => risk >= r.min && risk <= r.max);
+
+    if (!match) {
+        throw new Error("No se pudo calcular el nivel de riesgo.");
+    }
+
+    return {
+        risk,
+        level: match.level
+    };
+}
+
+// CALCULOS PARA SINDROME METABOLICO
+// ================================================================
+const validateMetabolicSyndrome = (gender, trc, sisPres, diaPres, glu, hdl, waist, calf) => {
+    // Referencias Generales para ambos sexos
+    const trigliceridos = 150 //MG/DL Igual o menor es normal
+    const sistolica = 130 //Igual o menor es normal 
+    const diastolica = 85 //Igual o menor es normal
+    const glucose = 110 //MG/DL Menor o igual es normal
+    const calfC = 31 //Menor a 31 implica desnutricion
+
+    //Referencias individuales
+    const colesterolHDL = {
+        men: 40, //MG/DL Igual o mayor es normal. Deseable 60
+        women: 50 //MG/DL Igual o mayor es normal. Deseable 60
+    }
+    const waistCircumference = {
+        men: 102, //Igual o menor es normal (medida en cm)
+        women: 88 //Igual o menor es normal (medida en cm)
+    }
+
+    let counter = 0
+    let patientEvalution = {
+        trig: {
+            message: ""
+        },
+        bloddPressure: {
+            message: ""
+        },
+        glucose: {
+            message: ""
+        },
+        hdl: {
+            message: ""
+        },
+        waist: {
+            message: ""
+        },
+        metabolicSyndrome: {
+            isTrue: false,
+            message: ""
+        },
+        malnutrition: false
+    }
+
+    if (trc > trigliceridos) {
+        patientEvalution.trig.message = "Trigliceridos por encima de rango normal " + trigliceridos 
+        counter++
+    }
+    if (sisPres > sistolica) {  
+        counter++
+    }
+    if (diaPres > diastolica) {
+        counter++
+    }
+    if (glu > glucose) {
+        patientEvalution.glucose.message = "Glucosa por encima del rango normal " + glucose
+        counter++
+    }
+    if (calf < calfC) {
+        patientEvalution.malnutrition = true
+    }
+    //referencias individuales
+    if (gender === "M") {
+        if (hdl < colesterolHDL.men) {
+            patientEvalution.hdl.message = "Colesterol hdl por debajo del rango normal " + colesterolHDL.men
+            counter++
+        }
+        if (waist > waistCircumference.men) {
+            patientEvalution.waist.message = "Medida de cintura por encima de lo normal " + waistCircumference.men
+            counter++
+        }
+        if (counter >= 4) {
+            patientEvalution.metabolicSyndrome = true
+        }
+        return patientEvalution
+    }
+
+    if (hdl < colesterolHDL.women) {
+        patientEvalution.hdl.message = "Colesterol hdl por debajo del rango normal " + colesterolHDL.women
+        counter++
+    }
+    if (waist > waistCircumference.women) {
+        patientEvalution.waist.message = "Medida de cintura por encima de lo normal " + waistCircumference.women
+        counter++
+    }
+    if (counter >= 4) {
+        patientEvalution.metabolicSyndrome = true
+    }
+    return patientEvalution
+}
+
+// PARAMETROS DE REFERENCIA
+// const refereceParams = {}
+
+const heartRiskReference = {
+    men: {
+        veryLow: 3.8,// o menor
+        low: 3.9, //hasta 4.7
+        medium: 4.8, //hasta 5.9
+        hard: 6.0, //hasta 6.9
+        veryHard: 7 //a más
+    },
+    women: {
+        veryLow: 2.9,// o menor
+        low: 3, //hasta 3.6
+        medium: 3.7, //hasta 4.6
+        hard: 4.7, //hasta 5.6
+        veryHard: 5.7 //a más
+    }
+}
+
+const waistCircumference = {
+    men: 102, //Igual o meno es normal
+    women: 88 //Igual o meno es normal
+}
+
+const trigliceridos = 150 //MG/DL Igual o mayor es normal
+
+const colesterol = {
+    men: 40, //MG/DL Igual o mayor es normal. Deseable 60
+    women: 50 //MG/DL Igual o mayor es normal. Deseable 60
+}
+
+const bloodPressure = {
+    sistolica: 130, //Igual o menor
+    diastolica: 85 //Igual o menor
+}
+
+const glucose = 110 //MG/DL Menor o igual es normal
+
+
+const btnCalcDB = document.getElementById("btnCalcDB")
+btnCalcDB.addEventListener("click", (e) => {
+    e.preventDefault()
+    const totalFat = parseFloat(document.getElementById("ct").value)
+    const trigliceridos = parseFloat(document.getElementById("tgc").value)
+    const hdl = parseInt(document.getElementById("hdl").value)
+    const ldl = document.getElementById("ldl").value
+    const hemoGl = document.getElementById("hgl").value
+    const glucoseA = document.getElementById("gl").value
+    const waistCirc = document.getElementById("waist").value
+    const calfCirc = document.getElementById("calf").value
+
+    const { GEB, GET } = calcTMB(gender, weight, height, age, fa)
+    const imc = calcIMC(weight, height)
+
     document.getElementById("geb").value = GEB.toFixed(2)
     document.getElementById("get").value = GET.toFixed(2)
     document.getElementById("imc").value = imc.toFixed(2)
