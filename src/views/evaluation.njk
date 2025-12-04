@@ -92,20 +92,21 @@
                     <h5>Valores de referencia</h5>
                     <div class="col-md-6">
                         <label for="" class="form-label">Género</label>
-                        <input type="text" value="{{patient.gender}}" class="form-control form-control-sm" id="gender">
+                        <input type="text" value="{{patient.gender}}" disabled class="form-control form-control-sm" id="gender">
                     </div>
                     <div class="col-md-6">
-                        <label for="" class="form-label">Peso</label>
-                        <input type="number" required step="any" inputmode="decimal" class="form-control form-control-sm" id="weight">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class="form-label">Altura</label>
-                        <input type="number" step="any" inputmode="decimal" value="{{patient.height}}" class="form-control form-control-sm" id="height">
+                        <label for="" class="form-label">Peso (kg)</label>
+                        <input type="number" required step="any" inputmode="decimal" class="form-control form-control-sm" id="weight" placeholder="Peso en kilogramos">
                     </div>
                     <div class="col-md-6">
                         <label for="" class="form-label">Edad</label>
-                        <input type="number" value="{{patient.age}}" class="form-control form-control-sm" id="age" placeholder="">
+                        <input type="number" disabled value="{{patient.age}}" class="form-control form-control-sm" id="age" placeholder="">
                     </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Altura</label>
+                        <input type="number" step="any" inputmode="decimal" value="{{patient.height}}" class="form-control form-control-sm" id="height" placeholder="Altura en m Ej. 1.80">
+                    </div>
+                    
                     <div class="col-md-12">
                         <label for="inputState" class="form-label">Estilo de vida (actividad física)</label>
                         {# <span class="text-success">Elija una variable del filtro donde "bajo" es totalmente sedentario y "muy alto" es muy activo</span> #}
@@ -123,15 +124,15 @@
                     <h5>Cálculos</h5>
                     <div class="col-md-6">
                         <label for="" class="form-label">IMC</label>
-                        <input type="text" class="form-control form-control-sm" id="imc" placeholder="">
+                        <input type="number" step="any" inputmode="decimal" disabled class="form-control form-control-sm" id="imc" placeholder="">
                     </div>
                     <div class="col-md-6">
                         <label for="" class="form-label">Gasto Energético Basal</label>
-                        <input type="text" class="form-control form-control-sm" id="geb" placeholder="">
+                        <input type="number" step="any" inputmode="decimal" disabled class="form-control form-control-sm" id="geb" placeholder="">
                     </div>
                     <div class="col-md-6">
                         <label for="" class="form-label">Gasto Energético Total</label>
-                        <input type="text" class="form-control form-control-sm" id="get" placeholder="">
+                        <input type="number" step="any" inputmode="decimal" disabled class="form-control form-control-sm" id="get" placeholder="">
                     </div>
                     <div class="col-md-6">
                         <label for="" class="form-label"></label>
@@ -143,6 +144,9 @@
                     {# <button type="submit" class="btn btn-sm btn-primary">Guardar</button> #}
                 </div>
             </form>
+
+            <hr>
+            
         </div>
     </div>
 
@@ -175,15 +179,15 @@
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">Glucosa en ayunas</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="gl" value="110">
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="gl" value="110" placeholder="Normal menor o igual a 110">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">Presión Sistólica</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="sistolica" placeholder="" value="120">
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="sistolica" placeholder="Normal 120 - 130" value="120">
                 </div>
                 <div class="col-md-6">
                     <label for="" class="form-label">Presión Diastólica</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="diastolica" placeholder="" value="80">
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="diastolica" placeholder="Normal 80 - 85" value="80">
                 </div>
 
                 <hr>
@@ -205,7 +209,8 @@
                 </div>
             </form>
 
-            <div id="ref1" class="alert alert-info" role="alert"></div>
+            <div id="refCoronary" role="alert"></div>
+
             <hr>
             <div id="messagesContainer">
                 

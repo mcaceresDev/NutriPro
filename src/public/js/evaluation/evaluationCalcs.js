@@ -8,6 +8,10 @@ const activityFactor = {
     hard: 1.725,
     veryHard: 1.9,
 }
+const genero = {
+    M: "Hombre",
+    F: "Mujer"
+}
 
 // Fórmulas de HarrisBenedict para calcular metabolismo basal
 const calcTMB = (gender, weight, height, age, fa) => {
@@ -79,18 +83,18 @@ function calculateCoronaryRisk(gender, totalFat, hdl) {
     // ---- TABLAS DE REFERENCIA ----
     const reference = {
         M: [
-            { min: 0, max: 3.8, level: "Muy Bajo" },
-            { min: 3.9, max: 4.7, level: "Bajo" },
-            { min: 4.8, max: 5.9, level: "Moderado" },
-            { min: 6.0, max: 6.9, level: "Alto" },
-            { min: 7.0, max: Infinity, level: "Muy Alto" }
+            { min: 0, max: 3.8, level: "success", msg: "Muy Bajo" },
+            { min: 3.9, max: 4.7, level: "success", msg: "Bajo" },
+            { min: 4.8, max: 5.9, level: "warning", msg: "Moderado" },
+            { min: 6.0, max: 6.9, level: "danger", msg: "Alto" },
+            { min: 7.0, max: Infinity, level: "danger", msg: "Muy Alto" }
         ],
         F: [
-            { min: 0, max: 2.9, level: "Muy Bajo" },
-            { min: 3.0, max: 3.6, level: "Bajo" },
-            { min: 3.7, max: 4.6, level: "Moderado" },
-            { min: 4.7, max: 5.6, level: "Alto" },
-            { min: 5.7, max: Infinity, level: "Muy Alto" }
+            { min: 0, max: 2.9, level: "success", msg: "Muy Bajo" },
+            { min: 3.0, max: 3.6, level: "success", msg: "Bajo" },
+            { min: 3.7, max: 4.6, level: "warning", msg: "Moderado" },
+            { min: 4.7, max: 5.6, level: "danger", msg: "Alto" },
+            { min: 5.7, max: Infinity, level: "danger", msg: "Muy Alto" }
         ]
     };
 
@@ -103,101 +107,12 @@ function calculateCoronaryRisk(gender, totalFat, hdl) {
 
     return {
         risk,
-        level: match.level
+        level: match.level,
+        msg: match.msg
     };
 }
 
 // CALCULOS PARA SINDROME METABOLICO
-// ================================================================
-const validateMetabolicSyndrome = (gender, trc, sisPres, diaPres, glu, hdl, waist, calf) => {
-    // Referencias Generales para ambos sexos
-    const trigliceridos = 150 //MG/DL Igual o menor es normal
-    const sistolica = 130 //Igual o menor es normal 
-    const diastolica = 85 //Igual o menor es normal
-    const glucose = 110 //MG/DL Menor o igual es normal
-    const calfC = 31 //Menor a 31 implica desnutricion
-
-    //Referencias individuales
-    const colesterolHDL = {
-        men: 40, //MG/DL Igual o mayor es normal. Deseable 60
-        women: 50 //MG/DL Igual o mayor es normal. Deseable 60
-    }
-    const waistCircumference = {
-        men: 102, //Igual o menor es normal (medida en cm)
-        women: 88 //Igual o menor es normal (medida en cm)
-    }
-
-    let counter = 0
-    let patientEvalution = {
-        trig: {
-            message: ""
-        },
-        bloddPressure: {
-            message: ""
-        },
-        glucose: {
-            message: ""
-        },
-        hdl: {
-            message: ""
-        },
-        waist: {
-            message: ""
-        },
-        metabolicSyndrome: {
-            isTrue: false,
-            message: ""
-        },
-        malnutrition: false
-    }
-
-    if (trc > trigliceridos) {
-        patientEvalution.trig.message = "Trigliceridos por encima de rango normal " + trigliceridos
-        counter++
-    }
-    if (sisPres > sistolica) {
-        counter++
-    }
-    if (diaPres > diastolica) {
-        counter++
-    }
-    if (glu > glucose) {
-        patientEvalution.glucose.message = "Glucosa por encima del rango normal " + glucose
-        counter++
-    }
-    if (calf < calfC) {
-        patientEvalution.malnutrition = true
-    }
-    //referencias individuales
-    if (gender === "M") {
-        if (hdl < colesterolHDL.men) {
-            patientEvalution.hdl.message = "Colesterol hdl por debajo del rango normal " + colesterolHDL.men
-            counter++
-        }
-        if (waist > waistCircumference.men) {
-            patientEvalution.waist.message = "Medida de cintura por encima de lo normal " + waistCircumference.men
-            counter++
-        }
-        if (counter >= 4) {
-            patientEvalution.metabolicSyndrome = true
-        }
-        return patientEvalution
-    }
-
-    if (hdl < colesterolHDL.women) {
-        patientEvalution.hdl.message = "Colesterol hdl por debajo del rango normal " + colesterolHDL.women
-        counter++
-    }
-    if (waist > waistCircumference.women) {
-        patientEvalution.waist.message = "Medida de cintura por encima de lo normal " + waistCircumference.women
-        counter++
-    }
-    if (counter >= 4) {
-        patientEvalution.metabolicSyndrome = true
-    }
-    return patientEvalution
-}
-
 // ================================================================
 
 function evaluatePatient(data) {
@@ -207,7 +122,7 @@ function evaluatePatient(data) {
         trigliceridos: 150,
         sistolica: 130,
         diastolica: 85,
-        glucose: 110,
+        glucose: 110,// 70 a 99 mg/dL. en personas sanas | Entre 100 y 125 mg/dL se considera prediabetes pero algunas referencias varian
         hdl: { M: 40, F: 50 },
         waist: { M: 102, F: 88 },
         calfC: 31
@@ -220,57 +135,57 @@ function evaluatePatient(data) {
     // Triglicéridos
     if (data.trigliceridos > refs.trigliceridos) {
         alteredCount++;
-        messages.push(`• Triglicéridos elevados (${data.trigliceridos} mg/dL). Normal ≤ ${refs.trigliceridos}.`);
+        messages.push({alertType:"danger", msg:`• Triglicéridos elevados (${data.trigliceridos} mg/dL). Normal ≤ ${refs.trigliceridos}.`});
     } else {
-        messages.push(`• Triglicéridos normales (${data.trigliceridos} mg/dL).`);
+        messages.push({alertType:"success", msg:`• Triglicéridos normales (${data.trigliceridos} mg/dL).`});
     }
 
     // Presión sistólica
     if (data.sistolica > refs.sistolica) {
         alteredCount++;
-        messages.push(`• Presión sistólica elevada (${data.sistolica} mmHg). Normal ≤ ${refs.sistolica}.`);
+        messages.push({alertType:"danger", msg:`• Presión sistólica elevada (${data.sistolica} mmHg). Normal ≤ ${refs.sistolica}.`});
     } else {
-        messages.push(`• Presión sistólica normal (${data.sistolica} mmHg).`);
+        messages.push({alertType:"success", msg:`• Presión sistólica normal (${data.sistolica} mmHg).`});
     }
 
     // Presión diastólica
     if (data.diastolica > refs.diastolica) {
         alteredCount++;
-        messages.push(`• Presión diastólica elevada (${data.diastolica} mmHg). Normal ≤ ${refs.diastolica}.`);
+        messages.push({alertType: "danger", msg:`• Presión diastólica elevada (${data.diastolica} mmHg). Normal ≤ ${refs.diastolica}.`});
     } else {
-        messages.push(`• Presión diastólica normal (${data.diastolica} mmHg).`);
+        messages.push({alertType: "success", msg: `• Presión diastólica normal (${data.diastolica} mmHg).`});
     }
 
     // Glucosa
     if (data.glucose > refs.glucose) {
         alteredCount++;
-        messages.push(`• Glucosa elevada (${data.glucose} mg/dL). Normal ≤ ${refs.glucose}.`);
+        messages.push({alertType: "danger", msg:`• Glucosa elevada (${data.glucose} mg/dL). Normal ≤ ${refs.glucose}.`});
     } else {
-        messages.push(`• Glucosa normal (${data.glucose} mg/dL).`);
+        messages.push({alertType: "success", msg:`• Glucosa normal (${data.glucose} mg/dL).`});
     }
 
     // Colesterol HDL
     if (data.hdl < refs.hdl[data.sex]) {
         alteredCount++;
-        messages.push(`HDL bajo (${data.hdl} mg/dL). Normal ≥ ${refs.hdl[data.sex]} para ${data.sex}.`);
+        messages.push({alertType: "warning", msg:`HDL bajo (${data.hdl} mg/dL). Normal ≥ ${refs.hdl[data.sex]} para ${genero[data.sex]}.`});
     } else {
-        messages.push(`HDL adecuado (${data.hdl} mg/dL).`);
+        messages.push({alertType:"success", msg: `HDL adecuado (${data.hdl} mg/dL).`});
     }
 
     // Circunferencia de cintura
     if (data.waist > refs.waist[data.sex]) {
         alteredCount++;
-        messages.push(`Circunferencia de cintura elevada (${data.waist} cm). Normal ≤ ${refs.waist[data.sex]} para ${data.sex}.`);
+        messages.push({alertType:"warning", msg:`Circunferencia de cintura elevada (${data.waist} cm). Normal ≤ ${refs.waist[data.sex]} para ${genero[data.sex]}.`});
     } else {
-        messages.push(`Circunferencia de cintura normal (${data.waist} cm).`);
+        messages.push({alertType:"success", msg:`Circunferencia de cintura normal (${data.waist} cm).`});
     }
 
     // CalfC (pantorrilla)
-    let calfMessage = "";
+    let calfMessage = {alertType: "", msg: ""};
     if (data.calfC < refs.calfC) {
-        calfMessage = `Circunferencia de pantorrilla baja (${data.calfC} cm). Riesgo de desnutrición.`;
+        calfMessage = {alertType:"danger", msg:`Circunferencia de pantorrilla baja (${data.calfC} cm). Riesgo de desnutrición.`};
     } else {
-        calfMessage = `Circunferencia de pantorrilla adecuada (${data.calfC} cm).`;
+        calfMessage = {alertType: "success", msg:`Circunferencia de pantorrilla adecuada (${data.calfC} cm).`};
     }
 
     // --- Resultado final ---
@@ -311,20 +226,41 @@ btnCalcDB.addEventListener("click", (e) => {
         const coronary = calculateCoronaryRisk("M", totalFat, hdl)
         const metabolicSyndrome = evaluatePatient(PatientData)
 
-        // Mostrar resultados en la interfaz
-        document.getElementById("ref1").innerText = `Riesgo Coronario: ${coronary.risk} (${coronary.level})`
+        // Mostrar resultados en la interfaz  Nivel de riesgo 1 - 5 (de muy bajo a muy alto)
+        let refCoronary = document.getElementById("refCoronary")
+        refCoronary.className = '';
+        refCoronary.classList.add("alert", `alert-${coronary.level}`)
+        refCoronary.innerText = `Riesgo Coronario: ${coronary.risk} (${coronary.msg})`
 
         const messagesContainer = document.getElementById("messagesContainer")
         messagesContainer.innerHTML = `<h5>Resultados de la evaluación:</h5>`
-        metabolicSyndrome.messages.forEach(msg => {
-            const p = document.createElement("div")
-            p.classList.add("alert", "alert-warning")
-            p.innerText = msg
-            messagesContainer.appendChild(p)
+        metabolicSyndrome.messages.forEach(value => {
+            const alert = document.createElement("div")
+            alert.classList.add("alert", `alert-${value.alertType}`)
+            alert.innerText = value.msg
+            messagesContainer.appendChild(alert)
         })
-        // metabolicSyndrome.messages.forEach((msg, index) => {
-        //     document.getElementById(`ref${index + 2}`).innerText = msg
-        // })
+        
+        if (metabolicSyndrome.hasMetabolicSyndrome) {
+            const alert = document.createElement("div")
+            alert.classList.add("alert", "alert-danger")
+            alert.innerText = metabolicSyndrome.finalMessage
+            messagesContainer.appendChild(alert)
+        }
+        else {
+            const alert = document.createElement("div")
+            alert.classList.add("alert", "alert-success")
+            alert.innerText = metabolicSyndrome.finalMessage
+            messagesContainer.appendChild(alert)
+        }
+
+        if (metabolicSyndrome.calfMessage.alertType !== "") {
+            const { calfMessage } = metabolicSyndrome
+            const alert = document.createElement("div")
+            alert.classList.add("alert", `alert-${calfMessage.alertType}`)
+            alert.innerText = calfMessage.msg
+            messagesContainer.appendChild(alert)
+        }
     } catch (error) {
         sendFeedBack(error.message, "error")
     }

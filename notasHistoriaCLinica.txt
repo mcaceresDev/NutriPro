@@ -104,3 +104,65 @@ La historia clínica dental es crucial para el diagnóstico y tratamiento efecti
 Además, una historia clínica bien documentada facilita la planificación del tratamiento al proporcionar un registro claro de todos los procedimientos previos y actuales, asegurando la continuidad y consistencia en la atención.
 
 Finalmente, es una herramienta necesaria para garantizar un enfoque integral y coordinado en el cuidado del paciente al mejorar la comunicación entre los miembros del equipo dental y con otros profesionales de la salud. Desde Infomed, el programa de gestión dental, GESDEN, dispone de un módulo de historia clínica donde el doctor anota todo lo referente al paciente. A continuación, puedes ver cómo funciona.
+
+
+IMC
+Bajo peso: Menos de 18.5.
+Peso normal: 18.5 a 24.9.
+Sobrepeso: 25.0 a 29.9.
+Obesidad I: 30 a 34.9.
+Obesidad II: 35 a 39.9.
+Obesidad III: mayor o igual a 40.
+
+https://www.enterat.com/salud/imc-indice-masa-corporal.php
+
+Tabla del perímetro de cintura ideal en mujeres y hombres:
+Estado 	            Perímetro en mujeres (cm) 	Perímetro en hombres (cm)
+Normal 	            80 o menos 	                94 o menos
+Riesgo alto 	    81-88 	                    95-102
+Riesgo muy alto     Más de 88 	                Más de 102
+
+Cómo medir el perímetro de cintura (grasa visceral en el abdomen): hay que poner la 
+cinta métrica a la altura del ombligo sin apretar, 
+con el abdomen relajado y después de haber expulsado el aire.
+
+
+Porcentaje de grasa
+Fórmulas matemáticas:Ecuación de Siri: Esta fórmula requiere la densidad corporal:
+
+Ecuacion de Siri
+(4.95/densidad corporal - 45) * 100
+
+Ecuacion simple en hombres
+64 - (20 * (altura/circunferencia de cintura))
+
+Ecuacion simple en mujeres
+76 - (20 * (altura/circunferencia de cintura))
+
+
+
+
+Tabla de porcentaje (%) de grasa ideal en MUJERES de raza blanca:
+Estado 	    20-39 años 	40-59 años 	Más de 60 años
+Bajo 	    20 o menos 	22 o menos 	24 o menos
+Normal 	    21-32 	    23-34 	    25-37
+Sobrepeso 	33-39 	    35-41 	    38-43
+Obesidad 	40 o más 	42 o más 	44 o más
+
+Tabla de porcentaje (%) de grasa ideal en HOMBRES de raza blanca:
+Estado 	    20-39 años 	40-59 años 	Más de 60 años
+Bajo 	    7 o menos 	10 o menos 	12 o menos
+Normal 	    8-20 	    11-22 	    13-24
+Sobrepeso 	21-26 	    23-29 	    25-31
+Obesidad 	27 o más 	30 o más 	32 o más
+
+
+HEMOGLOBINA GLICOSILADA
+Normal: Menos del 5,7%
+Prediabetes: Entre 5,7% y 6,4%
+Diabetes: 6,5% o más 
+
+GLUCOSA MEDIA ESTIMADA
+Normal: Menor a 126 mg/dL (\(HbA1c\) < 5.7%).
+Prediabetes: Entre 126 y 154 mg/dL (\(HbA1c\) de 5.7% a 6.4%).
+Diabetes: 154 mg/dL o superior (\(HbA1c\) de 6.5% o más)
