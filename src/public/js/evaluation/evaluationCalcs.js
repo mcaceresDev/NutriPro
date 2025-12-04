@@ -1,3 +1,5 @@
+
+
 // Nivel de actividad (Factor de actividad)
 const activityFactor = {
     low: 1.2,
@@ -15,7 +17,7 @@ const calcTMB = (gender, weight, height, age, fa) => {
 
     if (gender === "M") {
         // Hacer los calculos para hombre
-        const GEB = [66 + (13.7 * weight) + (5 * cmHeight) - (6.8 * age)] //Gasto Energetico Basal
+        const GEB = 66 + (13.7 * weight) + (5 * cmHeight) - (6.8 * age) //Gasto Energetico Basal
         const GET = GEB * fa //Gasto Energetico Total
         return { GEB, GET }
     }
@@ -41,6 +43,9 @@ btnCalcMB.addEventListener("click", (e) => {
     const fa = activityFactor[activityLevel]
 
     const { GEB, GET } = calcTMB(gender, weight, height, age, fa)
+    console.log(GEB);
+    console.log(GET);
+    
     const imc = calcIMC(weight, height)
 
     document.getElementById("geb").value = GEB.toFixed(2)
@@ -147,10 +152,10 @@ const validateMetabolicSyndrome = (gender, trc, sisPres, diaPres, glu, hdl, wais
     }
 
     if (trc > trigliceridos) {
-        patientEvalution.trig.message = "Trigliceridos por encima de rango normal " + trigliceridos 
+        patientEvalution.trig.message = "Trigliceridos por encima de rango normal " + trigliceridos
         counter++
     }
-    if (sisPres > sistolica) {  
+    if (sisPres > sistolica) {
         counter++
     }
     if (diaPres > diastolica) {
@@ -193,62 +198,137 @@ const validateMetabolicSyndrome = (gender, trc, sisPres, diaPres, glu, hdl, wais
     return patientEvalution
 }
 
-// PARAMETROS DE REFERENCIA
-// const refereceParams = {}
+// ================================================================
 
-const heartRiskReference = {
-    men: {
-        veryLow: 3.8,// o menor
-        low: 3.9, //hasta 4.7
-        medium: 4.8, //hasta 5.9
-        hard: 6.0, //hasta 6.9
-        veryHard: 7 //a más
-    },
-    women: {
-        veryLow: 2.9,// o menor
-        low: 3, //hasta 3.6
-        medium: 3.7, //hasta 4.6
-        hard: 4.7, //hasta 5.6
-        veryHard: 5.7 //a más
+function evaluatePatient(data) {
+
+    // Valores de referencia
+    const refs = {
+        trigliceridos: 150,
+        sistolica: 130,
+        diastolica: 85,
+        glucose: 110,
+        hdl: { M: 40, F: 50 },
+        waist: { M: 102, F: 88 },
+        calfC: 31
     }
+
+    const messages = [];
+    let alteredCount = 0;
+
+    // --- Evaluaciones individuales ---
+    // Triglicéridos
+    if (data.trigliceridos > refs.trigliceridos) {
+        alteredCount++;
+        messages.push(`• Triglicéridos elevados (${data.trigliceridos} mg/dL). Normal ≤ ${refs.trigliceridos}.`);
+    } else {
+        messages.push(`• Triglicéridos normales (${data.trigliceridos} mg/dL).`);
+    }
+
+    // Presión sistólica
+    if (data.sistolica > refs.sistolica) {
+        alteredCount++;
+        messages.push(`• Presión sistólica elevada (${data.sistolica} mmHg). Normal ≤ ${refs.sistolica}.`);
+    } else {
+        messages.push(`• Presión sistólica normal (${data.sistolica} mmHg).`);
+    }
+
+    // Presión diastólica
+    if (data.diastolica > refs.diastolica) {
+        alteredCount++;
+        messages.push(`• Presión diastólica elevada (${data.diastolica} mmHg). Normal ≤ ${refs.diastolica}.`);
+    } else {
+        messages.push(`• Presión diastólica normal (${data.diastolica} mmHg).`);
+    }
+
+    // Glucosa
+    if (data.glucose > refs.glucose) {
+        alteredCount++;
+        messages.push(`• Glucosa elevada (${data.glucose} mg/dL). Normal ≤ ${refs.glucose}.`);
+    } else {
+        messages.push(`• Glucosa normal (${data.glucose} mg/dL).`);
+    }
+
+    // Colesterol HDL
+    if (data.hdl < refs.hdl[data.sex]) {
+        alteredCount++;
+        messages.push(`HDL bajo (${data.hdl} mg/dL). Normal ≥ ${refs.hdl[data.sex]} para ${data.sex}.`);
+    } else {
+        messages.push(`HDL adecuado (${data.hdl} mg/dL).`);
+    }
+
+    // Circunferencia de cintura
+    if (data.waist > refs.waist[data.sex]) {
+        alteredCount++;
+        messages.push(`Circunferencia de cintura elevada (${data.waist} cm). Normal ≤ ${refs.waist[data.sex]} para ${data.sex}.`);
+    } else {
+        messages.push(`Circunferencia de cintura normal (${data.waist} cm).`);
+    }
+
+    // CalfC (pantorrilla)
+    let calfMessage = "";
+    if (data.calfC < refs.calfC) {
+        calfMessage = `Circunferencia de pantorrilla baja (${data.calfC} cm). Riesgo de desnutrición.`;
+    } else {
+        calfMessage = `Circunferencia de pantorrilla adecuada (${data.calfC} cm).`;
+    }
+
+    // --- Resultado final ---
+    const hasMetabolicSyndrome = alteredCount >= 3;
+
+    return {
+        alteredCount,
+        hasMetabolicSyndrome,
+        messages,
+        calfMessage,
+        finalMessage: hasMetabolicSyndrome
+            ? "⚠️ El paciente presenta 3 o más parámetros alterados. Requiere referencia a un especialista por síndrome metabólico."
+            : "✔️ El paciente no cumple criterios para síndrome metabólico."
+    };
 }
 
-const waistCircumference = {
-    men: 102, //Igual o meno es normal
-    women: 88 //Igual o meno es normal
-}
-
-const trigliceridos = 150 //MG/DL Igual o mayor es normal
-
-const colesterol = {
-    men: 40, //MG/DL Igual o mayor es normal. Deseable 60
-    women: 50 //MG/DL Igual o mayor es normal. Deseable 60
-}
-
-const bloodPressure = {
-    sistolica: 130, //Igual o menor
-    diastolica: 85 //Igual o menor
-}
-
-const glucose = 110 //MG/DL Menor o igual es normal
+// ================================================================
 
 
 const btnCalcDB = document.getElementById("btnCalcDB")
 btnCalcDB.addEventListener("click", (e) => {
     e.preventDefault()
-    const totalFat = parseFloat(document.getElementById("ct").value)
-    const trigliceridos = parseFloat(document.getElementById("tgc").value)
-    const hdl = parseInt(document.getElementById("hdl").value)
-    const ldl = document.getElementById("ldl").value
-    const hemoGl = document.getElementById("hgl").value
-    const glucoseA = document.getElementById("gl").value
-    const waistCirc = document.getElementById("waist").value
-    const calfCirc = document.getElementById("calf").value
+    try {
+        const totalFat = parseFloat(document.getElementById("ct").value)
+        const hdl = parseInt(document.getElementById("hdl").value)
+        
+        const PatientData = {
+            sex: document.getElementById("gender").value,
+            trigliceridos: parseFloat(document.getElementById("tgc").value),
+            sistolica: parseInt(document.getElementById("sistolica").value),
+            diastolica: parseInt(document.getElementById("diastolica").value),
+            glucose: document.getElementById("gl").value,
+            hdl,
+            waist: document.getElementById("waist").value,
+            calfC: document.getElementById("calf").value
+        }
 
-    const { GEB, GET } = calcTMB(gender, weight, height, age, fa)
-    const imc = calcIMC(weight, height)
+        const coronary = calculateCoronaryRisk("M", totalFat, hdl)
+        const metabolicSyndrome = evaluatePatient(PatientData)
 
-    document.getElementById("geb").value = GEB.toFixed(2)
-    document.getElementById("get").value = GET.toFixed(2)
-    document.getElementById("imc").value = imc.toFixed(2)
+        // Mostrar resultados en la interfaz
+        document.getElementById("ref1").innerText = `Riesgo Coronario: ${coronary.risk} (${coronary.level})`
+
+        const messagesContainer = document.getElementById("messagesContainer")
+        messagesContainer.innerHTML = `<h5>Resultados de la evaluación:</h5>`
+        metabolicSyndrome.messages.forEach(msg => {
+            const p = document.createElement("div")
+            p.classList.add("alert", "alert-warning")
+            p.innerText = msg
+            messagesContainer.appendChild(p)
+        })
+        // metabolicSyndrome.messages.forEach((msg, index) => {
+        //     document.getElementById(`ref${index + 2}`).innerText = msg
+        // })
+    } catch (error) {
+        sendFeedBack(error.message, "error")
+    }
+
+
+
 })
