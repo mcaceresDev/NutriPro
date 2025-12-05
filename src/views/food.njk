@@ -2,7 +2,9 @@
 
 {% block pagetitle %} Alimentos {% endblock %}
 
-{% block username %} {{ username }} {% endblock %}
+{% block username %}
+    {{ username }}
+{% endblock %}
 
 {% block content %}
 
@@ -167,7 +169,7 @@
         </div>
         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             <div id="" class="mt-4 table-responsive">
-                
+
                 <input id="searchFood" class="form-control form-control-sm mb-3" placeholder="Buscar alimento..." style="max-width:250px">
                 <div id="foodTable" class="border">
                     {# TABLA DINAMICA #}
@@ -200,19 +202,39 @@
                     field: "name"
                 }, {
                     title: "Agua",
-                    field: "aqua"
+                    field: "aqua",
+                    formatter: (cell) => {
+                        const value = cell.getValue();
+                        return `${value} %`;
+                    }
                 }, {
                     title: "Energía",
-                    field: "energy"
+                    field: "energy",
+                    formatter: (cell) => {
+                        const value = cell.getValue();
+                        return `${value} Kcal`;
+                    }
                 }, {
                     title: "Proteína",
-                    field: "protein"
+                    field: "protein",
+                    formatter: (cell) => {
+                        const value = cell.getValue();
+                        return `${value} g`;
+                    }
                 }, {
                     title: "Grasa Total",
-                    field: "totalFat"
+                    field: "totalFat",
+                    formatter: (cell) => {
+                        const value = cell.getValue();
+                        return `${value} g`;
+                    }
                 }, {
                     title: "Carbohidratos",
-                    field: "carbs"
+                    field: "carbs",
+                    formatter: (cell) => {
+                        const value = cell.getValue();
+                        return `${value} g`;
+                    }
                 }, {
                     title: "Acciones",
                     formatter: (cell) => `
@@ -236,12 +258,13 @@
                 }
             ]
         }) 
-        {# Busqueda dinamica #}
+
+
         document
-        .getElementById("searchFood")
-        .addEventListener("keyup", (e) => {
-            tabla.setFilter("name", "like", e.target.value);
-        });
+            .getElementById("searchFood")
+            .addEventListener("keyup", (e) => {
+                tabla.setFilter("name", "like", e.target.value);
+            });
     </script>
     <script src="/js/sweetAlertHelper.js"></script>
     <script src="/js/food/foodCrud.js"></script>

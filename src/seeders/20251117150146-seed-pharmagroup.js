@@ -53,6 +53,10 @@ module.exports = {
         name: 'Estatinas',
         description: ''
       },
+      {
+        name: 'Fibratos',
+        description: ''
+      },
     ], {});
   },
 

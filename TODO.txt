@@ -1,0 +1,4 @@
+Respaldar datos de usuario
+Respaldar info alimentos ingresada por usuarios
+Validacion de campos para agregar farmacos
+Crear enlaces para navegacion en el proyecto y definir enlaces activos
