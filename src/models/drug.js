@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     generic: DataTypes.STRING,
     description: DataTypes.STRING,
     dosage: DataTypes.STRING,
+    treatmentPeriod: DataTypes.STRING,
     pharmaGroupId: DataTypes.INTEGER,
     presentationId: DataTypes.INTEGER,
     addedBy: DataTypes.INTEGER

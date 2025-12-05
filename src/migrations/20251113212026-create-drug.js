@@ -21,6 +21,9 @@ module.exports = {
       dosage: {
         type: Sequelize.STRING
       },
+      treatmentPeriod: {
+        type: Sequelize.STRING
+      },
       pharmaGroupId: {
         type: Sequelize.INTEGER,
         references: {
