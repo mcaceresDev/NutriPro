@@ -35,9 +35,9 @@
                 </div>
                 <div class="col-4">
                     <label for="" class="form-label">Categoría <span class="text-danger">*</span></label>
-                    <select name="categoryId" id="categoryId" class="form-select form-select-sm" name="providerId" required aria-label="Small select example">
+                    <select name="categoryId" id="categoryId" class="form-select form-select-sm" required aria-label="Small select example">
                         <option selected>Seleccione la Categoría de alimento</option>
-                        {% if categories %}
+                        {% if categories is defined and categories | length > 0 %}
                             {% for item in categories %}
                                 {# <li>{{ name }}: {{ item }}</li> #}
                                 <option value={{item.id}}>{{ item.name }}</option>

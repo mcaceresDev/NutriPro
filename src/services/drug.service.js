@@ -1,4 +1,4 @@
-const { drug } = require("../models")
+const { drug, drugPresentation, pharmagroup } = require("../models")
 
 class DrugService {
 
@@ -6,6 +6,18 @@ class DrugService {
         try {
             const newDrug = await drug.create(drugData)
             return newDrug
+
+        } catch (error) {
+            throw error
+        }
+    }
+    readDrugsAndCreateInfo = async () => {
+        try {
+            const drugsData = await drug.findAll()
+            const presentationData = await drugPresentation.findAll()
+            const pharmaGroupData = await pharmagroup.findAll()
+            
+            return { drugsData, presentationData, pharmaGroupData }
 
         } catch (error) {
             throw error

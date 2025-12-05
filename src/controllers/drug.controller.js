@@ -5,8 +5,14 @@ class DrugController {
 
     getDrugsView = async(req, res)=> {
         try {
-            const drugsData = await drugService.readDrugs()
-            res.render("drugs", { drugs: drugsData.length > 0 ? drugsData : []})
+            const drugsAndComData = await drugService.readDrugsAndCreateInfo()
+            const { drugsData, presentationData, pharmaGroupData } = drugsAndComData
+            
+            const drugs = drugsData.length > 0 ? drugsData : []
+            const presentations = presentationData && presentationData.length > 0 ? presentationData : []
+            const pharmagroups = pharmaGroupData && pharmaGroupData.length > 0 ? pharmaGroupData : []
+
+            res.render("drugs", { drugs, presentations, pharmagroups })
 
         } catch (error) {
             const errorData={status:400, message: error.message}

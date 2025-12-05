@@ -14,7 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   drug.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+      notNull: {msg: "El campo nombre es obligatorio"},
+      notEmpty: {msg: "El campo nombre no puede ir vacío"}
+    }
+    },
     generic: DataTypes.STRING,
     description: DataTypes.STRING,
     dosage: DataTypes.STRING,

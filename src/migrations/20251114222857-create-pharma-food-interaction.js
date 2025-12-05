@@ -10,25 +10,30 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       drugId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'drug',
+          key: 'id'
+        }
       },
       foodId: {
-        type: Sequelize.INTEGER
-      },
-      diseaseId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'food',
+          key: 'id'
+        }
       },
       type: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING //'positiva', 'negativa'
       },
       effect: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING //reacciones adversas, toxicas o beneficiosas
       },
       recommend: {
         type: Sequelize.STRING
       },
       evidence: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING //('alta', 'media', 'baja') DEFAULT 'media'
       },
       createdAt: {
         // allowNull: false,
