@@ -97,7 +97,8 @@
 
 {% block scripts %}
   <script>
-    const tableData = {{ drugs | dump | safe}}
+    {# const tableData = {{ drugs | dump | safe}} #}
+    const tableData = {{ (drugs | default([])) | dump | safe }};
     const tabla = new Tabulator("#drugsTable", {
       locale: "es-es",
       langs: LANG.langs,
@@ -161,6 +162,7 @@
       });
   </script>
   <script src="/js/sweetAlertHelper.js"></script>
+  <script src="/js/drug/drugCrud.js"></script>
 {% endblock %}
 
 {# 

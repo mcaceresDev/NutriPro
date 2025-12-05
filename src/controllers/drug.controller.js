@@ -1,5 +1,5 @@
 const drugService = require("../services/drug.service");
-const { errorPostHandler, genericErrorHandler, notFoundResponse } = require("../validators/httpResponse");
+const { sendSuccess, errorPostHandler, genericErrorHandler, customError, notFoundResponse } = require("../validators/httpResponse");
 
 class DrugController {
 
@@ -39,12 +39,16 @@ class DrugController {
             req.body.addedBy = req.session.user.userId
 
             const newDrug = await drugService.createDrug(req.body)
+            console.log(req.body);
+            
             if (newDrug) {
                 return res.json(sendSuccess("Registro creado con éxito"))
             }
             res.status(400).json(customError(400, "No se pudo crear el registro"))
             
         } catch (error) {
+            console.log(error);
+            
             const errorData=errorPostHandler(error)
             return res.status(400).json(errorData);
         }

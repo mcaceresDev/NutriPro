@@ -49,6 +49,10 @@ module.exports = {
         name: 'Anticoagulante',
         description: ''
       },
+      {
+        name: 'Estatinas',
+        description: ''
+      },
     ], {});
   },
 
