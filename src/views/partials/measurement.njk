@@ -1,0 +1,66 @@
+<div class="card my-4">
+    <h5 class="card-header">
+        <i class="fa-solid fa-ruler-combined"></i> Mediciones y datos relevantes</h5>
+    <div class="card-body">
+        <form class="row g-3 my-3">
+            <div class="col-md-6 row">
+                <h5>Valores de referencia</h5>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Género</label>
+                    <input type="text" value="{{patient.gender}}" disabled class="form-control form-control-sm" id="gender">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Peso (kg)</label>
+                    <input type="number" required step="any" inputmode="decimal" class="form-control form-control-sm" id="weight" placeholder="Peso en kilogramos">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Edad</label>
+                    <input type="number" disabled value="{{patient.age}}" class="form-control form-control-sm" id="age" placeholder="">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Altura</label>
+                    <input type="number" step="any" inputmode="decimal" value="{{patient.height}}" class="form-control form-control-sm" id="height" placeholder="Altura en m Ej. 1.80">
+                </div>
+
+                <div class="col-md-12">
+                    <label for="inputState" class="form-label">Estilo de vida (actividad física)</label>
+                    {# <span class="text-success">Elija una variable del filtro donde "bajo" es totalmente sedentario y "muy alto" es muy activo</span> #}
+                    <select id="inputFa" class="form-select form-select-sm">
+                        <option selected>Seleccione un factor de actividad</option>
+                        <option value="low">Bajo</option>
+                        <option value="light">Ligero</option>
+                        <option value="medium">Moderado</option>
+                        <option value="hard">Alto</option>
+                        <option value="veryHard">Muy Alto</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 row">
+                <h5>Cálculos</h5>
+                <div class="col-md-6">
+                    <label for="" class="form-label">IMC</label>
+                    <input type="number" step="any" inputmode="decimal" disabled class="form-control form-control-sm" id="imc" placeholder="">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Gasto Energético Basal</label>
+                    <input type="number" step="any" inputmode="decimal" disabled class="form-control form-control-sm" id="geb" placeholder="">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Gasto Energético Total</label>
+                    <input type="number" step="any" inputmode="decimal" disabled class="form-control form-control-sm" id="get" placeholder="">
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label"></label>
+                    <button type="button" id="btnCalcMB" class="btn btn-sm btn-success mt-2">Calcular Valores</button>
+                </div>
+            </div>
+
+            <div class="col-12 d-flex justify-content-center">
+                {# <button type="submit" class="btn btn-sm btn-primary">Guardar</button> #}
+            </div>
+        </form>
+
+        <hr>
+
+    </div>
+</div>

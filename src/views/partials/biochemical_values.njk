@@ -1,0 +1,64 @@
+<div class="card">
+    <h5 class="card-header">
+        <i class="fa-solid fa-flask-vial"></i> Datos Bioquímicos y Medidas Analíticas</h5>
+    <div class="card-body">
+        <h5>Perfil de Lípidos</h5>
+        <form class="row g-3">
+            <div class="col-md-6">
+                <label for="" class="form-label">Colesterol Total</label>
+                <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="ct" value="191">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Triglicéridos</label>
+                <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="tgc" value="174">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Colesterol HDL</label>
+                <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="hdl" value="47.80">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Colesterol LDL</label>
+                <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="ldl" value="108.40">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Hemoglobina Glicosilada</label>
+                <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="hgl" value="5.18">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Glucosa en ayunas</label>
+                <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="gl" value="110" placeholder="Normal menor o igual a 110">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Presión Sistólica</label>
+                <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="sistolica" placeholder="Normal 120 - 130" value="120">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Presión Diastólica</label>
+                <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="diastolica" placeholder="Normal 80 - 85" value="80">
+            </div>
+
+            <hr>
+            <div class="col-md-6">
+                <label for="" class="form-label">Circunferencia de cintura</label>
+                <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="waist" placeholder="Medida en cm" value="105">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label">Perímetro de pantorrilla</label>
+                <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="calf" placeholder="Medida en cm" value="40">
+            </div>
+
+            <div class="col-md-6">
+                <label for="" class="form-label"></label>
+                <button type="button" id="btnCalcDB" class="btn btn-sm btn-success mt-2">Calcular Valores</button>
+            </div>
+            <div class="col-12">
+                {# <button type="submit" class="btn btn-sm btn-primary">Guardar</button> #}
+            </div>
+        </form>
+
+        <div id="refCoronary" role="alert"></div>
+
+        <hr>
+        <div id="messagesContainer"></div>
+    </div>
+</div>

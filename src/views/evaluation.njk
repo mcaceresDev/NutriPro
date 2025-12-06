@@ -7,213 +7,63 @@
 
 {% block content %}
 
-    <div class="border px-4 py-3 rounded d-flex justify-content-start align-items-center">
-        <div class="d-flex justify-content-start align-items-center">
-            <img src="/assets/img/malePatient.png"/>
-            <h5 class="mx-3">
-                {{ patient.name }}
-                {{ patient.lastname }}</h5>
-        </div>
-        <div class="d-flex justify-content-start align-items-center">
-            <span class="mx-3">
-                <i class="fa-solid fa-cake-candles"></i>
-                {{ formattedDate }} ({{ patient.age }} años) <br></span>
-            <span class="mx-3">
-                <i class="fa-solid fa-pen-ruler"></i>
-                {{ patient.height }} m <br></span>
-            <span class="mx-3">
-                <i class="fa-solid fa-mars-and-venus"></i>
-                {{ patient.gender }}
-                <br></span>
-        </div>
-        <button class="btn">
-            <i class="fa-regular fa-pen-to-square"></i>
-        </button>
-    </div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Evaluacion</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Plan</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+            <div class="border px-4 py-3 rounded d-flex justify-content-start align-items-center">
+                <div class="d-flex justify-content-start align-items-center">
+                    <img src="/assets/img/malePatient.png"/>
+                    <h5 class="mx-3">
+                        {{ patient.name }}
+                        {{ patient.lastname }}</h5>
+                </div>
+                <div class="d-flex justify-content-start align-items-center">
+                    <span class="mx-3">
+                        <i class="fa-solid fa-cake-candles"></i>
+                        {{ formattedDate }} ({{ patient.age }} años) <br></span>
+                    <span class="mx-3">
+                        <i class="fa-solid fa-pen-ruler"></i>
+                        {{ patient.height }} m <br></span>
+                    <span class="mx-3">
+                        <i class="fa-solid fa-mars-and-venus"></i>
+                        {{ patient.gender }}
+                        <br></span>
+                </div>
+                <button class="btn">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+            </div>
 
-    <div class="card my-4">
-        <h5 class="card-header">
-            <i class="fa-solid fa-notes-medical"></i> Antecedentes Clínicos</h5>
-        <div class="card-body">
-            {# <h5>Medidas básicas</h5> #}
-            {# <form class="row g-3">
-                <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Peso</label>
-                    <input type="email" class="form-control" id="inputEmail4">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Perímetro de cadera</label>
-                    <input type="password" class="form-control" id="inputPassword4">
-                </div>
-                <div class="col-12">
-                    <label for="inputAddress" class="form-label">Perímetro de cintura</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                </div>
-                <div class="col-12">
-                    <label for="inputAddress2" class="form-label">Address 2</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputCity" class="form-label">City</label>
-                    <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">State</label>
-                    <select id="inputState" class="form-select">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label for="inputZip" class="form-label">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
-                </div>
-                <div class="col-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                        <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-            </form> #}
-        </div>
-    </div>
+            <div class="card my-4">
+                <h5 class="card-header">
+                    <i class="fa-solid fa-notes-medical"></i> Antecedentes Clínicos</h5>
+                <div class="card-body"></div>
+            </div>
 
-    <div class="card my-4">
-        <h5 class="card-header">
-            <i class="fa-solid fa-ruler-combined"></i> Mediciones y datos relevantes</h5>
-        <div class="card-body">
-            <form class="row g-3 my-3">
-                <div class="col-md-6 row">
-                    <h5>Valores de referencia</h5>
-                    <div class="col-md-6">
-                        <label for="" class="form-label">Género</label>
-                        <input type="text" value="{{patient.gender}}" disabled class="form-control form-control-sm" id="gender">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class="form-label">Peso (kg)</label>
-                        <input type="number" required step="any" inputmode="decimal" class="form-control form-control-sm" id="weight" placeholder="Peso en kilogramos">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class="form-label">Edad</label>
-                        <input type="number" disabled value="{{patient.age}}" class="form-control form-control-sm" id="age" placeholder="">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class="form-label">Altura</label>
-                        <input type="number" step="any" inputmode="decimal" value="{{patient.height}}" class="form-control form-control-sm" id="height" placeholder="Altura en m Ej. 1.80">
-                    </div>
+            {# MEDICIONES Y CALCULOS BASICOS #}
+            {% include "partials/measurement.njk" %}
+
+            {# DATOS BIOQUIMICOS #}
+            {% include "partials/biochemical_values.njk" %}
+
+        </div>
+        {# BLOQUE DE RECOMENDACIONES NUTRICIONALES #}
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <div class="card my-4">
+                <h5 class="card-header">
+                    <i class="fa-solid fa-utensils"></i> Plan Nutricional</h5>
+                <div class="card-body">
+                    <h5>Consideraciones a tomar en cuenta</h5>
+                    <hr>
                     
-                    <div class="col-md-12">
-                        <label for="inputState" class="form-label">Estilo de vida (actividad física)</label>
-                        {# <span class="text-success">Elija una variable del filtro donde "bajo" es totalmente sedentario y "muy alto" es muy activo</span> #}
-                        <select id="inputFa" class="form-select form-select-sm">
-                            <option selected>Seleccione un factor de actividad</option>
-                            <option value="low">Bajo</option>
-                            <option value="light">Ligero</option>
-                            <option value="medium">Moderado</option>
-                            <option value="hard">Alto</option>
-                            <option value="veryHard">Muy Alto</option>
-                        </select>
-                    </div>
                 </div>
-                <div class="col-md-6 row">
-                    <h5>Cálculos</h5>
-                    <div class="col-md-6">
-                        <label for="" class="form-label">IMC</label>
-                        <input type="number" step="any" inputmode="decimal" disabled class="form-control form-control-sm" id="imc" placeholder="">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class="form-label">Gasto Energético Basal</label>
-                        <input type="number" step="any" inputmode="decimal" disabled class="form-control form-control-sm" id="geb" placeholder="">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class="form-label">Gasto Energético Total</label>
-                        <input type="number" step="any" inputmode="decimal" disabled class="form-control form-control-sm" id="get" placeholder="">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class="form-label"></label>
-                        <button type="button" id="btnCalcMB" class="btn btn-sm btn-success mt-2">Calcular Valores</button>
-                    </div>
-                </div>
-
-                <div class="col-12 d-flex justify-content-center">
-                    {# <button type="submit" class="btn btn-sm btn-primary">Guardar</button> #}
-                </div>
-            </form>
-
-            <hr>
-            
-        </div>
-    </div>
-
-    {# DATOS BIOQUIMICOS #}
-    <div class="card">
-        <h5 class="card-header">
-            <i class="fa-solid fa-flask-vial"></i> Datos Bioquímicos y Medidas Analíticas</h5>
-        <div class="card-body">
-            <h5>Perfil de Lípidos</h5>
-            <form class="row g-3">
-                <div class="col-md-6">
-                    <label for="" class="form-label">Colesterol Total</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="ct" value="191">
-                </div>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Triglicéridos</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="tgc" value="174">
-                </div>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Colesterol HDL</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="hdl" value="47.80">
-                </div>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Colesterol LDL</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="ldl" value="108.40">
-                </div>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Hemoglobina Glicosilada</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="hgl" value="5.18">
-                </div>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Glucosa en ayunas</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="gl" value="110" placeholder="Normal menor o igual a 110">
-                </div>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Presión Sistólica</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="sistolica" placeholder="Normal 120 - 130" value="120">
-                </div>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Presión Diastólica</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="diastolica" placeholder="Normal 80 - 85" value="80">
-                </div>
-
-                <hr>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Circunferencia de cintura</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="waist" placeholder="Medida en cm" value="105">
-                </div>
-                <div class="col-md-6">
-                    <label for="" class="form-label">Perímetro de pantorrilla</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" id="calf" placeholder="Medida en cm" value="40">
-                </div>
-                
-                <div class="col-md-6">
-                        <label for="" class="form-label"></label>
-                        <button type="button" id="btnCalcDB" class="btn btn-sm btn-success mt-2">Calcular Valores</button>
-                </div>
-                <div class="col-12">
-                    {# <button type="submit" class="btn btn-sm btn-primary">Guardar</button> #}
-                </div>
-            </form>
-
-            <div id="refCoronary" role="alert"></div>
-
-            <hr>
-            <div id="messagesContainer">
-                
             </div>
         </div>
     </div>
