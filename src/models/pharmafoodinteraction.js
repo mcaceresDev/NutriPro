@@ -4,13 +4,11 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class pharmaFoodInteraction extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+    
     static associate(models) {
-      // define association here
+      pharmaFoodInteraction.belongsTo(models.drug, { foreignKey: 'drugId' });
+      pharmaFoodInteraction.belongsTo(models.food, { foreignKey: 'foodId' });
+      pharmaFoodInteraction.belongsTo(models.disease, { foreignKey: 'diseaseId' });
     }
   }
   pharmaFoodInteraction.init({

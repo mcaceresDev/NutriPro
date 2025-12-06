@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       drug.belongsTo(models.pharmagroup, {foreignKey: 'pharmaGroupId'})
       drug.belongsTo(models.drugPresentation, {foreignKey: 'presentationId'})
+      // relaciones de muchos a muchos
+      drug.belongsToMany(models.food, { through: models.pharmaFoodInteraction, foreignKey: 'drugId' })
+      drug.belongsToMany(models.disease, { through: models.pharmaFoodInteraction, foreignKey: 'drugId' })
     }
   }
   drug.init({

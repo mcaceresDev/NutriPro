@@ -8,6 +8,7 @@ const pageRouter = require("./pages.routes")
 const authRoutes = require("./auth.routes")
 const evaluationRoutes = require("./evaluation.routes")
 const diseaseRoutes = require("./disease.routes")
+const interactionRoutes = require("./interaction.routes")
 
 router.use("/pacientes", patientRouter)
 router.use("/farmacos", drugRouter)
@@ -18,5 +19,6 @@ router.use("/evaluation", evaluationRoutes)
 router.use("/pages", pageRouter)
 router.use("/auth", authRoutes)
 router.use("/enfermedades", diseaseRoutes)
+router.use("/interacciones", interactionRoutes)
 
 module.exports = router
