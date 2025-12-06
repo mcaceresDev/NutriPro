@@ -12,6 +12,16 @@ class FoodService {
             throw error
         }
     }
+    createBulkItems = async (payload)=> {
+        try {
+            const response = await food.bulkCreate(payload);            
+            return response
+
+        } catch (error) {
+            // return {message: "Error en el servicio"}
+            throw error
+        }
+    }
     
     readFoodItemsByUser = async (userId)=> {
         try {

@@ -1,0 +1,122 @@
+[
+{
+"id": 1,
+"name": "Manuel",
+"lastname": "Cáceres",
+"username": "manuel.caceres",
+"email": "manuel.caceres@est.soyucem.edu.ni",
+"password": "$2b$10$dq.15qctLEOn.rIZBOCrs.9J88Yg3qvk5/.CsGw5Z3T6..9DCA2OW",
+"gender": "M",
+"createdAt": null,
+"updatedAt": "2025-11-28T06:23:20.691Z",
+"deletedAt": null
+},
+{
+"id": 2,
+"name": "Jairo",
+"lastname": "Blandon",
+"username": "jairo.blandon",
+"email": "jairo.blandon@est.soyucem.edu.ni",
+"password": "$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72",
+"gender": "M",
+"createdAt": null,
+"updatedAt": null,
+"deletedAt": null
+},
+{
+"id": 3,
+"name": "Jordanesku",
+"lastname": "Blandon",
+"username": "jordanesku.blandon",
+"email": "jordanesku.blandon@est.soyucem.edu.ni",
+"password": "$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72",
+"gender": "M",
+"createdAt": null,
+"updatedAt": null,
+"deletedAt": null
+},
+{
+"id": 4,
+"name": "Noe",
+"lastname": "Cabrera",
+"username": "noe.cabrera",
+"email": "noe.cabrera@est.soyucem.edu.ni",
+"password": "$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72",
+"gender": "M",
+"createdAt": null,
+"updatedAt": null,
+"deletedAt": null
+},
+{
+"id": 5,
+"name": "Fernanda",
+"lastname": "Juarez",
+"username": "fernanda.juarez",
+"email": "fernanda.juarez@est.soyucem.edu.ni",
+"password": "$2b$10$/U/WSC1E10r5dDmVFvZkaOsRRtAbPvob46o.4yG/CU/Og2RzEcbqy",
+"gender": "F",
+"createdAt": null,
+"updatedAt": "2025-11-30T15:28:21.609Z",
+"deletedAt": null
+},
+{
+"id": 6,
+"name": "Alejandra",
+"lastname": "Lagos",
+"username": "alejandra.lagos",
+"email": "alejandra.lagos@est.soyucem.edu.ni",
+"password": "$2b$10$gFhd.hYHCc4zzbe0JKnYpOyrQfAP6aiWJ3HRJbp1iytAG3fllWQBK",
+"gender": "F",
+"createdAt": null,
+"updatedAt": "2025-11-30T15:35:35.449Z",
+"deletedAt": null
+},
+{
+"id": 7,
+"name": "Lester",
+"lastname": "Rodriguez",
+"username": "lester.rodriguez",
+"email": "lester.rodriguez@est.soyucem.edu.ni",
+"password": "$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72",
+"gender": "M",
+"createdAt": null,
+"updatedAt": null,
+"deletedAt": null
+},
+{
+"id": 8,
+"name": "Alba",
+"lastname": "Tinoco",
+"username": "alba.tinoco",
+"email": "alba.tinoco@est.soyucem.edu.ni",
+"password": "$2b$10$katGHeyInvBz.pP5hODFwe.sgI1ulOyXABYH0ynkhabyXtJDwtmIy",
+"gender": "F",
+"createdAt": null,
+"updatedAt": "2025-12-01T21:29:16.407Z",
+"deletedAt": null
+},
+{
+"id": 9,
+"name": "Ainhoa",
+"lastname": "Vargas",
+"username": "ainhoa.vargas",
+"email": "ainhoa.vargas@est.soyucem.edu.ni",
+"password": "$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72",
+"gender": "F",
+"createdAt": null,
+"updatedAt": null,
+"deletedAt": null
+},
+{
+"id": 10,
+"name": "Giovani",
+"lastname": "Venerio",
+"username": "giovani.venerio",
+"email": "giovani.venerio@est.soyucem.edu.ni",
+"password": "$2b$10$YtHAiH6IqGrSDYpMXqWOienkTYkJRhzj45jH0it5EI.oescHanw4O",
+"gender": "M",
+"createdAt": null,
+"updatedAt": "2025-12-01T05:41:07.548Z",
+"deletedAt": null
+}
+]

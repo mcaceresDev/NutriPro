@@ -2,3 +2,4 @@ node_modules
 src/database/dbdev.sqlite
 src/database/sessions.sqlite
 logs/
+src/DatosAlimentos/

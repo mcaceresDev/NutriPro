@@ -3,6 +3,11 @@ const foodcategoryService = require("../services/foodcategory.service");
 const { errorPostHandler, genericErrorHandler, notFoundResponse, sendSuccess, badRequestResponse, customError } = require("../validators/httpResponse");
 const { LogFormat, createLog, logType, errorType } = require("../utils/pinoLogger");
 
+// INFORMACION SOBRE ALIMENTOS
+const fs = require("fs");
+const path = require("path");
+const jairo = require("../DatosAlimentos/jairo.json")
+
 class FoodController {
 
     getFood = async(req, res)=> {
@@ -44,6 +49,26 @@ class FoodController {
             return res.status(400).json(errorData)
         }
     }
+    
+    getFoodItemsByUserNoLogged = async (req, res)=> {
+        try {
+            const { userId } = req.params
+            
+            const response = await foodService.readFoodItemsByUser(userId)
+            if (response.length > 0) {
+                // return res.render('users', { users: result, providers });
+                return res.json({status:200, message:`Elementos guardados: ${response.length}`, rows: response})
+            }
+            res.status(404)
+            return res.json(notFoundResponse)
+
+        } catch (error) {
+            console.log(error);
+            
+            const errorData = genericErrorHandler(error)
+            return res.status(400).json(errorData)
+        }
+    }
     getAllFoodItems = async (req, res)=> {
         try {
             const response = await foodService.readAllFoodItems()
@@ -78,6 +103,27 @@ class FoodController {
             res.status(400).json(customError(400, "No se pudo crear el registro"))
 
         } catch (error) {
+            const errorData = errorPostHandler(error)
+            return res.status(400).json(errorData)
+        }
+    }
+    
+    bulkCreate = async (req, res)=> {
+        try {
+
+            const filePath = path.join(__dirname, '..', 'DatosAlimentos', 'jairo.json');
+            const payload = fs.readFileSync(filePath, 'utf-8');
+            const data = JSON.parse(payload);
+            
+            const newFood = await foodService.createBulkItems(data.rows)
+            if (newFood) {
+                return res.json(sendSuccess("Registro creado con éxito"))
+            }
+            res.status(400).json(customError(400, "No se pudo crear el registro"))
+
+        } catch (error) {
+            console.log(error);
+            
             const errorData = errorPostHandler(error)
             return res.status(400).json(errorData)
         }
