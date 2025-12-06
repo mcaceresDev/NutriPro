@@ -6,7 +6,7 @@ const { LogFormat, createLog, logType, errorType } = require("../utils/pinoLogge
 // INFORMACION SOBRE ALIMENTOS
 const fs = require("fs");
 const path = require("path");
-const jairo = require("../DatosAlimentos/jairo.json")
+// const jairo = require("../DatosAlimentos/jairo.json")
 
 class FoodController {
 
@@ -111,7 +111,7 @@ class FoodController {
     bulkCreate = async (req, res)=> {
         try {
 
-            const filePath = path.join(__dirname, '..', 'DatosAlimentos', 'jairo.json');
+            const filePath = path.join(__dirname, '..', 'DatosAlimentos', 'giovani.json');
             const payload = fs.readFileSync(filePath, 'utf-8');
             const data = JSON.parse(payload);
             

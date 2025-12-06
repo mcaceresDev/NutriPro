@@ -45,7 +45,7 @@ const verifyAdminAccount = (req, res, next) => {
 
 const verifyAdmin = (req, res, next) => {
     if (req.session.user) {
-        console.log(req.session.user.role);
+        // console.log(req.session.user.role);
         
         if (req.session.user.role === 'admin' || req.session.user.role === 'superadmin') {
             return next();
