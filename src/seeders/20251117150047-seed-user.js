@@ -13,7 +13,7 @@ module.exports = {
           "email": "manuel.caceres@est.soyucem.edu.ni",
           "password": "$2b$10$dq.15qctLEOn.rIZBOCrs.9J88Yg3qvk5/.CsGw5Z3T6..9DCA2OW",
           "gender": "M",
-          "role": "admin",
+          "role": "superadmin",
           "createdAt": null,
           "updatedAt": "2025-11-28T06:23:20.691Z",
           "deletedAt": null

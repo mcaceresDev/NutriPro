@@ -88,6 +88,7 @@ app.get('/', (req, res) => {
   }
   res.render('login');
 });
+
 app.use('/', router)
 app.use((req, res) => {
   res.status(404).render(__dirname + '/views/pages/notFound.njk');

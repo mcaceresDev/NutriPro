@@ -67,6 +67,7 @@ user.init({
       notEmpty: {msg: "El campo sexo no puede ir vacío"}
     }
   },
+  role: DataTypes.STRING,
   createdAt: DataTypes.DATE,
   updatedAt: DataTypes.DATE,
   deletedAt: DataTypes.DATE,

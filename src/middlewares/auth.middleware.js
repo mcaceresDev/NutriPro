@@ -43,4 +43,27 @@ const verifyAdminAccount = (req, res, next) => {
     return res.json({status: 500, message: "ERROR"})
 }
 
-module.exports = { authMiddleware, verifyAdminAccount }
+const verifyAdmin = (req, res, next) => {
+    if (req.session.user) {
+        console.log(req.session.user.role);
+        
+        if (req.session.user.role === 'admin' || req.session.user.role === 'superadmin') {
+            return next();
+        }
+    }
+    // return res.sendFile(path.join(__dirname, '../views/pages/forbiddenPage.html'))
+    return res.render("pages/forbidden")
+}
+const verifyJairo = (req, res, next) => {
+    if (req.session.user) {
+        if (req.session.user.role === 'special' || req.session.user.role === 'superadmin') {
+            return next();
+        }
+    }
+    // return res.sendFile(path.join(__dirname, '../views/pages/forbiddenPage.html'))
+    return res.render("pages/forbidden")
+}
+
+
+
+module.exports = { authMiddleware, verifyAdminAccount, verifyAdmin, verifyJairo }

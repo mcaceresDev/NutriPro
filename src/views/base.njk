@@ -76,8 +76,9 @@
             <i class="fa-regular fa-house"></i> Página Principal
           </li>
           <span class="block-menu text-secondary-emphasis">GESTION</span>
-          <li class="link-active m-2 px-2">
-            <i class="fa-solid fa-users"></i> Pacientes
+          {# link-active -- clase para li activo #}
+          <li class="m-2 px-2"> 
+            <a href="/pacientes" class="nav-link"><i class="fa-solid fa-users"></i> Pacientes </a>
           </li>
           {# <li class="m-2">
             <i class="fa-brands fa-nutritionix"></i>Agenda
@@ -85,14 +86,18 @@
           <li class="m-2 px-2">
             <i class="fa-solid fa-file-medical"></i>Expedientes
           </li>
+
+
           <li class="m-2 px-2">
-            <i class="fa-solid fa-pills"></i> Fármacos
+            <a href="/farmacos" class="nav-link"><i class="fa-solid fa-pills"></i> Fármacos</a>
           </li>
           <li class="m-2 px-2">
             <i class="fa-solid fa-book-skull"></i> Interacciones
           </li>
           <li class="m-2 px-2">
+          <a href="/nutrientes" class="nav-link">
             <i class="fa-solid fa-carrot"></i> Alimentos
+          </a>
           </li>
 
           <span class="block-menu text-secondary-emphasis">PLANES</span>

@@ -70,7 +70,6 @@ class PatientController {
         try {
             req.body.addedBy = req.session.user.userId
             
-            console.log(`El controlador pasa la fecha ${req.body.birthdate} desde req.body`)
             req.body.age = calculateAge(req.body.birthdate)
 
             const newPatient = await patientService.createNewPatient(req.body)

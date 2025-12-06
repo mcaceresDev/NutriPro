@@ -16,7 +16,7 @@ class AuthController {
             if (response.status == 200) {
                 // console.log(response);
                 
-                const { id, name, lastname, username, email } = response.data
+                const { id, name, lastname, username, email, role } = response.data
                 
                 const newLog = new LogFormat(
                     `Usuario ${email} ha iniciado sesion correctamente.`,
@@ -30,7 +30,8 @@ class AuthController {
                     name,
                     lastname,
                     username,
-                    email
+                    email,
+                    role
                 };
                 // return res.sendFile(path.join(__dirname, '../public/views/index.html'))
                 // return res.redirect('/nutrientes')
