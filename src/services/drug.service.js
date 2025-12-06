@@ -13,7 +13,12 @@ class DrugService {
     }
     readDrugsAndCreateInfo = async () => {
         try {
-            const drugsData = await drug.findAll()
+            const drugsData = await drug.findAll({
+                include: [
+                    { model: drugPresentation, attributes: ['description'] },
+                    { model: pharmagroup, attributes: ['name'] }
+                ]
+            })
             const presentationData = await drugPresentation.findAll()
             const pharmaGroupData = await pharmagroup.findAll()
             
@@ -25,7 +30,12 @@ class DrugService {
     }
     readDrugs = async () => {
         try {
-            const drugsData = await drug.findAll()
+            const drugsData = await drug.findAll({
+                include: [
+                    { model: drugPresentation, attributes: ['description'] },
+                    { model: pharmagroup, attributes: ['name'] }
+                ]
+            })
             return drugsData
 
         } catch (error) {
