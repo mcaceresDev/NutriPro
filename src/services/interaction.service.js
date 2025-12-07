@@ -2,7 +2,6 @@ const { pharmaFoodInteraction, drug, disease, food } = require('../models');
 
 class InteractionService {
 
-
     createInteraction = async (interactionData) => {
         try {
             const newInteraction = await pharmaFoodInteraction.create(interactionData);
@@ -17,7 +16,8 @@ class InteractionService {
             const interactions = await pharmaFoodInteraction.findAll({
                 include: [
                     { model: drug, attributes: ['name'] },
-                    { model: food, attributes: ['name'] }
+                    { model: food, attributes: ['name'] },
+                    { model: disease, attributes: ['name'] }
                 ]
             });
             const drugsData = await drug.findAll();
@@ -35,7 +35,8 @@ class InteractionService {
             const interactions = await pharmaFoodInteraction.findAll({
                 include: [
                     { model: drug, attributes: ['name'] },
-                    { model: food, attributes: ['name'] }
+                    { model: food, attributes: ['name'] },
+                    { model: disease, attributes: ['name'] }
                 ]
             });
             return interactions;
@@ -43,6 +44,7 @@ class InteractionService {
             throw error;
         }
     };
+    
 
 }
 

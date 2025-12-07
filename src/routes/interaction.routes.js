@@ -3,8 +3,8 @@ const interactionController = require('../controllers/interaction.controller')
 
 
 interactionRouter.get('/', interactionController.getInteractionsView)
-// interactionRouter.get('/', )
-// interactionRouter.post('/', )
+interactionRouter.get('/all', interactionController.getInteractions)
+interactionRouter.post('/add-new', interactionController.createInteraction)
 // interactionRouter.put('/', )
 
 module.exports = interactionRouter
