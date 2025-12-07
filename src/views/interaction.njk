@@ -16,8 +16,160 @@
         <div id="interactionTable" class="border mt-3">
             {# TABLA DINAMICA #}
         </div>
+
+        <div class="modal fade" id="modalAgregar" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="modalAgregarLabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalAgregarLabel">Agregar nueva interacción</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Los campos con <span class="text-danger">*</span> son obligatorios.</p>
+                        <p class="">Seleccionar <span class="text-danger">"Ninguna"</span> en filtro de enfermedades si no implica una enfermedad como tal, o si es un efecto benéfico</p>
+                        <hr>
+                        <form id="formRegistrar" class="row g-3">
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Fármaco <span class="text-danger">*</span></label>
+                                <select name="drugId" id="drugId" class="form-select form-select-sm" required aria-label="Small select example">
+                                    <option selected>Seleccione un fármaco</option>
+                                    {% if drugsData is defined and drugsData | length > 0 %}
+                                        {% for item in drugsData %}
+                                            <option value={{item.id}}>{{ item.name }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option>"No hay elementos para seleccionar"</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Enfermedad asociada <span class="text-danger">*</span></label>
+                                <select name="diseaseId" id="diseaseId" class="form-select form-select-sm" required aria-label="Small select example">
+                                    <option selected>Seleccione una enfermedad</option>
+                                    {% if diseaseData is defined and diseaseData | length > 0 %}
+                                        {% for item in diseaseData %}
+                                            <option value={{item.id}}>{{ item.name }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option>"No hay elementos para seleccionar"</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="" class="form-label">Alimento relacionado <span class="text-danger">*</span></label>
+                                <div id="" class="d-flex gap-3">
+                                    <input type="text" class="form-control form-control-sm" hidden id="foodId" name="foodId" placeholder="Seleccione alimento">
+                                    <input type="text" class="form-control form-control-sm" id="foodName" name="foodName" required placeholder="Seleccione alimento">
+                                    <button type="button" class="btn btn-sm btn-success" data-bs-target="#modalFood" data-bs-toggle="modal">Buscar</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Tipo <span class="text-danger">*</span></label>
+                                <select name="type" id="type" class="form-select form-select-sm" required aria-label="Small select example">
+                                    <option selected>Seleccione tipo de reacción</option>
+                                    <option value="postiva">Positiva</option>
+                                    <option value="negativa">Negativa</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Nivel Evidencia</label>
+                                <select name="evidence" id="evidence" class="form-select form-select-sm" aria-label="Small select example">
+                                    <option selected>Seleccione nivel de respaldo</option>
+                                    <option value="baja">Baja</option>
+                                    <option value="media">Media</option>
+                                    <option value="alta">Alta</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="" class="form-label">Efecto <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm" id="effect" name="effect" required placeholder="Reacciones adversas o beneficiosas">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="" class="form-label">Recomendación</label>
+                                <input type="text" class="form-control form-control-sm" id="recommend" name="recommend" placeholder="Recomendaciones para el paciente sobre esta interacción">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="" class="form-label">Referencia</label>
+                                <input type="text" class="form-control form-control-sm" id="reference" name="reference" placeholder="Referencia bibliográfica o URL">
+                            </div>
+                            {# cierre modal body #}
+                        </div>
+                        <div class="modal-footer  d-flex justify-content-center">
+                            <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalFood" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="modalFoodLabel2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalFoodLabel2">Seleccionar Alimento</h1>
+                        {# <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> #}
+                    </div>
+                    <div class="modal-body">
+                        <div id="" class="mt-4 table-responsive">
+
+                            <input id="searchFood" class="form-control form-control-sm mb-3" placeholder="Buscar alimento..." style="max-width:250px">
+                            <div id="foodTable" class="border">
+                                {# TABLA DINAMICA #}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-sm btn-primary" data-bs-target="#modalAgregar" data-bs-toggle="modal">Regresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {# <button class="btn btn-primary" data-bs-target="#modalAgregar" data-bs-toggle="modal">Open first modal</button> #}
     </div>
 
 {% endblock %}
 
-{% block scripts %}{% endblock %}
+{% block scripts %}
+    <script>
+        const tableData = {{ foodData | dump | safe}}
+        const tabla = new Tabulator("#foodTable", {
+            locale: "es-es",
+            langs: LANG.langs,
+            data: tableData,
+            layout: "fitColumns",
+            pagination: "local",
+            paginationSize: 10,
+            responsiveLayout: true,
+            columns: [
+                {
+                    title: "Nombre",
+                    field: "name"
+                }, {
+                    title: "Seleccionar",
+                    formatter: (cell) => `
+                        <button class="btn btn-success btn-sm btnSelectFoodItem" data-bs-target="#modalAgregar" data-bs-toggle="modal" ><i class="fa-regular fa-circle-check"></i></button>
+                    `,
+                    width: 140,
+                    cellClick: (e, cell) => {
+                        const data = cell
+                            .getRow()
+                            .getData();
+                        fillFoodSelection(data);
+                        
+                    }
+                }
+            ]
+        })
+
+        document
+            .getElementById("searchFood")
+            .addEventListener("keyup", (e) => {
+                tabla.setFilter("name", "like", e.target.value);
+            });
+
+        const fillFoodSelection = (data) => {
+            document.getElementById("foodId").value = data.id;
+            document.getElementById("foodName").value = data.name;
+        }
+    </script>
+{% endblock %}

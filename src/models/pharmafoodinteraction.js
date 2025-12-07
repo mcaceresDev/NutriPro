@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     effect: DataTypes.STRING,
     recommend: DataTypes.STRING,
-    evidence: DataTypes.STRING
+    evidence: DataTypes.STRING,
+    reference: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'pharmaFoodInteraction',

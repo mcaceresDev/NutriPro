@@ -23,6 +23,13 @@ module.exports = {
           key: 'id'
         }
       },
+      diseaseId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'disease',
+          key: 'id'
+        }
+      },
       type: {
         type: Sequelize.STRING //'positiva', 'negativa'
       },
@@ -34,6 +41,9 @@ module.exports = {
       },
       evidence: {
         type: Sequelize.STRING //('alta', 'media', 'baja') DEFAULT 'media'
+      },
+      reference: {
+        type: Sequelize.STRING //Url o referencia bibliografica
       },
       createdAt: {
         // allowNull: false,
