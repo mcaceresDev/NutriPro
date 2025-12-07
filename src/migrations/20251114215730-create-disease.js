@@ -15,6 +15,9 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
+      observations: {
+        type: Sequelize.STRING
+      },
       symptom: {
         type: Sequelize.STRING
       },
