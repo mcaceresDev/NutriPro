@@ -1,8 +1,8 @@
 const pagesController = require("../controllers/pages.controller");
-const { verifyAdmin } = require("../middlewares/auth.middleware");
+const { verifyAdmin, verifySudo } = require("../middlewares/auth.middleware");
 const pageRouter = require("express").Router();
 
-pageRouter.get("/users", verifyAdmin, pagesController.renderUserView)
-pageRouter.get("/user-info", verifyAdmin, pagesController.renderUserView)
+pageRouter.get("/users", verifySudo, pagesController.renderUserView)
+pageRouter.get("/user-info", verifySudo, pagesController.renderUserView)
 
 module.exports = pageRouter

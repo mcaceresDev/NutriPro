@@ -74,7 +74,7 @@ class FoodController {
             const response = await foodService.readAllFoodItems()
             if (response.length > 0) {
                 // return res.render('users', { users: result, providers });
-                return res.json({status:200, rows: response})
+                return res.json({status:200, message:`Elementos guardados: ${response.length}`, rows: response})
             }
             res.status(404)
             return res.send(notFoundResponse)

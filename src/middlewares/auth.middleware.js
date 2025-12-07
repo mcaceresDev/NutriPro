@@ -47,7 +47,18 @@ const verifyAdmin = (req, res, next) => {
     if (req.session.user) {
         // console.log(req.session.user.role);
         
-        if (req.session.user.role === 'admin' || req.session.user.role === 'superadmin') {
+        if (req.session.user.role === 'admin' || req.session.user.role === 'superadmin' || req.session.user.role === 'special') {
+            return next();
+        }
+    }
+    // return res.sendFile(path.join(__dirname, '../views/pages/forbiddenPage.html'))
+    return res.render("pages/forbidden")
+}
+const verifySudo = (req, res, next) => {
+    if (req.session.user) {
+        // console.log(req.session.user.role);
+        
+        if (req.session.user.role === 'superadmin') {
             return next();
         }
     }
@@ -66,4 +77,4 @@ const verifyJairo = (req, res, next) => {
 
 
 
-module.exports = { authMiddleware, verifyAdminAccount, verifyAdmin, verifyJairo }
+module.exports = { authMiddleware, verifyAdminAccount, verifyAdmin, verifyJairo, verifySudo }

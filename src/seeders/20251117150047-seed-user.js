@@ -37,7 +37,7 @@ module.exports = {
           "email": "jordanesku.blandon@est.soyucem.edu.ni",
           "password": "$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72",
           "gender": "M",
-          "role": "comun",
+          "role": "admin",
           "createdAt": null,
           "updatedAt": null,
           "deletedAt": null
@@ -49,7 +49,7 @@ module.exports = {
           "email": "noe.cabrera@est.soyucem.edu.ni",
           "password": "$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72",
           "gender": "M",
-          "role": "comun",
+          "role": "admin",
           "createdAt": null,
           "updatedAt": null,
           "deletedAt": null
@@ -85,7 +85,7 @@ module.exports = {
           "email": "lester.rodriguez@est.soyucem.edu.ni",
           "password": "$2b$10$EAsychAPXmkg7SEzMCLIeuqr1k1jSna3CXqAg2UxkkI95RKcYaa72",
           "gender": "M",
-          "role": "comun",
+          "role": "admin",
           "createdAt": null,
           "updatedAt": null,
           "deletedAt": null
@@ -121,7 +121,7 @@ module.exports = {
           "email": "giovani.venerio@est.soyucem.edu.ni",
           "password": "$2b$10$YtHAiH6IqGrSDYpMXqWOienkTYkJRhzj45jH0it5EI.oescHanw4O",
           "gender": "M",
-          "role": "comun",
+          "role": "admin",
           "createdAt": null,
           "updatedAt": "2025-12-01T05:41:07.548Z",
           "deletedAt": null
