@@ -41,10 +41,142 @@
                 </button>
             </div>
 
+            {# FORMULARIO DE ANTECEDENTES CLINICOS #}
             <div class="card my-4">
                 <h5 class="card-header">
                     <i class="fa-solid fa-notes-medical"></i> Antecedentes Clínicos</h5>
-                <div class="card-body"></div>
+                <div class="card-body">
+                    <form class="row g-3 my-3">
+                        <div class="col-md-6 row">
+                            <h5>Antecedentes Familiares</h5>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Consume Alcohol</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label" for="checkDefault">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label" for="checkDefault">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Fumador</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label" for="checkDefault">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label" for="checkDefault">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            {# <div class="col-md-6">
+                                <label for="" class="form-label">Peso (kg)</label>
+                                <input type="number" required step="any" inputmode="decimal" class="form-control form-control-sm" id="weight" placeholder="Peso en kilogramos">
+                            </div> #}
+                           
+                            <div class="col-md-12">
+                                <label for="inputState" class="form-label">Enfermedades genéticas</label>
+                                <div class="d-flex gap-3">
+                                    <select id="inputFa" class="form-select form-select-sm">
+                                        <option selected>Seleccione antecedentes</option>
+                                        <option value="Cancer">Cancer</option>
+                                        <option value="Diabetes">Diabetes</option>
+                                        <option value="Obesidad">Obesidad</option>
+                                        <option value="Hipertensión">Hipertensión</option>
+                                        <option value="Artritis">Cardiopatías</option>
+                                    </select>
+                                    <button type="button" id="btn-addGenDisease" class="btn btn-sm btn-primary align-self-end mb-1">Agregar</button>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="inputState" class="form-label">Enfermedades diagnosticadas</label>
+                                <div class="d-flex gap-3">
+                                    <select id="inputFa" class="form-select form-select-sm">
+                                        <option selected>Seleccione enfermedades</option>
+                                        <option value="Cancer">Cancer</option>
+                                        <option value="Diabetes">Diabetes</option>
+                                        <option value="Obesidad">Obesidad</option>
+                                        <option value="Hipertensión">Hipertensión</option>
+                                        <option value="Artritis">Cardiopatías</option>
+                                    </select>
+                                    <button type="button" id="btn-addDisease" class="btn btn-sm btn-primary align-self-end mb-1">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 row">
+                            <h5>Habitos y restricciones</h5>
+                            <div class="col-md-12">
+                                <label for="inputState" class="form-label">Alergias medicamentosas</label>
+                                <div class="d-flex gap-3">
+                                    <select id="inputFa" class="form-select form-select-sm">
+                                        <option selected>Seleccione medicamentos</option>
+                                        <option value="Sulfa">Sulfa</option>
+                                        <option value="Estatinas">Estatinas</option>
+                                        <option value="Penicilinas">Penicilinas</option>
+                                    </select>
+                                    <button type="button" id="btn-addDrug" class="btn btn-sm btn-primary align-self-end mb-1">Agregar</button>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <label for="inputState" class="form-label">Alergias o Intolerancias Alimenticias</label>
+                                <div class="d-flex gap-3">
+                                    <select id="inputFa" class="form-select form-select-sm">
+                                        <option selected>Seleccione alimentos</option>
+                                        <option value="Piña">Piña</option>
+                                        <option value="Lactosa">Intolerancia a la lactosa</option>
+                                    </select>
+                                    <button type="button" id="btn-addResFood" class="btn btn-sm btn-primary align-self-end mb-1">Agregar</button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 row">
+                                <div class="col-md-6">
+                                    <label for="" class="form-label">Cirugías</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                        <label class="form-check-label" for="checkDefault">
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                        <label class="form-check-label" for="checkDefault">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="" class="form-label">Cual</label>
+                                    <input type="text" class="form-control form-control-sm" id="cirugia" placeholder="Escriba una o mas separadas por coma ','">
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-center">
+                            {# <button type="submit" class="btn btn-sm btn-primary">Guardar</button> #}
+                        </div>
+                    </form>
+                    {# TERMINA FORMULARIO DE ANTECEDENTES CLINICOS #}
+                    <hr>
+                    <div id="geneticDiContainer"></div>
+                    <div id="diagnoseContainer"></div>
+                    <div id="drugAleriesContainer"></div>
+                    <div id="foodAlergiesContainer"></div>
+
+                </div>
             </div>
 
             {# MEDICIONES Y CALCULOS BASICOS #}
@@ -62,7 +194,7 @@
                 <div class="card-body">
                     <h5>Consideraciones a tomar en cuenta</h5>
                     <hr>
-                    
+
                 </div>
             </div>
         </div>
@@ -73,4 +205,25 @@
 {% block scripts %}
     <script src="/js/sweetAlertHelper.js"></script>
     <script src="/js/evaluation/evaluationCalcs.js"></script>
+    <script>
+        document.getElementById("btn-addGenDisease").addEventListener('click', function() {
+            const genContainer = document.getElementById("geneticDiContainer")
+            genContainer.classList.add('m-3 border border-info');
+            
+        });
+        document.getElementById("btn-addDisease").addEventListener('click', function() {
+            // Código a ejecutar cuando el DOM esté completamente cargado
+            console.log('Página de Evaluación Clínica cargada');
+        });
+        document.getElementById("btn-addDrug").addEventListener('click', function() {
+            // Código a ejecutar cuando el DOM esté completamente cargado
+            console.log('Página de Evaluación Clínica cargada');
+        });
+        document.getElementById("btn-addResFood").addEventListener('click', function() {
+            // Código a ejecutar cuando el DOM esté completamente cargado
+            console.log('Página de Evaluación Clínica cargada');
+        });
+
+    </script>
+
 {% endblock %}
