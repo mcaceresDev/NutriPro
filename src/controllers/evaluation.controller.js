@@ -16,7 +16,7 @@ class EvaluationController {
             if (!patientData) {
                 return res.status(404).render("pages/notfound");
             }
-
+            
             const formattedDate = new Date(patientData.birthdate).toISOString().split("T")[0]; // YYYY-MM-DD
             return res.render("evaluation", { username, patient: patientData, formattedDate });
         } catch (error) {

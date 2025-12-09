@@ -9,7 +9,7 @@ module.exports = {
         "name": "María Fernanda ",
         "lastname": "Martínez Ruiz",
         "gender": "F",
-        "birthdate": "1997-06-05T00:00:00.000Z",
+        "birthdate": new Date("1997-06-05"),
         "age": 28,
         "height": "",
         "cellphone": "57593224",
@@ -17,8 +17,8 @@ module.exports = {
         "reference": "Clara Ruiz",
         "referencePhone": "57828321",
         "addedBy": 1,
-        "createdAt": "2025-12-06T04:27:53.607Z",
-        "updatedAt": "2025-12-06T04:27:53.607Z"
+        "createdAt": new Date("2025-12-06T04:27:53.607Z"),
+        "updatedAt": new Date("2025-12-06T04:27:53.607Z")
       }
     ], {});
 

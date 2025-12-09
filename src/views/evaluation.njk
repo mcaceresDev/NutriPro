@@ -48,7 +48,7 @@
                 <div class="card-body">
                     <form class="row g-3 my-3">
                         <div class="col-md-6 row">
-                            <h5>Antecedentes Familiares</h5>
+                            <h5>Antecedentes</h5>
                             <div class="col-md-6">
                                 <label for="" class="form-label">Consume Alcohol</label>
                                 <div class="form-check">
@@ -80,15 +80,10 @@
                                 </div>
                             </div>
                             
-                            {# <div class="col-md-6">
-                                <label for="" class="form-label">Peso (kg)</label>
-                                <input type="number" required step="any" inputmode="decimal" class="form-control form-control-sm" id="weight" placeholder="Peso en kilogramos">
-                            </div> #}
-                           
                             <div class="col-md-12">
-                                <label for="inputState" class="form-label">Enfermedades genéticas</label>
+                                <label for="inputState" class="form-label">Enfermedades genéticas (antecedentes familiares)</label>
                                 <div class="d-flex gap-3">
-                                    <select id="inputFa" class="form-select form-select-sm">
+                                    <select id="genDiseaseList" class="form-select form-select-sm">
                                         <option selected>Seleccione antecedentes</option>
                                         <option value="Cancer">Cancer</option>
                                         <option value="Diabetes">Diabetes</option>
@@ -102,7 +97,7 @@
                             <div class="col-md-12">
                                 <label for="inputState" class="form-label">Enfermedades diagnosticadas</label>
                                 <div class="d-flex gap-3">
-                                    <select id="inputFa" class="form-select form-select-sm">
+                                    <select id="diseaseList" class="form-select form-select-sm">
                                         <option selected>Seleccione enfermedades</option>
                                         <option value="Cancer">Cancer</option>
                                         <option value="Diabetes">Diabetes</option>
@@ -119,7 +114,7 @@
                             <div class="col-md-12">
                                 <label for="inputState" class="form-label">Alergias medicamentosas</label>
                                 <div class="d-flex gap-3">
-                                    <select id="inputFa" class="form-select form-select-sm">
+                                    <select id="drugList" class="form-select form-select-sm">
                                         <option selected>Seleccione medicamentos</option>
                                         <option value="Sulfa">Sulfa</option>
                                         <option value="Estatinas">Estatinas</option>
@@ -132,11 +127,7 @@
                             <div class="col-md-12">
                                 <label for="inputState" class="form-label">Alergias o Intolerancias Alimenticias</label>
                                 <div class="d-flex gap-3">
-                                    <select id="inputFa" class="form-select form-select-sm">
-                                        <option selected>Seleccione alimentos</option>
-                                        <option value="Piña">Piña</option>
-                                        <option value="Lactosa">Intolerancia a la lactosa</option>
-                                    </select>
+                                    <input type="text" id="foodName" name="" class="form-control form-control-sm" placeholder="Escriba un alimento restringido">
                                     <button type="button" id="btn-addResFood" class="btn btn-sm btn-primary align-self-end mb-1">Agregar</button>
                                 </div>
                             </div>
@@ -145,14 +136,14 @@
                                 <div class="col-md-6">
                                     <label for="" class="form-label">Cirugías</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                        <label class="form-check-label" for="checkDefault">
+                                        <input class="form-check-input" type="checkbox" value="" id="">
+                                        <label class="form-check-label" for="">
                                             Si
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                        <label class="form-check-label" for="checkDefault">
+                                        <input class="form-check-input" type="checkbox" value="" id="">
+                                        <label class="form-check-label" for="">
                                             No
                                         </label>
                                     </div>
@@ -171,10 +162,15 @@
                     </form>
                     {# TERMINA FORMULARIO DE ANTECEDENTES CLINICOS #}
                     <hr>
-                    <div id="geneticDiContainer"></div>
-                    <div id="diagnoseContainer"></div>
-                    <div id="drugAleriesContainer"></div>
-                    <div id="foodAlergiesContainer"></div>
+
+                    <div class="d-flex gap-2">
+                        <div id="geneticDiContainer" class="w-50"></div>
+                        <div id="diagnoseContainer" class="w-50"></div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <div id="drugAlergiesContainer" class="w-50"></div>
+                        <div id="foodAlergiesContainer" class="w-50"></div>
+                    </div>
 
                 </div>
             </div>
@@ -208,20 +204,59 @@
     <script>
         document.getElementById("btn-addGenDisease").addEventListener('click', function() {
             const genContainer = document.getElementById("geneticDiContainer")
-            genContainer.classList.add('m-3 border border-info');
-            
+            genContainer.classList.add('border','p-3','border-info');
+            const title = document.getElementById("title-gen")
+            if(!title){
+                genContainer.innerHTML="<h5 id='title-gen' class='text-center'>Enfermedades Genéticas</h5>"
+            }
+
+            const disease = genDiseaseList.options[genDiseaseList.selectedIndex].text;
+            const alert = document.createElement("div")
+            alert.classList.add("alert","alert-info")
+            alert.textContent=disease
+            genContainer.appendChild(alert)
         });
         document.getElementById("btn-addDisease").addEventListener('click', function() {
-            // Código a ejecutar cuando el DOM esté completamente cargado
-            console.log('Página de Evaluación Clínica cargada');
+            const diagnoseContainer = document.getElementById("diagnoseContainer")
+            diagnoseContainer.classList.add('border','p-3','border-danger-subtle');
+            const title = document.getElementById("title-dis")
+            if(!title){
+                diagnoseContainer.innerHTML="<h5 id='title-dis' class='text-center'>Enfermedades Diagnosticadas</h5>"
+            }
+
+            const disease = diseaseList.options[diseaseList.selectedIndex].text;
+            const alert = document.createElement("div")
+            alert.classList.add("alert","alert-danger")
+            alert.textContent=disease
+            diagnoseContainer.appendChild(alert)
         });
         document.getElementById("btn-addDrug").addEventListener('click', function() {
-            // Código a ejecutar cuando el DOM esté completamente cargado
-            console.log('Página de Evaluación Clínica cargada');
+            const drugAlergiesContainer = document.getElementById("drugAlergiesContainer")
+            drugAlergiesContainer.classList.add('border','p-3','border-danger-subtle');
+            const title = document.getElementById("title-drug")
+            if(!title){
+                drugAlergiesContainer.innerHTML="<h5 id='title-drug' class='text-center'>Alergias Medicamentosas</h5>"
+            }
+
+            const drug = drugList.options[drugList.selectedIndex].text;
+            const alert = document.createElement("div")
+            alert.classList.add("alert","alert-danger")
+            alert.textContent=drug
+            drugAlergiesContainer.appendChild(alert)
         });
         document.getElementById("btn-addResFood").addEventListener('click', function() {
-            // Código a ejecutar cuando el DOM esté completamente cargado
-            console.log('Página de Evaluación Clínica cargada');
+            const foodAlergiesContainer = document.getElementById("foodAlergiesContainer")
+            foodAlergiesContainer.classList.add('border','p-3','border-danger-subtle');
+            const title = document.getElementById("title-food")
+            if(!title){
+                foodAlergiesContainer.innerHTML="<h5 id='title-food' class='text-center'>Alergias Alimenticias</h5>"
+            }
+
+            const food = foodName.value
+            const alert = document.createElement("div")
+            alert.classList.add("alert","alert-danger")
+            alert.textContent=food
+            foodAlergiesContainer.appendChild(alert)
         });
 
     </script>
