@@ -1,4 +1,6 @@
-const { patient } = require("../models");
+const { patient, food } = require("../models");
+const foodService = require("../services/food.service");
+
 
 class EvaluationController {
 
@@ -17,8 +19,11 @@ class EvaluationController {
                 return res.status(404).render("pages/notfound");
             }
             
+            const foodData = await foodService.readAllFoodItems()
+            const foodMessage = foodData && foodData.length && foodData.length >0 ? `Alimentos registrados: ${foodData.length}` : "Ningun alimento que mostrar"
+            
             const formattedDate = new Date(patientData.birthdate).toISOString().split("T")[0]; // YYYY-MM-DD
-            return res.render("evaluation", { username, patient: patientData, formattedDate });
+            return res.render("evaluation", { username, patient: patientData, formattedDate, food:foodData, foodMessage });
         } catch (error) {
             console.log(error);
             return res.render("pages/error");

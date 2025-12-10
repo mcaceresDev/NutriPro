@@ -2,7 +2,7 @@ const userService = require("../services/user.service")
 
 class PageController {
 
-    renderUserView = (req, res)=> {
+    renderUsersView = (req, res)=> {
         res.render("users")
     }
     

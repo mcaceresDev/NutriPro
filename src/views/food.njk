@@ -155,7 +155,7 @@
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Folato - FD</label>
-                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" name="folato" id="folato" placeholder="">
+                    <input type="number" step="any" inputmode="decimal" class="form-control form-control-sm" name="folato" id="folato" placeholder="mcg">
                 </div>
                 <div class="col-md-2">
                     <label for="" class="form-label">Fracción Comestible</label>
@@ -196,10 +196,12 @@
             columns: [
                 {
                     title: "Codigo",
-                    field: "code"
+                    field: "code",
+                    width: 120
                 }, {
                     title: "Nombre",
-                    field: "name"
+                    field: "name",
+                    width: 400,
                 }, {
                     title: "Agua",
                     field: "aqua",
