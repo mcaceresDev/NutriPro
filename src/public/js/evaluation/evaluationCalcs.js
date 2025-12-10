@@ -115,10 +115,11 @@ function calculateCoronaryRisk(gender, totalFat, hdl) {
 // CALCULOS PARA SINDROME METABOLICO
 // ================================================================
 
-function evaluatePatient(data) {
+function evaluatePatient(data, totalFat) {
 
     // Valores de referencia
     const refs = {
+        totalFat: 200,
         trigliceridos: 150,
         sistolica: 130,
         diastolica: 85,
@@ -132,10 +133,17 @@ function evaluatePatient(data) {
     let alteredCount = 0;
 
     // --- Evaluaciones individuales ---
+    // Colesterol Total
+    if (totalFat > refs.totalFat) {
+        messages.push({alertType:"danger", msg:`• Colesterol total elevado ${totalFat} mg/dL. El paciente presenta "Hipercolesterolemia" | Normal ≤ ${refs.totalFat}.`});
+    } else {
+        messages.push({alertType:"success", msg:`• Colesterol normal (${totalFat} mg/dL).`});
+    }
     // Triglicéridos
     if (data.trigliceridos > refs.trigliceridos) {
         alteredCount++;
-        messages.push({alertType:"danger", msg:`• Triglicéridos elevados (${data.trigliceridos} mg/dL). Normal ≤ ${refs.trigliceridos}.`});
+        let hiper = data.trigliceridos > 200 ? `El paciente presenta "Hipertrigliceridemia"`  : ""
+        messages.push({alertType:"danger", msg:`• Triglicéridos elevados (${data.trigliceridos} mg/dL). ${hiper} Normal ≤ ${refs.trigliceridos}.`});
     } else {
         messages.push({alertType:"success", msg:`• Triglicéridos normales (${data.trigliceridos} mg/dL).`});
     }
@@ -224,7 +232,7 @@ btnCalcDB.addEventListener("click", (e) => {
         }
 
         const coronary = calculateCoronaryRisk("M", totalFat, hdl)
-        const metabolicSyndrome = evaluatePatient(PatientData)
+        const metabolicSyndrome = evaluatePatient(PatientData, totalFat)
 
         // Mostrar resultados en la interfaz  Nivel de riesgo 1 - 5 (de muy bajo a muy alto)
         let refCoronary = document.getElementById("refCoronary")
