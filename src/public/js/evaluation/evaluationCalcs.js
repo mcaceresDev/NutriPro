@@ -211,8 +211,6 @@ function evaluatePatient(data, totalFat) {
 }
 
 // ================================================================
-
-
 const btnCalcDB = document.getElementById("btnCalcDB")
 btnCalcDB.addEventListener("click", (e) => {
     e.preventDefault()
@@ -272,7 +270,11 @@ btnCalcDB.addEventListener("click", (e) => {
     } catch (error) {
         sendFeedBack(error.message, "error")
     }
-
-
-
 })
+
+// ================================================================
+// CALCULOS DE PLAN NUTRICIONAL
+
+const calcNutritionValues = ()=>{
+    // const factor = TODO
+}

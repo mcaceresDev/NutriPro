@@ -51,7 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 `,
                 width: 140,
                 cellClick: (e, cell) => {
-                    console.log(cell.getRow().getData());
+                    // console.log(cell.getRow().getData());
+                    const data = cell
+                            .getRow()
+                            .getData();
+
+                        fillModalForm(data);
                 }
             }
         ]
@@ -61,5 +66,16 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("keyup", (e) => {
         tabla.setFilter("name", "like", e.target.value);
     });
+    
+    function fillModalForm(data) {
+    const form = document.getElementById("formPlan");
+
+    Object.keys(data).forEach(key => {
+        const input = form.querySelector(`[name="${key}"]`);
+        if (input) {
+            input.value = data[key];
+        }
+    });
+}
 });
 
