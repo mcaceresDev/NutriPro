@@ -24,7 +24,7 @@
 
             <div class="col-md-6">
               <label for="" class="form-label">Cantidad <span class="text-danger">*</span></label>
-              <input type="number" name="amount" id="" required class="form-control form-control-sm">
+              <input type="number" name="amount" id="amount" required class="form-control form-control-sm">
             </div>
             <div class="col-md-6">
               <label for="" class="form-label">Medida <span class="text-danger">*</span></label>
@@ -44,12 +44,15 @@
             </div>
             <div class="col-md-6">
               <label for="" class="form-label">Porción estimada gr <span class="text-danger">*</span></label>
-              <input type="number" name="portion" id="" required class="form-control form-control-sm" placeholder="cantidad en gramos">
+              <input type="number" name="portion" id="portion" required class="form-control form-control-sm" placeholder="cantidad en gramos">
             </div>
             <div class="d-flex justify-content-center">
-              <button type="button" class="btn btn-sm btn-success">Calcular Aporte Nutricional</button>
+              <button id="btnCalcFood" type="button" class="btn btn-sm btn-success">Calcular Aporte Nutricional</button>
             </div>
             </form>
+
+            <div id="foodCalcsContainer">
+            </div>
           </div>
 
           {# <div class="col-md-6">

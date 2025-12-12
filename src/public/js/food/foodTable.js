@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             .getData();
 
                         fillModalForm(data);
+                        selectedFood=data
                 }
             }
         ]

@@ -32,7 +32,24 @@ const calcTMB = (gender, weight, height, age, fa) => {
 }
 
 const calcIMC = (weight, height) => {
+    const references =  [
+        { min: 0, max: 18.5, level: "danger", msg: "Bajo peso" },
+        { min: 18.6, max: 24.9, level: "success", msg: "Peso normal" },
+        { min: 25, max: 29.9, level: "danger", msg: "Sobrepeso" },
+        { min: 30, max: 34.9, level: "danger", msg: "Obesidad I" },
+        { min: 35, max: 39.9, level: "danger", msg: "Obesidad II" },
+        { min: 40, max: Infinity, level: "danger", msg: "Obesidad III" },
+    ]
+    
     const IMC = weight / Math.pow(height, 2)
+    const match = references.find(imc => IMC >= imc.min &&  IMC <= imc.max);
+    if (!match) {
+        throw new Error("No se pudo calcular el nivel de riesgo.");
+    }
+
+    measureAlertContainer.className = '';
+    measureAlertContainer.classList.add("alert", `alert-${match.level}`)
+    measureAlertContainer.innerHTML=`El paciente tiene: <strong>${match.msg}</strong> segun categoría OMS`
     return IMC
 }
 
@@ -274,7 +291,41 @@ btnCalcDB.addEventListener("click", (e) => {
 
 // ================================================================
 // CALCULOS DE PLAN NUTRICIONAL
+let selectedFood = {}
+let foodItems = []
+const calcNutritionValues = (grComsumed, foodItem)=>{
+    const factor = grComsumed/100;
+    const energy = factor*parseFloat(foodItem.energy)
+    const protein = factor*parseFloat(foodItem.protein)
+    const totalFat = factor*parseFloat(foodItem.totalFat)
+    const carbs = factor*parseFloat(foodItem.carbs)
 
-const calcNutritionValues = ()=>{
-    // const factor = TODO
+    return { energy, protein, totalFat, carbs }
 }
+
+document.getElementById("btnCalcFood").addEventListener("click", ()=> {
+    
+    const amount = document.getElementById("amount")
+    const portion = document.getElementById("portion")
+    
+    const totalGr = amount.value*portion.value
+    // console.log(portion);
+    const result = calcNutritionValues(totalGr, selectedFood)
+    foodItems.push(result)
+    const lista = document.createElement("ul")
+    // const item1 = document.createElement("li")
+    // const item2 = document.createElement("li")
+    // const item3 = document.createElement("li")
+    // const item4 = document.createElement("li")
+    foodItems.forEach((item)=>{
+        const items=`
+        <li>Calorias: ${result.energy.toFixed(2)}</li>
+        <li>Proteina: ${result.protein.toFixed(2)}</li>
+        <li>Grasa total: ${result.totalFat.toFixed(2)}</li>
+        <li>Carbohidratos: ${result.carbs.toFixed(2)}</li>
+        `
+        lista.innerHTML=items
+    })
+
+    foodCalcsContainer.appendChild(lista)
+})
