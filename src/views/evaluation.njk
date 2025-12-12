@@ -59,7 +59,16 @@
                 <div class="card-body">
                     <h5>Consideraciones a tomar en cuenta</h5>
                     <hr>
-
+                    
+                    {# VALORES CRITICOS CALCULADOS EN PESTAÑA EVALUACION #}
+                    <div id="considerations">
+                        <div id="diseaseCons"></div>
+                        <div id="drugCons"></div>
+                        <div id="foodCons"></div>
+                    </div>
+                    
+                    <h5>Crear menú dietético</h5>
+                    <hr>
                     <p>Seleccione un alimento de la lista. Tenga en cuenta que la información en la TCA INCAP muestra valores en base a 100 gramos de alimento. Por eso es necesario
                         que especifique la cantidad estimada en gramos por alimento recomendado para hacer los calculos adecuados.
                     </p>
@@ -110,11 +119,16 @@
                 diagnoseContainer.innerHTML="<h5 id='title-dis' class='text-center'>Enfermedades Diagnosticadas</h5>"
             }
 
-            const disease = diseaseList.options[diseaseList.selectedIndex].text;
-            const alert = document.createElement("div")
-            alert.classList.add("alert","alert-danger")
-            alert.textContent=disease
-            diagnoseContainer.appendChild(alert)
+            const existDisease = diagnoseDiseases.find((disease) => disease.id == diseaseList.value)
+            if(!existDisease){
+                diagnoseDiseases.push({id:diseaseList.value, name: diseaseList.options[diseaseList.selectedIndex].text })
+                const disease = diseaseList.options[diseaseList.selectedIndex].text;
+                const alert = document.createElement("div")
+                alert.classList.add("alert","alert-danger")
+                alert.textContent=disease
+                diagnoseContainer.appendChild(alert)
+            }
+            return
         });
         document.getElementById("btn-addDrug").addEventListener('click', function() {
             const drugAlergiesContainer = document.getElementById("drugAlergiesContainer")
@@ -124,11 +138,16 @@
                 drugAlergiesContainer.innerHTML="<h5 id='title-drug' class='text-center'>Alergias Medicamentosas</h5>"
             }
 
-            const drug = drugList.options[drugList.selectedIndex].text;
-            const alert = document.createElement("div")
-            alert.classList.add("alert","alert-danger")
-            alert.textContent=drug
-            drugAlergiesContainer.appendChild(alert)
+            const existDrug = drugAlergies.find(drug => drug.id == drugList.value)
+            if(!existDrug){
+                drugAlergies.push({id:drugList.value, name: drugList.options[drugList.selectedIndex].text })
+                const drug = drugList.options[drugList.selectedIndex].text;
+                const alert = document.createElement("div")
+                alert.classList.add("alert","alert-danger")
+                alert.textContent=drug
+                drugAlergiesContainer.appendChild(alert)
+            }
+            return
         });
         document.getElementById("btn-addResFood").addEventListener('click', function() {
             const foodAlergiesContainer = document.getElementById("foodAlergiesContainer")
@@ -138,11 +157,16 @@
                 foodAlergiesContainer.innerHTML="<h5 id='title-food' class='text-center'>Alergias Alimenticias</h5>"
             }
 
-            const food = foodName.value
-            const alert = document.createElement("div")
-            alert.classList.add("alert","alert-danger")
-            alert.textContent=food
-            foodAlergiesContainer.appendChild(alert)
+            const existFood = foodAlergies.find(food => food.name == foodName.value)
+            if(!existFood){
+                foodAlergies.push({name:foodName.value})
+                const food = foodName.value
+                const alert = document.createElement("div")
+                alert.classList.add("alert","alert-danger")
+                alert.textContent=food
+                foodAlergiesContainer.appendChild(alert)
+            }
+            return
         });
 
     </script>

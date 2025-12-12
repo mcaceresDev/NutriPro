@@ -2,8 +2,12 @@ let globalEvaluation = {
     clinic: [],
     measures: [],
     biochemical: [],
-    
+
 }
+
+let diagnoseDiseases = []
+let foodAlergies = []
+let drugAlergies = []
 
 // Nivel de actividad (Factor de actividad)
 const activityFactor = {
@@ -69,9 +73,7 @@ btnCalcMB.addEventListener("click", (e) => {
     const fa = activityFactor[activityLevel]
 
     const { GEB, GET } = calcTMB(gender, weight, height, age, fa)
-    console.log(GEB);
-    console.log(GET);
-    
+       
     const imc = calcIMC(weight, height)
 
     document.getElementById("geb").value = GEB.toFixed(2)
