@@ -3,6 +3,14 @@ const { genericErrorHandler, sendSuccess, notFoundResponse } = require("../valid
 
 class DiseaseController {
 
+    getDiseaseView = async (req, res)=> {
+        try {
+            res.render("disease")
+        } catch (error) {
+            
+        }
+    }
+
     getAllDiseases = async (req, res)=> {
         try {
             const allDiseases = diseaseService.readAll()

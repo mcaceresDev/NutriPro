@@ -23,10 +23,18 @@ app.use(express.static(path.join(__dirname, 'public')))
 // app.use(requestInfoMiddleware);
 
 // Configuración de Nunjucks
-nunjucks.configure(path.join(__dirname, 'views'), {
+const env = nunjucks.configure(path.join(__dirname, 'views'), {
   autoescape: true,  // Para escapar automáticamente variables
   express: app        // Pasar la instancia de Express
 });
+
+// Crear filtro startsWith
+env.addFilter('startsWith', function(str, prefix) {
+  if (typeof str !== 'string') return false;
+  return str.startsWith(prefix);
+});
+
+
 
 // Configurar la carpeta para vistas y el motor de plantillas
 app.set('view engine', 'njk');  // Usamos "njk" como la extensión de los archivos de plantillas
@@ -80,7 +88,10 @@ app.get("/reporte/pdf", async (req, res) => {
 
 
 
-
+app.use((req, res, next) => {
+  res.locals.currentPath = req.path;   // o req.originalUrl
+  next();
+});
 app.get('/', (req, res) => {
   // res.render('index', { title: 'Mi Proyecto con Nunjucks', name: 'Juan' });
   if (req.session.user) {

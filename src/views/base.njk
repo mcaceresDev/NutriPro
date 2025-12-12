@@ -77,37 +77,37 @@
           </li>
           <span class="block-menu text-secondary-emphasis">GESTION</span>
           {# link-active -- clase para li activo #}
-          <li class="m-2 px-2"> 
+          <li class="m-2 px-2 {% if currentPath | startsWith('/pacientes') %}link-active{% endif %}"> 
             <a href="/pacientes" class="nav-link"><i class="fa-solid fa-users"></i> Pacientes </a>
           </li>
           {# <li class="m-2">
             <i class="fa-brands fa-nutritionix"></i>Agenda
           </li> #}
-          <li class="m-2 px-2">
+          <li class="m-2 px-2 {% if currentPath | startsWith('/expedientes') %}link-active{% endif %}">
             <i class="fa-solid fa-file-medical"></i>Expedientes
           </li>
 
 
-          <li class="m-2 px-2">
+          <li class="m-2 px-2 {% if currentPath | startsWith('/farmacos') %}link-active{% endif %}">
             <a href="/farmacos" class="nav-link"><i class="fa-solid fa-pills"></i> Fármacos</a>
           </li>
-          <li class="m-2 px-2">
+          <li class="m-2 px-2 {% if currentPath | startsWith('/interacciones') %}link-active{% endif %}">
             <a href="/interacciones" class="nav-link"><i class="fa-solid fa-book-skull"></i> Interacciones</a>
           </li>
-          <li class="m-2 px-2">
+          <li class="m-2 px-2 {% if currentPath | startsWith('/enfermedades') %}link-active{% endif %}">
             <a href="/enfermedades" class="nav-link"><i class="fa-solid fa-lungs-virus"></i> Enfermedades</a>
           </li>
-          <li class="m-2 px-2">
+          <li class="m-2 px-2 {% if currentPath | startsWith('/nutrientes') %}link-active{% endif %}">
           <a href="/nutrientes" class="nav-link">
             <i class="fa-solid fa-carrot"></i> Alimentos
           </a>
           </li>
 
           <span class="block-menu text-secondary-emphasis">PLANES</span>
-          <li class="m-2 px-2">
+          <li class="m-2 px-2 {% if currentPath | startsWith('/recetas') %}link-active{% endif %}">
             <i class="fa-solid fa-bowl-food"></i> Recetas
           </li>
-          <li class="m-2 px-2">
+          <li class="m-2 px-2 {% if currentPath | startsWith('/planes') %}link-active{% endif %}">
             <i class="fa-solid fa-utensils"></i> Planes
           </li>
           <li class="m-2 px-2">

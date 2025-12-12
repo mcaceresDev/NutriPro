@@ -1,0 +1,21 @@
+{% extends "base.njk" %}
+
+{% block pagetitle %} Enfermedades o padecimientos {% endblock %}
+
+{% block content %}
+    <p>En esta sección tienes un listado de enfermedades comúnes que pueden ser relevantes para
+        tu evaluación clínica. Puedes agregar más, y editar las existentes. Además, puedes relacionar
+        esta enfermedad como producto de una interacción Fármaco-Alimento en la sección <a href="/interacciones" class="link-offset-1">"Interacciones"</a>
+    </p>
+    <div id="" class="mt-4 table-responsive">
+
+        <div class="d-flex justify-content-between mb-2">
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar">Agregar Enfermedad <i class="fa-solid fa-plus"></i>
+            </button>
+            <input type="text" id="searchBox" class="search-box form-control form-control-sm" placeholder="Buscar enfermedad por nombre"/>
+        </div>
+        <div id="drugsTable" class="border mt-3">
+            {# TABLA DINAMICA #}
+        </div>
+    </div>
+{% endblock %}
