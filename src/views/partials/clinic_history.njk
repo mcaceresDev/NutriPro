@@ -40,12 +40,13 @@
                     <label for="inputState" class="form-label">Enfermedades genéticas (antecedentes familiares)</label>
                     <div class="d-flex gap-3">
                         <select id="genDiseaseList" class="form-select form-select-sm">
-                            <option selected>Seleccione antecedentes</option>
-                            <option value="Cancer">Cancer</option>
-                            <option value="Diabetes">Diabetes</option>
-                            <option value="Obesidad">Obesidad</option>
-                            <option value="Hipertensión">Hipertensión</option>
-                            <option value="Artritis">Cardiopatías</option>
+                            {% if diseases is defined and diseases | length > 0 %}
+                                {% for item in diseases %}
+                                    <option value={{item.id}}>{{ item.name }}</option>
+                                {% endfor %}
+                            {% else %}
+                                <option>"No hay elementos para seleccionar"</option>
+                            {% endif %}
                         </select>
                         <button type="button" id="btn-addGenDisease" class="btn btn-sm btn-primary align-self-end mb-1">Agregar</button>
                     </div>
@@ -54,12 +55,15 @@
                     <label for="inputState" class="form-label">Enfermedades diagnosticadas</label>
                     <div class="d-flex gap-3">
                         <select id="diseaseList" class="form-select form-select-sm">
-                            <option selected>Seleccione enfermedades</option>
-                            <option value="Cancer">Cancer</option>
-                            <option value="Diabetes">Diabetes</option>
-                            <option value="Obesidad">Obesidad</option>
-                            <option value="Hipertensión">Hipertensión</option>
-                            <option value="Artritis">Cardiopatías</option>
+                            {% if diseases is defined and diseases | length > 0 %}
+                                {% for item in diseases %}
+                                    <option value={{item.id}}>{{ item.name }}</option>
+                                {% endfor %}
+                            {% else %}
+                                <option>"No hay elementos para seleccionar"</option>
+                            {% endif %}
+                            
+                            
                         </select>
                         <button type="button" id="btn-addDisease" class="btn btn-sm btn-primary align-self-end mb-1">Agregar</button>
                     </div>
@@ -71,10 +75,13 @@
                     <label for="inputState" class="form-label">Alergias medicamentosas</label>
                     <div class="d-flex gap-3">
                         <select id="drugList" class="form-select form-select-sm">
-                            <option selected>Seleccione medicamentos</option>
-                            <option value="Sulfa">Sulfa</option>
-                            <option value="Estatinas">Estatinas</option>
-                            <option value="Penicilinas">Penicilinas</option>
+                            {% if drugs is defined and drugs | length > 0 %}
+                                {% for item in drugs %}
+                                    <option value={{item.id}}>{{ item.name }} Grupo: {{ item.pharmagroup.name }}</option>
+                                {% endfor %}
+                            {% else %}
+                                <option>"No hay elementos para seleccionar"</option>
+                            {% endif %}
                         </select>
                         <button type="button" id="btn-addDrug" class="btn btn-sm btn-primary align-self-end mb-1">Agregar</button>
                     </div>

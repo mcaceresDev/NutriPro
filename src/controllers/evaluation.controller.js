@@ -1,4 +1,6 @@
-const { patient, food } = require("../models");
+const { patient, food, disease } = require("../models");
+const diseaseService = require("../services/disease.service");
+const drugService = require("../services/drug.service");
 const foodService = require("../services/food.service");
 
 
@@ -22,8 +24,12 @@ class EvaluationController {
             const foodData = await foodService.readAllFoodItems()
             const foodMessage = foodData && foodData.length && foodData.length >0 ? `Alimentos registrados: ${foodData.length}` : "Ningun alimento que mostrar"
             
+            const diseases = await diseaseService.readAll()
+
+            const drugs = await drugService.readDrugs()
+            
             const formattedDate = new Date(patientData.birthdate).toISOString().split("T")[0]; // YYYY-MM-DD
-            return res.render("evaluation", { username, patient: patientData, formattedDate, food:foodData, foodMessage });
+            return res.render("evaluation", { username, patient: patientData, formattedDate, food:foodData, foodMessage, diseases, drugs });
         } catch (error) {
             console.log(error);
             return res.render("pages/error");

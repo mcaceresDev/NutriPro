@@ -1,4 +1,9 @@
-
+let globalEvaluation = {
+    clinic: [],
+    measures: [],
+    biochemical: [],
+    
+}
 
 // Nivel de actividad (Factor de actividad)
 const activityFactor = {
