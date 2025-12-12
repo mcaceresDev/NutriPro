@@ -5,15 +5,19 @@ class DiseaseController {
 
     getDiseaseView = async (req, res)=> {
         try {
-            res.render("disease")
-        } catch (error) {
+            const allDiseases = await diseaseService.readAll()
             
+            res.render("disease", {diseases: allDiseases})
+            
+        } catch (error) {
+            const errorData={status:400, message: error.message}
+            return res.status(400).json(errorData);
         }
     }
 
     getAllDiseases = async (req, res)=> {
         try {
-            const allDiseases = diseaseService.readAll()
+            const allDiseases = await diseaseService.readAll()
             if (allDiseases.length > 0) {
                 return res.status(200).json({message: "", rows: allDiseases})
             }
