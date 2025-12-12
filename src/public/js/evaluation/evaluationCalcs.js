@@ -30,12 +30,12 @@ const calcTMB = (gender, weight, height, age, fa) => {
 
     if (gender === "M") {
         // Hacer los calculos para hombre
-        const GEB = 66 + (13.7 * weight) + (5 * cmHeight) - (6.8 * age) //Gasto Energetico Basal
+        const GEB = 66.5 + (13.75 * weight) + (5 * cmHeight) - (6.755 * age) //Gasto Energetico Basal
         const GET = GEB * fa //Gasto Energetico Total
         return { GEB, GET }
     }
     //Hacer calculos para mujer
-    const GEB = 655 + (9.6 * weight) + (1.8 * cmHeight) - (4.7 * age)
+    const GEB = 655.1 + (9.563 * weight) + (1.850 * cmHeight) - (4.676 * age)
     const GET = GEB * fa //Gasto Energetico Total
     return { GEB, GET }
 }
