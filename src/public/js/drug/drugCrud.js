@@ -91,17 +91,6 @@ function fillModalForm(data) {
 
         if (!input) return;
 
-        if (input.type === "date") {
-            
-            const value = data.birthdate
-            if (value) {
-                const date = new Date(value);
-                // Convertir a YYYY-MM-DD
-                const formatted = date.toISOString().split("T")[0];
-                input.value = formatted;
-            }
-            return;
-        }
         input.value = data[key];
     });
 }

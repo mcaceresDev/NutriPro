@@ -39,7 +39,7 @@ class DrugController {
             req.body.addedBy = req.session.user.userId
 
             const newDrug = await drugService.createDrug(req.body)
-            console.log(req.body);
+            // console.log(req.body);
             
             if (newDrug) {
                 return res.json(sendSuccess("Registro creado con éxito"))

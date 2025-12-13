@@ -1,5 +1,5 @@
 const diseaseService = require("../services/disease.service")
-const { genericErrorHandler, sendSuccess, notFoundResponse } = require("../validators/httpResponse")
+const { genericErrorHandler, sendSuccess, notFoundResponse, errorPostHandler } = require("../validators/httpResponse")
 
 class DiseaseController {
 
@@ -28,22 +28,41 @@ class DiseaseController {
             return res.status(500).json(errorData)
         }
     }
-    // getAllDiseases = async (req, res)=> {
-    //     try {
-            
-    //     } catch (error) {
-            // const errorData = genericErrorHandler(error)
-            // return res.status(500).json(errorData
-    //     }
-    // }
-    // getAllDiseases = async (req, res)=> {
-    //     try {
-            
-    //     } catch (error) {
-            // const errorData = genericErrorHandler(error)
-            // return res.status(500).json(errorData
-    //     }
-    // }
+    
+    createDisease = async(req, res)=> {
+            try {
+    
+                const newDisease = await diseaseService.createDisease(req.body)
+                // console.log(req.body);
+                
+                if (newDisease) {
+                    return res.json(sendSuccess("Registro creado con éxito"))
+                }
+                res.status(400).json(customError(400, "No se pudo crear el registro"))
+                
+            } catch (error) {
+                const errorData=errorPostHandler(error)
+                return res.status(400).json(errorData);
+            }
+        }
+
+    editDisease = async(req, res)=> {
+        try {
+            const id = req.params.id
+            const response = await diseaseService.updateDisease(req.body, id)
+
+            if (response === 0) {
+                res.status(404)
+                return res.send(customError(404, "Elemento no encontrado o sin cambios"));
+            } else {
+                return res.send(sendSuccess("Registro actualizado"))
+            }
+
+        } catch (error) {
+            const errorData=errorPostHandler(error)
+            return res.status(400).json(errorData);
+        }
+    }
 
 }
 
