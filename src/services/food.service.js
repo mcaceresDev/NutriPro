@@ -2,7 +2,7 @@ const { food } = require("../models")
 
 class FoodService {
 
-    createFoodItem = async (payload)=> {
+    createFoodItem = async (payload) => {
         try {
             const response = await food.create(payload)
             return response
@@ -12,9 +12,9 @@ class FoodService {
             throw error
         }
     }
-    createBulkItems = async (payload)=> {
+    createBulkItems = async (payload) => {
         try {
-            const response = await food.bulkCreate(payload);            
+            const response = await food.bulkCreate(payload);
             return response
 
         } catch (error) {
@@ -22,8 +22,8 @@ class FoodService {
             throw error
         }
     }
-    
-    readFoodItemsByUser = async (userId)=> {
+
+    readFoodItemsByUser = async (userId) => {
         try {
             const response = await food.findAll({
                 where: {
@@ -36,25 +36,29 @@ class FoodService {
             throw error
         }
     }
-    
-    readAllFoodItems = async ()=> {
+
+    readAllFoodItems = async () => {
         try {
-            const response = await food.findAll()
+            const response = await food.findAll({
+                order: [
+                    ['name', 'ASC']
+                ]
+            })
             return response
         } catch (error) {
             // return {message: "Error en el servicio"}
             throw error
         }
     }
-    
-    updateFoodItem = async (payload, id)=> {
+
+    updateFoodItem = async (payload, id) => {
         try {
             const [updatedRows] = await food.update(
                 payload,
                 { where: { id } }
             );
             return updatedRows
-                
+
         } catch (error) {
             // return {message: "Error en el servicio"}
             throw error

@@ -169,8 +169,10 @@
         </div>
         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             <div id="" class="mt-4 table-responsive">
-
-                <input id="searchFood" class="form-control form-control-sm mb-3" placeholder="Buscar alimento..." style="max-width:250px">
+                <div class="d-flex justify-content-between px-2">
+                    <input id="searchFood" class="form-control form-control-sm mb-3" placeholder="Buscar alimento..." style="max-width:250px">
+                    <span>Alimentos registrados por ti: {{ food.length }}</span>
+                </div>
                 <div id="foodTable" class="border">
                     {# TABLA DINAMICA #}
                 </div>
