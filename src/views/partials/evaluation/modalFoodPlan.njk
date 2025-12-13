@@ -50,25 +50,44 @@
               <button id="btnCalcFood" type="button" class="btn btn-sm btn-success">Calcular Aporte Nutricional</button>
             </div>
             </form>
-
-            <div id="foodCalcsContainer">
-            </div>
-          </div>
-
-          {# <div class="col-md-6">
-                <label for="inputState" class="form-label">Grupo Farmacológico <span class="text-danger">*</span></label>
-                <select name="pharmaGroupId" id="pharmaGroupId" class="form-select form-select-sm" required aria-label="Small select example">
-                  <option selected>Seleccione el grupo farmacologico</option>
-                  {% if pharmagroups is defined and pharmagroups | length > 0 %}
-                    {% for item in pharmagroups %}
-                      <option value={{item.id}}>{{ item.name }}</option>
-                    {% endfor %}
-                  {% else %}
-                    <option>"No hay elementos para seleccionar"</option>
-                  {% endif %}
-                </select>
-              </div> #}
           {# FIN FORMULARIO #}
+            <hr>
+            <div id="foodCalcsContainer">
+
+            </div>
+
+            <h5 class="text-center">Vista previa</h5>
+            {# <div class="alert">
+              1 cucharada de Crema
+            </div> #}
+            <input type="text" class="form-control form-contorl-sm my-3" value="1 cucharada de Crema" />
+            <div class="d-flex justify-content-between">
+              <div>
+                <img src="/assets/img/calorias.png" class="nutrient-icon" />
+                <span>189.00</span>
+              </div>
+              <div>
+                <img src="/assets/img/proteina.png" class="nutrient-icon" />
+                <span>3.60</span>
+              </div>
+              <div>
+                <img src="/assets/img/lipido.png" class="nutrient-icon" />
+                <span>2.40</span>
+              </div>
+              <div>
+                <img src="/assets/img/carbohidratos.png" class="nutrient-icon" />
+                <span>43.80</span>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between my-2">
+              <span>Calorías</span>
+              <span>Proteina</span>
+              <span>Lípidos</span>
+              <span>Carbohidratos</span>
+            </div>
+
+          </div>
           <div class="w-50">
             <p>Utilice la tabla de referencia para asignar medidas</p>
             <img src="/assets/img/medidas.jpeg" class="w-100" style=""/>
@@ -76,8 +95,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary btn-sm">Guardar</button>
+        <div class="w-100 d-flex justify-content-center">
+            <button type="button" class="btn btn-success btn-sm">Guardar</button>
+        </div>
       </div>
     </div>
   </div>

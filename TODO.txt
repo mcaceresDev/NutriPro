@@ -4,3 +4,8 @@ Validacion de campos para agregar farmacos
 Crear enlaces para navegacion en el proyecto y definir enlaces activos
 X Crear campo rol para dar permisos en middlewares
 X Crear modulos para agregar datos de alimentos respaldados
+
+
+
+Agregar calculo de alimentos a lista usando arrays y poner un boton una vez este lista la semana para generar la tabla
+Luego poner boton de imprimir

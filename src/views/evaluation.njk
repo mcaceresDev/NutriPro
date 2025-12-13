@@ -59,14 +59,14 @@
                 <div class="card-body">
                     <h5>Consideraciones a tomar en cuenta</h5>
                     <hr>
-                    
+
                     {# VALORES CRITICOS CALCULADOS EN PESTAÑA EVALUACION #}
                     <div id="considerations">
                         <div id="diseaseCons"></div>
                         <div id="drugCons"></div>
                         <div id="foodCons"></div>
                     </div>
-                    
+
                     <h5>Crear menú dietético</h5>
                     <hr>
                     <p>Seleccione un alimento de la lista. Tenga en cuenta que la información en la TCA INCAP muestra valores en base a 100 gramos de alimento. Por eso es necesario
@@ -74,7 +74,7 @@
                     </p>
                     <div id="" class="mt-4 table-responsive">
                         <div class="px-3 d-flex justify-content-between">
-                            <input id="searchFood" class="form-control form-control-sm mb-3" placeholder="Buscar alimento..." style="max-width:250px" />
+                            <input id="searchFood" class="form-control form-control-sm mb-3" placeholder="Buscar alimento..." style="max-width:250px"/>
                             <span>{{ foodMessage }}</span>
                         </div>
                         <div id="foodTable" class="border" data-food='{{ food | dump | safe }}'>
@@ -82,9 +82,32 @@
                         </div>
                     </div>
 
+                    <table class="table table-bordered my-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">Dia</th>
+                                <th scope="col">Desayuno</th>
+                                <th scope="col">Merienda</th>
+                                <th scope="col">Almuerzo</th>
+                                <th scope="col">Merienda</th>
+                                <th scope="col">Cena</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>LUNES</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                     {# MODAL DE CREACION DE PLAN #}
                     {% include "partials/evaluation/modalFoodPlan.njk" %}
-                    
+
                 </div>
             </div>
         </div>
@@ -97,78 +120,117 @@
     <script src="/js/sweetAlertHelper.js"></script>
     <script src="/js/evaluation/evaluationCalcs.js"></script>
     <script>
-        document.getElementById("btn-addGenDisease").addEventListener('click', function() {
-            const genContainer = document.getElementById("geneticDiContainer")
-            genContainer.classList.add('border','p-3','border-info');
-            const title = document.getElementById("title-gen")
-            if(!title){
-                genContainer.innerHTML="<h5 id='title-gen' class='text-center'>Enfermedades Genéticas</h5>"
-            }
+        document
+            .getElementById("btn-addGenDisease")
+            .addEventListener('click', function () {
+                const genContainer = document.getElementById("geneticDiContainer")
+                genContainer
+                    .classList
+                    .add('border', 'p-3', 'border-info');
+                const title = document.getElementById("title-gen")
+                if (!title) {
+                    genContainer.innerHTML = "<h5 id='title-gen' class='text-center'>Enfermedades Genéticas</h5>"
+                }
 
-            const disease = genDiseaseList.options[genDiseaseList.selectedIndex].text;
-            const alert = document.createElement("div")
-            alert.classList.add("alert","alert-info")
-            alert.textContent=disease
-            genContainer.appendChild(alert)
-        });
-        document.getElementById("btn-addDisease").addEventListener('click', function() {
-            const diagnoseContainer = document.getElementById("diagnoseContainer")
-            diagnoseContainer.classList.add('border','p-3','border-danger-subtle');
-            const title = document.getElementById("title-dis")
-            if(!title){
-                diagnoseContainer.innerHTML="<h5 id='title-dis' class='text-center'>Enfermedades Diagnosticadas</h5>"
-            }
-
-            const existDisease = diagnoseDiseases.find((disease) => disease.id == diseaseList.value)
-            if(!existDisease){
-                diagnoseDiseases.push({id:diseaseList.value, name: diseaseList.options[diseaseList.selectedIndex].text })
-                const disease = diseaseList.options[diseaseList.selectedIndex].text;
+                const disease = genDiseaseList
+                    .options[genDiseaseList.selectedIndex]
+                    .text;
                 const alert = document.createElement("div")
-                alert.classList.add("alert","alert-danger")
-                alert.textContent=disease
-                diagnoseContainer.appendChild(alert)
-            }
-            return
-        });
-        document.getElementById("btn-addDrug").addEventListener('click', function() {
-            const drugAlergiesContainer = document.getElementById("drugAlergiesContainer")
-            drugAlergiesContainer.classList.add('border','p-3','border-danger-subtle');
-            const title = document.getElementById("title-drug")
-            if(!title){
-                drugAlergiesContainer.innerHTML="<h5 id='title-drug' class='text-center'>Alergias Medicamentosas</h5>"
-            }
+                alert
+                    .classList
+                    .add("alert", "alert-info")
+                alert.textContent = disease
+                genContainer.appendChild(alert)
+            });
+        document
+            .getElementById("btn-addDisease")
+            .addEventListener('click', function () {
+                const diagnoseContainer = document.getElementById("diagnoseContainer")
+                diagnoseContainer
+                    .classList
+                    .add('border', 'p-3', 'border-danger-subtle');
+                const title = document.getElementById("title-dis")
+                if (!title) {
+                    diagnoseContainer.innerHTML = "<h5 id='title-dis' class='text-center'>Enfermedades Diagnosticadas</h5>"
+                }
 
-            const existDrug = drugAlergies.find(drug => drug.id == drugList.value)
-            if(!existDrug){
-                drugAlergies.push({id:drugList.value, name: drugList.options[drugList.selectedIndex].text })
-                const drug = drugList.options[drugList.selectedIndex].text;
-                const alert = document.createElement("div")
-                alert.classList.add("alert","alert-danger")
-                alert.textContent=drug
-                drugAlergiesContainer.appendChild(alert)
-            }
-            return
-        });
-        document.getElementById("btn-addResFood").addEventListener('click', function() {
-            const foodAlergiesContainer = document.getElementById("foodAlergiesContainer")
-            foodAlergiesContainer.classList.add('border','p-3','border-danger-subtle');
-            const title = document.getElementById("title-food")
-            if(!title){
-                foodAlergiesContainer.innerHTML="<h5 id='title-food' class='text-center'>Alergias Alimenticias</h5>"
-            }
+                const existDisease = diagnoseDiseases.find((disease) => disease.id == diseaseList.value)
+                if (!existDisease) {
+                    diagnoseDiseases.push({
+                        id: diseaseList.value,
+                        name: diseaseList
+                            .options[diseaseList.selectedIndex]
+                            .text
+                    })
+                    const disease = diseaseList
+                        .options[diseaseList.selectedIndex]
+                        .text;
+                    const alert = document.createElement("div")
+                    alert
+                        .classList
+                        .add("alert", "alert-danger")
+                    alert.textContent = disease
+                    diagnoseContainer.appendChild(alert)
+                }
+                return
+            });
+        document
+            .getElementById("btn-addDrug")
+            .addEventListener('click', function () {
+                const drugAlergiesContainer = document.getElementById("drugAlergiesContainer")
+                drugAlergiesContainer
+                    .classList
+                    .add('border', 'p-3', 'border-danger-subtle');
+                const title = document.getElementById("title-drug")
+                if (!title) {
+                    drugAlergiesContainer.innerHTML = "<h5 id='title-drug' class='text-center'>Alergias Medicamentosas</h5>"
+                }
 
-            const existFood = foodAlergies.find(food => food.name == foodName.value)
-            if(!existFood){
-                foodAlergies.push({name:foodName.value})
-                const food = foodName.value
-                const alert = document.createElement("div")
-                alert.classList.add("alert","alert-danger")
-                alert.textContent=food
-                foodAlergiesContainer.appendChild(alert)
-            }
-            return
-        });
+                const existDrug = drugAlergies.find(drug => drug.id == drugList.value)
+                if (!existDrug) {
+                    drugAlergies.push({
+                        id: drugList.value,
+                        name: drugList
+                            .options[drugList.selectedIndex]
+                            .text
+                    })
+                    const drug = drugList
+                        .options[drugList.selectedIndex]
+                        .text;
+                    const alert = document.createElement("div")
+                    alert
+                        .classList
+                        .add("alert", "alert-danger")
+                    alert.textContent = drug
+                    drugAlergiesContainer.appendChild(alert)
+                }
+                return
+            });
+        document
+            .getElementById("btn-addResFood")
+            .addEventListener('click', function () {
+                const foodAlergiesContainer = document.getElementById("foodAlergiesContainer")
+                foodAlergiesContainer
+                    .classList
+                    .add('border', 'p-3', 'border-danger-subtle');
+                const title = document.getElementById("title-food")
+                if (!title) {
+                    foodAlergiesContainer.innerHTML = "<h5 id='title-food' class='text-center'>Alergias Alimenticias</h5>"
+                }
 
+                const existFood = foodAlergies.find(food => food.name == foodName.value)
+                if (!existFood) {
+                    foodAlergies.push({name: foodName.value})
+                    const food = foodName.value
+                    const alert = document.createElement("div")
+                    alert
+                        .classList
+                        .add("alert", "alert-danger")
+                    alert.textContent = food
+                    foodAlergiesContainer.appendChild(alert)
+                }
+                return
+            });
     </script>
 
 {% endblock %}

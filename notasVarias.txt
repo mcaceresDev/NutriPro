@@ -3,6 +3,7 @@ ICONOS
 <i class="fa-solid fa-file-medical"></i> //Hoja medica hoja+
 <i class="fa-solid fa-file-waveform"></i> //Hoja + estado de corazon
 
+FUEGO: <i class="fa-solid fa-fire"></i>
 
 BASE DE DATOS
 ===============================================================================
