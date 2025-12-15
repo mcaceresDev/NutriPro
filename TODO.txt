@@ -9,3 +9,16 @@ X Crear modulos para agregar datos de alimentos respaldados
 
 Agregar calculo de alimentos a lista usando arrays y poner un boton una vez este lista la semana para generar la tabla
 Luego poner boton de imprimir
+
+
+- Incorporar dentro del sistema secciones informativas o de control que se ajusten a las políticas y leyes locales de seguridad alimentaria y nutricional (SAN).
+
+- Promover el diseño de menús o planes alimentarios que se alineen con las guías alimentarias nacionales y los principios del derecho a la alimentación adecuada.
+
+- Utilizar el sistema informático como plataforma de apoyo para la educación sanitaria sobre manipulación y conservación segura de alimentos en contextos
+familiares y comunitarios.
+
+- Incorporar en el sistema un catálogo educativo sobre microorganismos benéficos utilizados en fermentaciones tradicionales (como Lactobacillus spp.,
+Saccharomyces cerevisiae, etc.), destacando su papel en la salud intestinal y la nutrición.
+
+<i class="fa-solid fa-circle-info"></i>

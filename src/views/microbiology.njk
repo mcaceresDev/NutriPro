@@ -1,0 +1,23 @@
+{% extends "base.njk" %}
+
+{% block pagetitle %} Microbiología en la Industria Alimentaria {% endblock %}
+
+{% block content %}
+
+    <table border="1" id="tabla-usuarios" cellpadding="8">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Sexo</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-usuarios">
+            <!-- Se llenará por AJAX -->
+        </tbody>
+    </table>
+
+{% endblock %}

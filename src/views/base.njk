@@ -120,14 +120,18 @@
           </li>
 
           <span class="block-menu text-secondary-emphasis">PANEL EDUCACIONAL</span>
-          <li class="m-2 px-2">
-            <i class="fa-solid fa-gavel"></i> Ley 423
+          <li class="m-2 px-2 {% if currentPath | startsWith('/politicas-alimentarias') %}link-active{% endif %}">
+            <a href="/politicas-alimentarias" class="nav-link">
+              <i class="fa-solid fa-gavel"></i> Políticas alimentarias
+            </a>
           </li>
-          <li class="m-2 px-2">
+          <li class="m-2 px-2 {% if currentPath | startsWith('/salud-alimentaria') %}link-active{% endif %}">
             <i class="fa-solid fa-hand-holding-medical"></i> Salud Alimentaria
           </li>
-          <li class="m-2 px-2">
-            <i class="fa-solid fa-bacteria"></i> Bacterias y alimentos
+          <li class="m-2 px-2 {% if currentPath | startsWith('/microbiologia') %}link-active{% endif %}">
+            <a href="/microbiologia" class="nav-link">
+              <i class="fa-solid fa-bacteria"></i> Bacterias y alimentos
+            </a>
           </li>
           <li class="m-2 px-2">
             <i class="fa-solid fa-hospital-user"></i> Autoevaluación

@@ -1,0 +1,75 @@
+{% extends "base.njk" %}
+
+{% block pagetitle %} Políticas Alimentarias {% endblock %}
+
+{% block content %}
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Ley 423</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Politicas SAN</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+
+            <div class="mx-3 my-4">
+                <h3>Informe sobre la Ley No 423 – Ley General de la Salud (Titulo VI – De la salud y el medio ambiente)</h3>
+
+                <p>La asamblea nacional de la republica de Nicaragua por mandato de la presidencia del
+                    país, ha dictado la que se conoce como "Ley General de la Salud". Está compuesta de 8
+                    títulos que a su vez se desglosan en capítulos y artículos enfocados el asegurar el
+                    derecho de toda persona de disfrutar, conservar y recuperar su salud en armonía con los
+                    establecido en las disposiciones legales y normas especiales.</p>
+
+                <p>La ley aborda diversos aspectos en cuestiones de salud y bienestar general de las
+                    personas y el medio ambiente. Así como el rol de las entidades reguladoras y
+                    responsables de que se acaten los mandatos expuestos en esta ley.</p>
+
+                <p>El titulo VI: Salud y Medio Ambiente se compone de 6 capítulos, los cuales abarcan los
+                    siguientes temas:</p>
+
+                <ul>
+                    <li>Saneamiento Ambiental</li>
+                    <li>Regulación Sanitaria en la Industria</li>
+                    <li>Prohibición de crianza de animales en zonas urbanas</li>
+                    <li>Eliminación de animales capaces de afectar la salud humana</li>
+                    <li>Órganos y trasplantes</li>
+                    <li>Autopsias y Viscerectomías</li>
+                </ul>
+
+                <p>En cuanto al saneamiento ambiental nos explica que comprende la educación, mejora,
+                    control y manejo del ruido, así como la calidad de las aguas y la eliminación y tratamiento
+                    de líquidos y sólidos, el aire y la vigilancia sanitaria.</p>
+
+                <p>El ministerio de salud MINSA como ente regulador deberá determinar los rangos de
+                    contaminación permisibles tanto para industrias y personas naturales, así como las
+                    normas técnicas a las que deben sujetarse. Del mismo modo, el MINSA deberá promover
+                    acciones para el control y eliminación de desechos plásticos.</p>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"></div>
+
+    </div>
+
+    {# <table border="1" id="tabla-usuarios" cellpadding="8">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Sexo</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-usuarios">
+            <!-- Se llenará por AJAX -->
+        </tbody>
+    </table> #}
+
+{% endblock %}
