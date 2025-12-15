@@ -1,3 +1,4 @@
+const { Op } = require("sequelize")
 const { disease } = require("../models")
 
 class DiseaseService {
@@ -12,6 +13,24 @@ class DiseaseService {
         }
     }
 
+    // PARA VISTA ENFERMEDADES. NO DEBE CARGAR OPCION "Ninguna"
+    readAllForView = async()=> {
+        try {
+            const diseases = await disease.findAll({
+                where: {
+                    id: {
+                        [Op.ne]: 1
+                    }
+                }
+            })
+            return diseases
+
+        } catch (error) {
+            throw error
+        }
+    }
+    
+    // PARA CATALOGOS. DEBE CARGAR OPCION "Ninguna"
     readAll = async()=> {
         try {
             const diseases = await disease.findAll()

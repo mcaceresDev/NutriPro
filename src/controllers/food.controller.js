@@ -16,17 +16,15 @@ class FoodController {
             if (!req.session.user) {
                 return res.render("pages/forbidden")
             }
-            const { userId, name, lastname } = req.session.user
+            const { userId } = req.session.user
 
             const categories = await foodcategoryService.readFoodCategories()
             const food = await foodService.readFoodItemsByUser(userId)
-            
-            const username = `${name.split(" ")[0]} ${lastname.split(" ")[0]}`
-            
+                        
             if (categories && categories.length > 0) {      
-                return res.render("food", { categories, food: food.length > 0 ? food : [], username })
+                return res.render("food", { categories, food: food.length > 0 ? food : [] })
             }
-            return res.render("food", { food: food.length > 0 ? food : [], username })
+            return res.render("food", { food: food.length > 0 ? food : [] })
         } catch (error) {
             return res.render("pages/error")
         }

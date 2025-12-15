@@ -92,6 +92,16 @@ app.use((req, res, next) => {
   res.locals.currentPath = req.path;   // o req.originalUrl
   next();
 });
+app.use((req, res, next) => {
+  if (req.session.user) {
+    const { name, lastname } = req.session.user
+    res.locals.userLogged = `${name.split(" ")[0]} ${lastname.split(" ")[0]}`   // se guarda al iniciar sesion
+  }
+  if (!res.locals.userLogged) {
+    res.locals.userLogged = "USERNAME"
+  }
+  next();
+});
 app.get('/', (req, res) => {
   // res.render('index', { title: 'Mi Proyecto con Nunjucks', name: 'Juan' });
   if (req.session.user) {

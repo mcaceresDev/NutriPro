@@ -11,12 +11,11 @@ class PatientController {
             if (!req.session.user) {
                 return res.render("pages/forbidden")
             }
-            const { userId, name, lastname } = req.session.user
+            const { userId } = req.session.user
 
             const patients = await patientService.readPatientsByUser(userId)
-            const username = `${name.split(" ")[0]} ${lastname.split(" ")[0]}`
 
-            return res.render("patient", { patients: patients.length > 0 ? patients : [], username })
+            return res.render("patient", { patients: patients.length > 0 ? patients : [] })
         } catch (error) {
             console.log(error);
             

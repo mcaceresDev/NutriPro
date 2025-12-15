@@ -7,11 +7,10 @@ class PageController {
     }
     
     renderUserView = async (req, res)=> {
-        const { userId, name, lastname } = req.session.user
+        const { userId } = req.session.user
         const user = await userService.readUserInfo(userId)
         
-        const username = `${name.split(" ")[0]} ${lastname.split(" ")[0]}`
-        res.render("userinfo", { username, user: user[0] })
+        res.render("userinfo", { user: user[0] })
     }
 }
 

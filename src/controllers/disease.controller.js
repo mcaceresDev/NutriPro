@@ -5,7 +5,7 @@ class DiseaseController {
 
     getDiseaseView = async (req, res)=> {
         try {
-            const allDiseases = await diseaseService.readAll()
+            const allDiseases = await diseaseService.readAllForView()
             
             res.render("disease", {diseases: allDiseases})
             
