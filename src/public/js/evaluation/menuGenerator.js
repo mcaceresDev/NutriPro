@@ -2,7 +2,7 @@
 let selectedFood = {}
 let foodItems = []
 let nutritionalMenu = {
-    lunes: {desayuno: ["2 bananos", "3 huevos"], merienda1: ["una taza de yogurt"], almuerzo: [], merienda2: [], cena: []},
+    lunes: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []},
     martes: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []},
     miercoles: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []},
     jueves: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []},
@@ -83,35 +83,40 @@ document.getElementById("btnCalcFood").addEventListener("click", () => {
     `
     foodFormContainer.innerHTML=foodForm
     document.getElementById("btnAddFood").addEventListener("click", (e)=>{
-        const tbody = document.getElementById("foodTableBody");
-    tbody.innerHTML = ""; // limpiar tabla
+        const dayOfTheWeek = nutritionalMenu[weekDay.value]
+        const mealOfTheDay = dayOfTheWeek[foodTime.value]
+        mealOfTheDay.push(foodMenuName.value)
+        renderFoodData()  
+    })
+})
 
-    // nutritionalMenu[weekDay.value][foodTime].push(foodMenuName.value)
+
+const renderFoodData = ()=>{
+    const tbody = document.getElementById("foodTableBody");
+    tbody.innerHTML = "";
+
+    const mealsOrder = ["desayuno", "merienda1", "almuerzo", "merienda2", "cena"];
 
     Object.entries(nutritionalMenu).forEach(([day, meals]) => {
         const tr = document.createElement("tr");
 
-        // Columna día
+        // Día
         const tdDay = document.createElement("td");
         tdDay.textContent = capitalize(day);
-
-        // Columna desayuno
-        const tdBreakfast = document.createElement("td");
-
-        if (meals.desayuno.length > 0) {
-            tdBreakfast.innerHTML = meals.desayuno.join(", ");
-        } else {
-            tdBreakfast.innerHTML = "<em>Sin desayuno asignado</em>";
-        }
-
         tr.appendChild(tdDay);
-        tr.appendChild(tdBreakfast);
+
+        // Comidas
+        mealsOrder.forEach(meal => {
+            const td = document.createElement("td");
+            td.innerHTML = meals[meal].length
+                ? meals[meal].join("<br>")
+                : "<em>—</em>";
+            tr.appendChild(td);
+        });
 
         tbody.appendChild(tr);
     });
-    })
-})
-
+}
 
 function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
