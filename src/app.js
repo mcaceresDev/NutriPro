@@ -67,7 +67,8 @@ app.get("/reporte/pdf", async (req, res) => {
 
   // Generar PDF
   const pdf = await page.pdf({
-    format: "A4",
+    format: "Letter",
+    landscape: true,
     printBackground: true,
     margin: { top: "20mm", bottom: "20mm" },
   });
