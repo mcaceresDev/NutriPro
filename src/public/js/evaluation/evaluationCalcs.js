@@ -41,7 +41,7 @@ const calcTMB = (gender, weight, height, age, fa) => {
 }
 
 const calcIMC = (weight, height) => {
-    const references =  [
+    const references = [
         { min: 0, max: 18.5, level: "danger", msg: "Bajo peso" },
         { min: 18.6, max: 24.9, level: "success", msg: "Peso normal" },
         { min: 25, max: 29.9, level: "danger", msg: "Sobrepeso" },
@@ -49,16 +49,16 @@ const calcIMC = (weight, height) => {
         { min: 35, max: 39.9, level: "danger", msg: "Obesidad II" },
         { min: 40, max: Infinity, level: "danger", msg: "Obesidad III" },
     ]
-    
+
     const IMC = weight / Math.pow(height, 2)
-    const match = references.find(imc => IMC >= imc.min &&  IMC <= imc.max);
+    const match = references.find(imc => IMC >= imc.min && IMC <= imc.max);
     if (!match) {
         throw new Error("No se pudo calcular el nivel de riesgo.");
     }
 
     measureAlertContainer.className = '';
     measureAlertContainer.classList.add("alert", `alert-${match.level}`)
-    measureAlertContainer.innerHTML=`El paciente tiene: <strong>${match.msg}</strong> segun categoría OMS`
+    measureAlertContainer.innerHTML = `El paciente tiene: <strong>${match.msg}</strong> segun categoría OMS`
     return IMC
 }
 
@@ -73,7 +73,7 @@ btnCalcMB.addEventListener("click", (e) => {
     const fa = activityFactor[activityLevel]
 
     const { GEB, GET } = calcTMB(gender, weight, height, age, fa)
-       
+
     const imc = calcIMC(weight, height)
 
     document.getElementById("geb").value = GEB.toFixed(2)
@@ -159,65 +159,65 @@ function evaluatePatient(data, totalFat) {
     // --- Evaluaciones individuales ---
     // Colesterol Total
     if (totalFat > refs.totalFat) {
-        messages.push({alertType:"danger", msg:`• Colesterol total elevado ${totalFat} mg/dL. El paciente presenta "Hipercolesterolemia" | Normal ≤ ${refs.totalFat}.`});
+        messages.push({ alertType: "danger", msg: `• Colesterol total elevado ${totalFat} mg/dL. El paciente presenta "Hipercolesterolemia" | Normal ≤ ${refs.totalFat}.` });
     } else {
-        messages.push({alertType:"success", msg:`• Colesterol normal (${totalFat} mg/dL).`});
+        messages.push({ alertType: "success", msg: `• Colesterol normal (${totalFat} mg/dL).` });
     }
     // Triglicéridos
     if (data.trigliceridos > refs.trigliceridos) {
         alteredCount++;
-        let hiper = data.trigliceridos > 200 ? `El paciente presenta "Hipertrigliceridemia"`  : ""
-        messages.push({alertType:"danger", msg:`• Triglicéridos elevados (${data.trigliceridos} mg/dL). ${hiper} Normal ≤ ${refs.trigliceridos}.`});
+        let hiper = data.trigliceridos > 200 ? `El paciente presenta "Hipertrigliceridemia"` : ""
+        messages.push({ alertType: "danger", msg: `• Triglicéridos elevados (${data.trigliceridos} mg/dL). ${hiper} Normal ≤ ${refs.trigliceridos}.` });
     } else {
-        messages.push({alertType:"success", msg:`• Triglicéridos normales (${data.trigliceridos} mg/dL).`});
+        messages.push({ alertType: "success", msg: `• Triglicéridos normales (${data.trigliceridos} mg/dL).` });
     }
 
     // Presión sistólica
     if (data.sistolica > refs.sistolica) {
         alteredCount++;
-        messages.push({alertType:"danger", msg:`• Presión sistólica elevada (${data.sistolica} mmHg). Normal ≤ ${refs.sistolica}.`});
+        messages.push({ alertType: "danger", msg: `• Presión sistólica elevada (${data.sistolica} mmHg). Normal ≤ ${refs.sistolica}.` });
     } else {
-        messages.push({alertType:"success", msg:`• Presión sistólica normal (${data.sistolica} mmHg).`});
+        messages.push({ alertType: "success", msg: `• Presión sistólica normal (${data.sistolica} mmHg).` });
     }
 
     // Presión diastólica
     if (data.diastolica > refs.diastolica) {
         alteredCount++;
-        messages.push({alertType: "danger", msg:`• Presión diastólica elevada (${data.diastolica} mmHg). Normal ≤ ${refs.diastolica}.`});
+        messages.push({ alertType: "danger", msg: `• Presión diastólica elevada (${data.diastolica} mmHg). Normal ≤ ${refs.diastolica}.` });
     } else {
-        messages.push({alertType: "success", msg: `• Presión diastólica normal (${data.diastolica} mmHg).`});
+        messages.push({ alertType: "success", msg: `• Presión diastólica normal (${data.diastolica} mmHg).` });
     }
 
     // Glucosa
     if (data.glucose > refs.glucose) {
         alteredCount++;
-        messages.push({alertType: "danger", msg:`• Glucosa elevada (${data.glucose} mg/dL). Normal ≤ ${refs.glucose}.`});
+        messages.push({ alertType: "danger", msg: `• Glucosa elevada (${data.glucose} mg/dL). Normal ≤ ${refs.glucose}.` });
     } else {
-        messages.push({alertType: "success", msg:`• Glucosa normal (${data.glucose} mg/dL).`});
+        messages.push({ alertType: "success", msg: `• Glucosa normal (${data.glucose} mg/dL).` });
     }
 
     // Colesterol HDL
     if (data.hdl < refs.hdl[data.sex]) {
         alteredCount++;
-        messages.push({alertType: "warning", msg:`HDL bajo (${data.hdl} mg/dL). Normal ≥ ${refs.hdl[data.sex]} para ${genero[data.sex]}.`});
+        messages.push({ alertType: "warning", msg: `HDL bajo (${data.hdl} mg/dL). Normal ≥ ${refs.hdl[data.sex]} para ${genero[data.sex]}.` });
     } else {
-        messages.push({alertType:"success", msg: `HDL adecuado (${data.hdl} mg/dL).`});
+        messages.push({ alertType: "success", msg: `HDL adecuado (${data.hdl} mg/dL).` });
     }
 
     // Circunferencia de cintura
     if (data.waist > refs.waist[data.sex]) {
         alteredCount++;
-        messages.push({alertType:"warning", msg:`Circunferencia de cintura elevada (${data.waist} cm). Normal ≤ ${refs.waist[data.sex]} para ${genero[data.sex]}.`});
+        messages.push({ alertType: "warning", msg: `Circunferencia de cintura elevada (${data.waist} cm). Normal ≤ ${refs.waist[data.sex]} para ${genero[data.sex]}.` });
     } else {
-        messages.push({alertType:"success", msg:`Circunferencia de cintura normal (${data.waist} cm).`});
+        messages.push({ alertType: "success", msg: `Circunferencia de cintura normal (${data.waist} cm).` });
     }
 
     // CalfC (pantorrilla)
-    let calfMessage = {alertType: "", msg: ""};
+    let calfMessage = { alertType: "", msg: "" };
     if (data.calfC < refs.calfC) {
-        calfMessage = {alertType:"danger", msg:`Circunferencia de pantorrilla baja (${data.calfC} cm). Riesgo de desnutrición.`};
+        calfMessage = { alertType: "danger", msg: `Circunferencia de pantorrilla baja (${data.calfC} cm). Riesgo de desnutrición.` };
     } else {
-        calfMessage = {alertType: "success", msg:`Circunferencia de pantorrilla adecuada (${data.calfC} cm).`};
+        calfMessage = { alertType: "success", msg: `Circunferencia de pantorrilla adecuada (${data.calfC} cm).` };
     }
 
     // --- Resultado final ---
@@ -241,7 +241,7 @@ btnCalcDB.addEventListener("click", (e) => {
     try {
         const totalFat = parseFloat(document.getElementById("ct").value)
         const hdl = parseInt(document.getElementById("hdl").value)
-        
+
         const PatientData = {
             sex: document.getElementById("gender").value,
             trigliceridos: parseFloat(document.getElementById("tgc").value),
@@ -270,7 +270,7 @@ btnCalcDB.addEventListener("click", (e) => {
             alert.innerText = value.msg
             messagesContainer.appendChild(alert)
         })
-        
+
         if (metabolicSyndrome.hasMetabolicSyndrome) {
             const alert = document.createElement("div")
             alert.classList.add("alert", "alert-danger")
@@ -297,42 +297,3 @@ btnCalcDB.addEventListener("click", (e) => {
 })
 
 // ================================================================
-// CALCULOS DE PLAN NUTRICIONAL
-let selectedFood = {}
-let foodItems = []
-const calcNutritionValues = (grComsumed, foodItem)=>{
-    const factor = grComsumed/100;
-    const energy = factor*parseFloat(foodItem.energy)
-    const protein = factor*parseFloat(foodItem.protein)
-    const totalFat = factor*parseFloat(foodItem.totalFat)
-    const carbs = factor*parseFloat(foodItem.carbs)
-
-    return { energy, protein, totalFat, carbs }
-}
-
-document.getElementById("btnCalcFood").addEventListener("click", ()=> {
-    
-    const amount = document.getElementById("amount")
-    const portion = document.getElementById("portion")
-    
-    const totalGr = amount.value*portion.value
-    // console.log(portion);
-    const result = calcNutritionValues(totalGr, selectedFood)
-    foodItems.push(result)
-    const lista = document.createElement("ul")
-    // const item1 = document.createElement("li")
-    // const item2 = document.createElement("li")
-    // const item3 = document.createElement("li")
-    // const item4 = document.createElement("li")
-    foodItems.forEach((item)=>{
-        const items=`
-        <li>Calorias: ${result.energy.toFixed(2)}</li>
-        <li>Proteina: ${result.protein.toFixed(2)}</li>
-        <li>Grasa total: ${result.totalFat.toFixed(2)}</li>
-        <li>Carbohidratos: ${result.carbs.toFixed(2)}</li>
-        `
-        lista.innerHTML=items
-    })
-
-    foodCalcsContainer.appendChild(lista)
-})

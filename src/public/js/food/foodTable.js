@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             {
                 title: "Seleccionar",
                 formatter: () => `
-                    <button class="btn btn-success btn-sm btnSelectFoodItem" data-bs-toggle="modal" data-bs-target="#foodModalPlan">
+                    <button class="btn btn-success btn-sm btnSelectFoodItem" data-bs-dismiss="modal">
                         <i class="fa-regular fa-circle-check"></i>
                     </button>
                 `,

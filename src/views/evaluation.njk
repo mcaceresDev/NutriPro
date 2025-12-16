@@ -69,19 +69,100 @@
 
                     <h5>Crear menú dietético</h5>
                     <hr>
-                    <p>Seleccione un alimento de la lista. Tenga en cuenta que la información en la TCA INCAP muestra valores en base a 100 gramos de alimento. Por eso es necesario
-                        que especifique la cantidad estimada en gramos por alimento recomendado para hacer los calculos adecuados.
-                    </p>
-                    <div id="" class="mt-4 table-responsive">
-                        <div class="px-3 d-flex justify-content-between">
-                            <input id="searchFood" class="form-control form-control-sm mb-3" placeholder="Buscar alimento..." style="max-width:250px"/>
-                            <span>{{ foodMessage }}</span>
+
+                    <div class="d-flex gap-3">
+                        <div class="w-50">
+                            <form id="formPlan" class="row g-3">
+
+                                <h6>Si no especifica un nombre alternativo, la hoja de plan nutricional aparecera con el nombre de la tabla de alimentos INCAP</h6>
+                                <div class="col-md-8">
+                                    <input type="hidden" name="id" required class="form-control form-control-sm">
+                                    <label for="" class="form-label">Alimento<span class="text-danger">*</span></label>
+                                    <input type="text" name="name" id="incapname" required class="form-control form-control-sm">
+                                </div>
+                                <div class="col-md-4 d-flex align-items-end justify-content-start">
+                                    <div class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#foodModalPlan">Buscar</div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="" class="form-label">Nombre alternativo</label>
+                                    <input type="text" name="alternative" id="altname" required class="form-control form-control-sm">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="" class="form-label">Cantidad <span class="text-danger">*</span></label>
+                                    <input type="number" name="amount" id="amount" required class="form-control form-control-sm">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="form-label">Medida <span class="text-danger">*</span></label>
+                                    <select name="measure" id="measure" class="form-select form-select-sm" required aria-label="Small select example">
+                                        <option selected>Seleccione tipo de medida</option>
+                                        <option value="Cucharada de">Cuchara</option>
+                                        <option value="Cucharilla de">Cucharilla</option>
+                                        <option value="Taza de">Taza</option>
+                                        <option value="Media taza de">Media taza</option>
+                                        <option value="Vaso de">Vaso</option>
+                                        <option value="Otra">Otra</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="form-label">Tipo de medida</label>
+                                    <input type="text" name="measuretype" id="measuretype" required class="form-control form-control-sm" placeholder="Solo si eligió 'Otra'">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="form-label">Porción estimada en gr por unidad (Revisar tabla) <span class="text-danger">*</span></label>
+                                    <input type="number" name="portion" id="portion" required class="form-control form-control-sm" placeholder="cantidad en gramos">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button id="btnCalcFood" type="button" class="btn btn-sm btn-success">Calcular Aporte Nutricional</button>
+                                </div>
+                            </form>
+
+                            <hr>
+                            <div id="foodCalcsContainer" class="w-100 my-2 py-2 px-3">
+                            </div>
+                            
+
+                            <div id="foodFormContainer" class="w-100 my-2 py-2 px-3">
+                            </div>
                         </div>
-                        <div id="foodTable" class="border" data-food='{{ food | dump | safe }}'>
-                            {# TABLA DINAMICA #}
+                        {# FIN FORMULARIO #}
+                        <div class="w-50">
+                            <h6>Utilice la tabla de referencia para asignar medidas</h6>
+                            {# <img src="/assets/img/medidas.jpeg" class="w-100" style=""/> #}
+                            <table class="table table-bordered table-striped my-4">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Alimento</th>
+                                        <th scope="col" class="text-center">Taza 250cc</th>
+                                        <th scope="col" class="text-center">Cuchara</th>
+                                        <th scope="col" class="text-center">Cucharilla</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if measureData is defined and measureData | length > 0 %}
+                                        {% for item in measureData %}
+                                            <tr>
+                                                <td>{{ item.alimento }}</td>
+                                                <td class="text-center">{{ item.taza }}</td>
+                                                <td class="text-center">{{ item.cuchara }}</td>
+                                                <td class="text-center">{{ item.cucharilla }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="4" class="text-center">"No hay elementos para mostrar"</td>
+                                        </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                    {# TERMINA BLOQUE DE TABLAS Y CALCULOS DE ALIMENTOS #}
+                    
+                    {# MODAL DE CREACION DE PLAN #}
+                    {% include "partials/evaluation/modalFoodPlan.njk" %}
 
+                    <h5 class="my-3 text-center">Vista previa de menu</h5>
                     <table class="table table-bordered my-4">
                         <thead>
                             <tr>
@@ -93,94 +174,17 @@
                                 <th scope="col">Cena</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="foodTableBody">
+                            {# <tr>
                                 <td>LUNES</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                            </tr>
+                            </tr> #}
                         </tbody>
                     </table>
-
-                    {# MODAL DE CREACION DE PLAN #}
-                    {% include "partials/evaluation/modalFoodPlan.njk" %}
-
-                    <div class="d-flex gap-3">
-                        <div class="w-50">
-                            <form id="formPlan" class="row g-3">
-
-                        <p>Si no especifica un nombre alternativo, la hoja de plan nutricional aparecera con el nombre de la tabla de alimentos INCAP</p>
-                        <div class="col-md-12">
-                            <input type="hidden" name="id" required class="form-control form-control-sm">
-                            <label for="" class="form-label">Alimento<span class="text-danger">*</span></label>
-                            <input type="text" name="name" id="" required class="form-control form-control-sm">
-                        </div>
-                        <div class="col-md-12">
-                            <label for="" class="form-label">Nombre alternativo</label>
-                            <input type="text" name="alternative" id="" required class="form-control form-control-sm">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="" class="form-label">Cantidad <span class="text-danger">*</span></label>
-                            <input type="number" name="amount" id="amount" required class="form-control form-control-sm">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="form-label">Medida <span class="text-danger">*</span></label>
-                            <select name="measure" id="" class="form-select form-select-sm" required aria-label="Small select example">
-                                <option selected>Seleccione tipo de medida</option>
-                                <option selected>Cuchara</option>
-                                <option selected>Cucharilla</option>
-                                <option selected>Taza</option>
-                                <option selected>Media taza</option>
-                                <option selected>Vaso</option>
-                                <option selected>Otra</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="form-label">Tipo de medida</label>
-                            <input type="text" name="measuretype" id="" required class="form-control form-control-sm" placeholder="Solo si eligió 'Otra'">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="form-label">Porción estimada gr <span class="text-danger">*</span></label>
-                            <input type="number" name="portion" id="portion" required class="form-control form-control-sm" placeholder="cantidad en gramos">
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <button id="btnCalcFood" type="button" class="btn btn-sm btn-success">Calcular Aporte Nutricional</button>
-                        </div>
-                    </form>
-                        </div>
-                        {# FIN FORMULARIO #}
-                        <div class="w-50">
-                            <p>Utilice la tabla de referencia para asignar medidas</p>
-                            {# <img src="/assets/img/medidas.jpeg" class="w-100" style=""/> #}
-                            <table class="table table-bordered my-4">
-                        <thead>
-                            <tr>
-                                <th scope="col">Alimento</th>
-                                <th scope="col">Taza 250cc</th>
-                                <th scope="col">Cuchara</th>
-                                <th scope="col">Cucharilla</th>
-                                <th scope="col">Merienda</th>
-                                <th scope="col">Cena</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                        </div>
-
-                    </div>
-                    
 
                 </div>
             </div>
@@ -193,6 +197,8 @@
     <script src="/js/food/foodTable.js"></script>
     <script src="/js/sweetAlertHelper.js"></script>
     <script src="/js/evaluation/evaluationCalcs.js"></script>
+    <script src="/js/evaluation/menuGenerator.js"></script>
+    {# <script src="/js/evaluation/measures.js"></script> #}
     <script>
         document
             .getElementById("btn-addGenDisease")

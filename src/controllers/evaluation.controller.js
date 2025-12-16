@@ -1,10 +1,12 @@
 const { patient, food, disease } = require("../models");
+const { measureData } = require("../public/js/evaluation/measures");
 const diseaseService = require("../services/disease.service");
 const drugService = require("../services/drug.service");
 const foodService = require("../services/food.service");
 
 
 class EvaluationController {
+
 
     // Render the evaluation page
     async renderEvaluationPage(req, res) {
@@ -27,7 +29,7 @@ class EvaluationController {
             const drugs = await drugService.readDrugs()
             
             const formattedDate = new Date(patientData.birthdate).toISOString().split("T")[0]; // YYYY-MM-DD
-            return res.render("evaluation", { patient: patientData, formattedDate, food:foodData, foodMessage, diseases, drugs });
+            return res.render("evaluation", { patient: patientData, formattedDate, food:foodData, foodMessage, diseases, drugs, measureData });
         } catch (error) {
             console.log(error);
             return res.render("pages/error");
