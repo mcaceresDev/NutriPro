@@ -45,7 +45,60 @@ app.set('views', path.join(__dirname, 'views'));
 // LOGICA DE REPORTE
 // ===========================================================================================
 app.get("/reporte", (req, res) => {
-  res.render("report.njk");
+
+  const nutritionalMenu = {
+    lunes: {
+        desayuno: ["Avena", "Banano", "Leche descremada"],
+        merienda1: ["Manzana"],
+        almuerzo: ["Arroz", "Frijoles", "Pechuga de pollo", "Ensalada verde"],
+        merienda2: ["Yogur natural"],
+        cena: ["Tortilla de maíz", "Queso fresco", "Té"]
+    },
+    martes: {
+        desayuno: ["Pan integral", "Huevo revuelto", "Café"],
+        merienda1: ["Papaya"],
+        almuerzo: ["Pasta integral", "Carne molida", "Vegetales"],
+        merienda2: ["Galletas integrales"],
+        cena: ["Sopa de verduras"]
+    },
+    miercoles: {
+        desayuno: ["Cereal integral", "Leche"],
+        merienda1: ["Banano"],
+        almuerzo: ["Arroz", "Pescado al horno", "Ensalada"],
+        merienda2: [],
+        cena: ["Pan con aguacate"]
+    },
+    jueves: {
+        desayuno: ["Avena", "Manzana"],
+        merienda1: ["Yogur"],
+        almuerzo: ["Arroz", "Lentejas", "Ensalada"],
+        merienda2: ["Frutos secos"],
+        cena: ["Crema de vegetales"]
+    },
+    viernes: {
+        desayuno: ["Pan integral", "Queso", "Café"],
+        merienda1: ["Pera"],
+        almuerzo: ["Arroz", "Pollo asado", "Vegetales"],
+        merienda2: ["Gelatina"],
+        cena: ["Ensalada con atún"]
+    },
+    sabado: {
+        desayuno: ["Panqueques", "Miel", "Leche"],
+        merienda1: [],
+        almuerzo: ["Arroz", "Carne asada", "Ensalada"],
+        merienda2: ["Fruta"],
+        cena: ["Sándwich integral"]
+    },
+    domingo: {
+        desayuno: ["Gallo pinto", "Huevo", "Plátano"],
+        merienda1: ["Jugo natural"],
+        almuerzo: ["Indio viejo", "Ensalada"],
+        merienda2: [],
+        cena: ["Sopa ligera"]
+    }
+};
+
+  res.render("report.njk", {nutritionalMenu});
 });
 // Ruta para generar PDF
 app.get("/reporte/pdf", async (req, res) => {

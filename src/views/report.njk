@@ -13,26 +13,26 @@
     {# <script src="/js/tabulatorTLang.js"></script> #}
     <style>
 
-      .logo{
-        max-width: 200px
+      .logo {
+        max-width: 200px;
       }
       @media print {
-        .logo{
-          max-width: 200px
+        .logo {
+          max-width: 200px;
         }
 
-        .header{
+        .header {
           display: flex;
           justify-content: space-between;
           align-items: flex-end;
         }
-        
-        .patient-data{
+
+        .patient-data {
           display: flex;
           justify-content: space-between;
           margin: 20px auto;
         }
-        
+
       }
 
       @page {
@@ -52,10 +52,14 @@
     <hr>
 
     <div class="patient-data my-3 d-flex justify-content-between">
-      <p><span class="fw-bold">Paciente:</span> Fulanito Perez</p>
-      <p><span class="fw-bold">Edad:</span> 28</p>
-      <p><span class="fw-bold">Sexo:</span> M</p>
-      <p><span class="fw-bold">Estatura:</span> 1.7m</p>
+      <p>
+        <span class="fw-bold">Paciente:</span> Fulanito Perez</p>
+      <p>
+        <span class="fw-bold">Edad:</span> 28</p>
+      <p>
+        <span class="fw-bold">Sexo:</span> M</p>
+      <p>
+        <span class="fw-bold">Estatura:</span> 1.7m</p>
     </div>
 
     <h5>Plan Nutricional</h5>
@@ -89,6 +93,12 @@
         </tr>
       </tbody>
     </table>
+
+    {% import "menuTable.njk" as menuTable %}
+
+    <h2>Menú Nutricional Semanal</h2>
+
+    {{ menuTable.renderMenuTable(nutritionalMenu) }}
   </body>
 
   <script src="/js/bootstrap.bundle.min.js"></script>

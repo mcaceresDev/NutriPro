@@ -1,0 +1,31 @@
+{% macro renderMenuTable(menu) %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Día</th>
+            <th>Desayuno</th>
+            <th>Merienda 1</th>
+            <th>Almuerzo</th>
+            <th>Merienda 2</th>
+            <th>Cena</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for day, meals in menu %}
+        <tr>
+            <td><strong>{{ day | capitalize }}</strong></td>
+
+            {% for meal in ["desayuno","merienda1","almuerzo","merienda2","cena"] %}
+                <td>
+                    {% if meals[meal].length %}
+                        {{ meals[meal] | join(", ") }}
+                    {% else %}
+                        <em>—</em>
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endmacro %}
