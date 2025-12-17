@@ -67,7 +67,94 @@
                                 <label for="" class="form-label">Tipo <span class="text-danger">*</span></label>
                                 <select name="type" id="type" class="form-select form-select-sm" required aria-label="Small select example">
                                     <option selected>Seleccione tipo de reacción</option>
-                                    <option value="postiva">Positiva</option>
+                                    <option value="positiva">Positiva</option>
+                                    <option value="negativa">Negativa</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Nivel Evidencia</label>
+                                <select name="evidence" id="evidence" class="form-select form-select-sm" aria-label="Small select example">
+                                    <option selected>Seleccione nivel de respaldo</option>
+                                    <option value="baja">Baja</option>
+                                    <option value="media">Media</option>
+                                    <option value="alta">Alta</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="" class="form-label">Efecto <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm" id="effect" name="effect" required placeholder="Reacciones adversas o beneficiosas">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="" class="form-label">Recomendación</label>
+                                <input type="text" class="form-control form-control-sm" id="recommend" name="recommend" placeholder="Recomendaciones para el paciente sobre esta interacción">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="" class="form-label">Referencia</label>
+                                <input type="text" class="form-control form-control-sm" id="reference" name="reference" placeholder="Referencia bibliográfica o URL">
+                            </div>
+                            {# cierre modal body #}
+                        </div>
+                        <div class="modal-footer  d-flex justify-content-center">
+                            <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {# MODAL EDITAR #}
+        <div class="modal fade" id="modalEditar" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="modalEditarLabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalEditarLabel">Editar info interacción</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Los campos con <span class="text-danger">*</span> son obligatorios.</p>
+                        <p class="">Seleccionar <span class="text-danger">"Ninguna"</span> en filtro de enfermedades si no implica una enfermedad como tal, o si es un efecto benéfico</p>
+                        <hr>
+                        <form id="formEditar" class="row g-3">
+                            <input type="hidden" name="id" class="form-control form-control-sm"/>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Fármaco <span class="text-danger">*</span></label>
+                                <select name="drugId" id="drugId" class="form-select form-select-sm" required aria-label="Small select example">
+                                    <option selected>Seleccione un fármaco</option>
+                                    {% if drugsData is defined and drugsData | length > 0 %}
+                                        {% for item in drugsData %}
+                                            <option value={{item.id}}>{{ item.name }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option>"No hay elementos para seleccionar"</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Enfermedad asociada <span class="text-danger">*</span></label>
+                                <select name="diseaseId" id="diseaseId" class="form-select form-select-sm" required aria-label="Small select example">
+                                    <option selected>Seleccione una enfermedad</option>
+                                    {% if diseaseData is defined and diseaseData | length > 0 %}
+                                        {% for item in diseaseData %}
+                                            <option value={{item.id}}>{{ item.name }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option>"No hay elementos para seleccionar"</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="" class="form-label">Alimento relacionado <span class="text-danger">*</span></label>
+                                <div id="" class="d-flex gap-3">
+                                    <input type="text" class="form-control form-control-sm" hidden id="foodId" name="foodId" placeholder="Seleccione alimento">
+                                    <input type="text" class="form-control form-control-sm" id="foodNameEdit" name="foodName" readonly required placeholder="Seleccione alimento">
+                                    <button type="button" class="btn btn-sm btn-success" data-bs-target="#modalFood" data-bs-toggle="modal">Buscar</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="" class="form-label">Tipo <span class="text-danger">*</span></label>
+                                <select name="type" id="type" class="form-select form-select-sm" required aria-label="Small select example">
+                                    <option selected>Seleccione tipo de reacción</option>
+                                    <option value="positiva">Positiva</option>
                                     <option value="negativa">Negativa</option>
                                 </select>
                             </div>
@@ -155,7 +242,7 @@
                             .getRow()
                             .getData();
                         fillFoodSelection(data);
-                        
+
                     }
                 }
             ]
@@ -168,8 +255,12 @@
             });
 
         const fillFoodSelection = (data) => {
-            document.getElementById("foodId").value = data.id;
-            document.getElementById("foodName").value = data.name;
+            document
+                .getElementById("foodId")
+                .value = data.id;
+            document
+                .getElementById("foodName")
+                .value = data.name;
         }
     </script>
     <script>
@@ -192,12 +283,10 @@
                 }, {
                     title: "Alimento",
                     field: "food.name"
-                }, 
-                {
+                }, {
                     title: "Efecto",
                     field: "effect"
-                },
-                {
+                }, {
                     title: "Tipo",
                     field: "type"
                 }, {
@@ -208,7 +297,38 @@
                     field: "recommend"
                 }, {
                     title: "Referencia",
-                    field: "reference"
+                    field: "reference",
+                    formatter: (cell) => {
+                        const data = cell
+                            .getRow()
+                            .getData();
+
+                    if(isValidUrl(data.reference)){
+                        return `
+                    <a href="${data.reference}" target="_blank">${data.reference}</a>
+                    `
+                    }
+                    return data.reference ?? "";
+                    }
+                }, {
+                    title: "Acciones",
+                    formatter: (cell) => {
+                        const id = cell
+                            .getRow()
+                            .getData()
+                            .id
+                        return `
+                    <button class="btn btn-warning btn-sm editar" data-bs-toggle="modal" data-bs-target="#modalEditar"><i class="fa-solid fa-pen"></i></button>
+                    `
+                    },
+                    width: 140,
+                    cellClick: (e, cell) => {
+                        const data = cell
+                            .getRow()
+                            .getData();
+                        fillModalForm(data);
+                        
+                    }
                 }
             ]
         })
@@ -218,7 +338,6 @@
             .addEventListener("keyup", (e) => {
                 tabla.setFilter("drug.name", "like", e.target.value);
             });
-
     </script>
     <script src="/js/sweetAlertHelper.js"></script>
     <script src="/js/interaction/interactionCrud.js"></script>

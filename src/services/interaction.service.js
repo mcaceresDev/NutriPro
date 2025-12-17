@@ -10,6 +10,18 @@ class InteractionService {
             throw error;
         }
     };
+    
+    updateInteraction = async (payload, id) => {
+        try {
+            const [updatedRows] = await pharmaFoodInteraction.update(
+                payload,
+                { where: { id } }
+            );
+            return updatedRows
+        } catch (error) {
+            throw error
+        }
+    };
 
     getInteractionsAndCreateInfo = async () => {
         try {

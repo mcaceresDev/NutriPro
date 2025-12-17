@@ -12,6 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   pharmaFoodInteraction.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     drugId: DataTypes.INTEGER,
     foodId: DataTypes.INTEGER,
     diseaseId: DataTypes.INTEGER,

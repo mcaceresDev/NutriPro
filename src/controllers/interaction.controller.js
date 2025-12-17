@@ -1,5 +1,5 @@
 const interactionService = require("../services/interaction.service")
-const { notFoundResponse, errorPostHandler, sendSuccess } = require("../validators/httpResponse")
+const { notFoundResponse, errorPostHandler, sendSuccess, customError } = require("../validators/httpResponse")
 
 class InteractionController {
 
@@ -56,6 +56,30 @@ class InteractionController {
                 return res.json(sendSuccess("Registro creado con éxito"))
             }
             res.status(400).json(customError(400, "No se pudo crear el registro"))
+            
+        } catch (error) {
+            console.log(error);
+            
+            const errorData = errorPostHandler(error)
+            return res.status(400).json(errorData)
+        }
+    }
+    
+    updateInteraction = async(req, res)=> {
+        try {
+
+            if (!req.session.user) {
+                return res.render("pages/forbidden")
+            }
+            const id = req.params.id
+            const response = await interactionService.updateInteraction(req.body, id)
+
+            if (response === 0) {
+                res.status(404)
+                return res.send(customError(404, "Elemento no encontrado o sin cambios"));
+            } else {
+                return res.send(sendSuccess("Registro actualizado"))
+            }
             
         } catch (error) {
             console.log(error);
