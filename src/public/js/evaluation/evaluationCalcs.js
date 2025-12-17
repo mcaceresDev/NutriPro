@@ -77,6 +77,12 @@ btnCalcMB.addEventListener("click", (e) => {
 
     const imc = calcIMC(weight, height)
 
+    if (imc >= 25) {
+        let tenPercent = GET*0.10
+        let HBT = GET-tenPercent
+        hbt.value=HBT.toFixed(2)
+    }
+
     document.getElementById("geb").value = GEB.toFixed(2)
     document.getElementById("get").value = GET.toFixed(2)
     document.getElementById("imc").value = imc.toFixed(2)
