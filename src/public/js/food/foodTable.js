@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         paginationSize: 5,
         responsiveLayout: true,
         columns: [
-            { title: "Nombre", field: "name" },
+            { title: "Nombre", field: "name",  width: 300 },
             {
                     title: "Energía",
                     field: "energy",
