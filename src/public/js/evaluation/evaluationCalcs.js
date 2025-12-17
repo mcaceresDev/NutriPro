@@ -29,8 +29,9 @@ const calcTMB = (gender, weight, height, age, fa) => {
     let cmHeight = height * 100
 
     if (gender === "M") {
+        let pesoideal = cmHeight-100
         // Hacer los calculos para hombre
-        const GEB = 66.5 + (13.75 * weight) + (5 * cmHeight) - (6.755 * age) //Gasto Energetico Basal
+        const GEB = 66.47 + (13.75 * pesoideal) + (5 * cmHeight) - (6.74 * age) //Gasto Energetico Basal
         const GET = GEB * fa //Gasto Energetico Total
         return { GEB, GET }
     }
