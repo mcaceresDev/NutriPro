@@ -4,20 +4,83 @@
 
 {% block content %}
 
-    <table border="1" id="tabla-usuarios" cellpadding="8">
-        <thead>
+    <p>En la industria alimentaria, los hongos y bacterias desempeñan un papel crucial en la fermentación, conservación y mejora nutricional de los alimentos. 
+    La fermentación es un proceso metabólico en el cual estos microorganismos transforman los carbohidratos y otros compuestos presentes en los alimentos, 
+    generando productos como ácidos orgánicos, alcoholes, gases y enzimas que contribuyen a:</p>
+    <ul>
+        <li>Mejorar la conservación de alimentos al inhibir el crecimiento de patógenos.</li>
+        <li>Incrementar la biodisponibilidad de nutrientes, como vitaminas y minerales.</li>
+        <li>Desarrollar sabores, aromas y texturas características en productos fermentados.</li>
+        <li>Promover la salud intestinal, al aportar microorganismos probióticos que equilibran la microbiota intestinal.</li>
+    </ul>
+    <p>Ejemplos comunes incluyen bacterias lácticas utilizadas en yogures, quesos y vegetales fermentados, así como hongos como Saccharomyces cerevisiae en panificación 
+    y bebidas alcohólicas. Estos microorganismos no solo permiten obtener alimentos seguros y sabrosos, sino que también aportan beneficios nutricionales y funcionales a los consumidores.</p>
+    
+    <p>A continuación puedes encontrar una lista de algunos microorganismos utilizados en la industria alimentaria con referencia para que puedas aprender mas</p>
+    
+    <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
             <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Usuario</th>
-                <th>Email</th>
-                <th>Sexo</th>
+                <th>Microorganismo</th>
+                <th>Tipo de alimento</th>
+                <th>Papel en la salud intestinal</th>
+                <th>Contribución nutricional</th>
+                <th>Referencias</th>
             </tr>
         </thead>
-        <tbody id="tbody-usuarios">
-            <!-- Se llenará por AJAX -->
+        <tbody>
+            <tr>
+                <td>Lactobacillus acidophilus</td>
+                <td>Yogur, quesos fermentados, bebidas lácteas</td>
+                <td>Equilibra la microbiota intestinal, previene diarreas</td>
+                <td>Producción de vitaminas del grupo B y ácidos lácticos</td>
+                <td><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4045285/" target="_blank">NCBI</a></td>
+            </tr>
+            <tr>
+                <td>Bifidobacterium bifidum</td>
+                <td>Yogur, probióticos en cápsulas</td>
+                <td>Mejora la digestión, fortalece el sistema inmune</td>
+                <td>Síntesis de vitaminas B y K, fermentación de fibras</td>
+                <td><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5622781/" target="_blank">NCBI</a></td>
+            </tr>
+            <tr>
+                <td>Saccharomyces cerevisiae</td>
+                <td>Pan, cerveza, vino</td>
+                <td>No es probiótico clásico, pero puede modular la microbiota</td>
+                <td>Rico en proteínas, vitaminas del grupo B, minerales</td>
+                <td><a href="https://www.sciencedirect.com/science/article/pii/S2213453021000580" target="_blank">ScienceDirect</a></td>
+            </tr>
+            <tr>
+                <td>Lactobacillus plantarum</td>
+                <td>Vegetales fermentados, encurtidos, kombucha</td>
+                <td>Regula pH intestinal, protege contra patógenos</td>
+                <td>Mejora absorción de minerales, producción de vitaminas</td>
+                <td><a href="https://www.frontiersin.org/articles/10.3389/fmicb.2018.00156/full" target="_blank">Frontiers in Microbiology</a></td>
+            </tr>
+            <tr>
+                <td>Leuconostoc mesenteroides</td>
+                <td>Kimchi, chucrut, pepinillos fermentados</td>
+                <td>Estimula la microbiota saludable, previene crecimiento de bacterias dañinas</td>
+                <td>Producción de ácidos orgánicos, vitaminas B y antioxidantes</td>
+                <td><a href="https://www.sciencedirect.com/topics/food-science/leuconostoc-mesenteroides" target="_blank">ScienceDirect</a></td>
+            </tr>
+            <tr>
+                <td>Penicillium roqueforti</td>
+                <td>Quesos azules (Roquefort, Gorgonzola)</td>
+                <td>Contribuye a la digestión de grasas</td>
+                <td>Enriquecimiento de sabor y aroma, contribuye a proteínas y calcio</td>
+                <td><a href="https://www.sciencedirect.com/topics/food-science/penicillium-roqueforti" target="_blank">ScienceDirect</a></td>
+            </tr>
+            <tr>
+                <td>Aspergillus oryzae</td>
+                <td>Salsas fermentadas, miso, sake</td>
+                <td>Ayuda a la digestión mediante enzimas proteolíticas</td>
+                <td>Producción de aminoácidos libres, vitaminas y enzimas digestivas</td>
+                <td><a href="https://www.sciencedirect.com/topics/food-science/aspergillus-oryzae" target="_blank">ScienceDirect</a></td>
+            </tr>
         </tbody>
     </table>
+</div>
 
 {% endblock %}
