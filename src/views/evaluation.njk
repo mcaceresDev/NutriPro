@@ -95,7 +95,7 @@
                                 <div class="col-md-6">
                                     <label for="" class="form-label">Medida <span class="text-danger">*</span></label>
                                     <select name="measure" id="measure" class="form-select form-select-sm" required aria-label="Small select example">
-                                        <option selected>Seleccione tipo de medida</option>
+                                        <option value="0" selected>Seleccione tipo de medida</option>
                                         {% for item in foodSizes %}
                                             <option value="{{item.value}}">{{ item.text }}</option>
                                         {% endfor %}
@@ -188,7 +188,6 @@
     <script src="/js/sweetAlertHelper.js"></script>
     <script src="/js/evaluation/evaluationCalcs.js"></script>
     <script src="/js/evaluation/menuGenerator.js"></script>
-    <script src="/js/evaluation/genPDF.js"></script>
     <script>
         document
             .getElementById("btn-addGenDisease")

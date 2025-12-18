@@ -2,13 +2,13 @@
 let selectedFood = {}
 let foodItems = []
 let nutritionalMenu = {
-    lunes: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []},
-    martes: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []},
-    miercoles: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []},
-    jueves: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []},
-    viernes: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []},
-    sabado: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []},
-    domingo: {desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: []}
+    lunes: { desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: [] },
+    martes: { desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: [] },
+    miercoles: { desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: [] },
+    jueves: { desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: [] },
+    viernes: { desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: [] },
+    sabado: { desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: [] },
+    domingo: { desayuno: [], merienda1: [], almuerzo: [], merienda2: [], cena: [] }
 }
 const calcNutritionValues = (grComsumed, foodItem) => {
     const factor = grComsumed / 100;
@@ -19,32 +19,45 @@ const calcNutritionValues = (grComsumed, foodItem) => {
 
     return { energy, protein, totalFat, carbs }
 }
-
+function isEmpty(val) {
+  return val === undefined || val === null || String(val).trim() === "";
+}
 document.getElementById("btnCalcFood").addEventListener("click", () => {
 
-    const amount = document.getElementById("amount")
-    const portion = document.getElementById("portion")
+    try {
+        const amount = document.getElementById("amount")
+        const portion = document.getElementById("portion")
+        if (isEmpty(amount.value) || isEmpty(portion.value)) {
+            throw new Error("Los campos 'cantidad' y 'porcion estimada gr' son obligatorios");
+        }
+        
+        if (measure.value == 0) {
+            throw new Error("Debes elegir un tipo de medida");
+        }
+        if (measure.value == "otra" && measuretype=="") {
+            throw new Error("Si eliges 'Otra' debes especificar el tipo de medida");
+        }
 
-    const totalGr = amount.value * portion.value
-    // console.log(portion);
-    const result = calcNutritionValues(totalGr, selectedFood)
-    foodItems.push(result)
-    const lista = document.createElement("ul")
-    lista.classList.add("list-unstyled")
-    foodItems.forEach((item) => {
-        const items = `
+        const totalGr = amount.value * portion.value
+        // console.log(portion);
+        const result = calcNutritionValues(totalGr, selectedFood)
+        foodItems.push(result)
+        const lista = document.createElement("ul")
+        lista.classList.add("list-unstyled")
+        foodItems.forEach((item) => {
+            const items = `
         <li><img src="/assets/img/calorias.png" class="nutrient-icon" /> <span class="mx-3"> ${result.energy.toFixed(2)} kcal </span> </span></li>
         <li><img src="/assets/img/proteina.png" class="nutrient-icon" /> <span class="mx-3"> ${result.protein.toFixed(2)} gr </span></li>
         <li><img src="/assets/img/lipido.png" class="nutrient-icon" />  <span class="mx-3"> ${result.totalFat.toFixed(2)} gr </span></li>
         <li><img src="/assets/img/carbohidratos.png" class="nutrient-icon" />  <span class="mx-3"> ${result.carbs.toFixed(2)} gr </span></li>
         `
-        lista.innerHTML = items
-    })
-    const texto = `<h6 class="my-3">${amount.value} ${measure.value} ${altname.value != "" ? altname.value : incapname.value} equivale a ${portion.value}gr y tiene:</h6>`
-    foodCalcsContainer.innerHTML = texto
-    foodCalcsContainer.appendChild(lista)
+            lista.innerHTML = items
+        })
+        const texto = `<h6 class="my-3">${amount.value} ${measure.value} ${altname.value != "" ? altname.value : incapname.value} equivale a ${portion.value}gr y tiene:</h6>`
+        foodCalcsContainer.innerHTML = texto
+        foodCalcsContainer.appendChild(lista)
 
-    const foodForm = `
+        const foodForm = `
         <h6>Si estas de acuerdo con estas proporciones para su menu nutricional, llene los campos a continuación y haga click en el boton agregar</h6>
         <form id="" class="row g-3">
         
@@ -81,17 +94,21 @@ document.getElementById("btnCalcFood").addEventListener("click", () => {
         </div>
         </form>
     `
-    foodFormContainer.innerHTML=foodForm
-    document.getElementById("btnAddFood").addEventListener("click", (e)=>{
-        const dayOfTheWeek = nutritionalMenu[weekDay.value]
-        const mealOfTheDay = dayOfTheWeek[foodTime.value]
-        mealOfTheDay.push(foodMenuName.value)
-        renderFoodData()  
-    })
+        foodFormContainer.innerHTML = foodForm
+        document.getElementById("btnAddFood").addEventListener("click", (e) => {
+            const dayOfTheWeek = nutritionalMenu[weekDay.value]
+            const mealOfTheDay = dayOfTheWeek[foodTime.value]
+            mealOfTheDay.push(foodMenuName.value)
+            renderFoodData()
+        })
+    } catch (error) {
+        sendFeedBack(error.message, alertType.error)
+    }
+
 })
 
 
-const renderFoodData = ()=>{
+const renderFoodData = () => {
     const tbody = document.getElementById("foodTableBody");
     tbody.innerHTML = "";
 
