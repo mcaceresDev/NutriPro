@@ -96,12 +96,9 @@
                                     <label for="" class="form-label">Medida <span class="text-danger">*</span></label>
                                     <select name="measure" id="measure" class="form-select form-select-sm" required aria-label="Small select example">
                                         <option selected>Seleccione tipo de medida</option>
-                                        <option value="Cucharada de">Cuchara</option>
-                                        <option value="Cucharilla de">Cucharilla</option>
-                                        <option value="Taza de">Taza</option>
-                                        <option value="Media taza de">Media taza</option>
-                                        <option value="Vaso de">Vaso</option>
-                                        <option value="Otra">Otra</option>
+                                        {% for item in foodSizes %}
+                                            <option value="{{item.value}}">{{ item.text }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-md-6">
@@ -126,7 +123,7 @@
                             </div>
                         </div>
                         {# FIN FORMULARIO #}
-                        <div class="w-50">
+                        <div class="w-50 px-2 border-start">
                             <h6>Utilice la tabla de referencia para asignar medidas</h6>
                             {# <img src="/assets/img/medidas.jpeg" class="w-100" style=""/> #}
                             <table class="table table-bordered table-striped my-4">
@@ -175,14 +172,7 @@
                             </tr>
                         </thead>
                         <tbody id="foodTableBody">
-                            {# <tr>
-                                <td>LUNES</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr> #}
+                            
                         </tbody>
                     </table>
 
@@ -199,7 +189,6 @@
     <script src="/js/evaluation/evaluationCalcs.js"></script>
     <script src="/js/evaluation/menuGenerator.js"></script>
     <script src="/js/evaluation/genPDF.js"></script>
-    {# <script src="/js/evaluation/measures.js"></script> #}
     <script>
         document
             .getElementById("btn-addGenDisease")
@@ -213,6 +202,14 @@
                     genContainer.innerHTML = "<h5 id='title-gen' class='text-center'>Enfermedades Genéticas</h5>"
                 }
 
+                const existDisease = genDiseases.find((disease) => disease.id == genDiseaseList.value)
+                if (!existDisease) {
+                    genDiseases.push({
+                        id: genDiseaseList.value,
+                        name: genDiseaseList
+                            .options[genDiseaseList.selectedIndex]
+                            .text
+                    })
                 const disease = genDiseaseList
                     .options[genDiseaseList.selectedIndex]
                     .text;
@@ -222,6 +219,8 @@
                     .add("alert", "alert-info")
                 alert.textContent = disease
                 genContainer.appendChild(alert)
+            }
+                return
             });
         document
             .getElementById("btn-addDisease")

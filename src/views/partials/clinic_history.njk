@@ -75,7 +75,7 @@
                     <label for="inputState" class="form-label">Medicamentos recetados (medicación actual)</label>
                     <div class="d-flex gap-3">
                         <select id="drugList" class="form-select form-select-sm">
-                            <option value="0" selected>Ninguna</option>
+                            <option value="0" selected>Ninguno</option>
                             {% if drugs is defined and drugs | length > 0 %}
                                 {% for item in drugs %}
                                     <option value={{item.id}}>{{ item.name }} Grupo: {{ item.pharmagroup.name }}</option>

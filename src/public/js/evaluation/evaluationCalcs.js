@@ -5,6 +5,7 @@ let globalEvaluation = {
 
 }
 
+let genDiseases = []
 let diagnoseDiseases = []
 let foodAlergies = []
 let drugAlergies = []
@@ -214,7 +215,7 @@ function evaluatePatient(data, totalFat) {
     // Circunferencia de cintura
     if (data.waist > refs.waist[data.sex]) {
         alteredCount++;
-        messages.push({ alertType: "warning", msg: `Circunferencia de cintura elevada (${data.waist} cm). Normal ≤ ${refs.waist[data.sex]} para ${genero[data.sex]}.` });
+        messages.push({ alertType: "danger", msg: `Circunferencia de cintura elevada (${data.waist} cm). Normal ≤ ${refs.waist[data.sex]} para ${genero[data.sex]}.` });
     } else {
         messages.push({ alertType: "success", msg: `Circunferencia de cintura normal (${data.waist} cm).` });
     }

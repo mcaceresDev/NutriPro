@@ -115,4 +115,32 @@ const measureData=[
     },
 ]
 
-module.exports = { measureData }
+const foodSizes= [
+    {
+        value: "Cucharada de",
+        text: "Cuchara"
+    },
+    {
+        value: "Cucharilla de",
+        text: "Cucharilla"
+    },
+    {
+        value: "Taza de",
+        text: "Taza"
+    },
+    {
+        value: "Media taza de",
+        text: "Media taza"
+    },
+    {
+        value: "Vaso de",
+        text: "Vaso"
+    },
+    {
+        value: "otra",
+        text: "Otra"
+    }
+]
+
+
+module.exports = { measureData, foodSizes }
