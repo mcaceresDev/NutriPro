@@ -27,3 +27,11 @@ Saccharomyces cerevisiae, etc.), destacando su papel en la salud intestinal y la
 
 Ley 423: http://legislacion.asamblea.gob.ni/Normaweb.nsf/(All)/FF82EA58EC7C712E062570A1005810E1?OpenDocument
 Ley 693: http://legislacion.asamblea.gob.ni/Normaweb.nsf/(All)/B58490A0C8DAB2AD06257657006A573D?OpenDocument
+
+
+Tabla ClinicHistory
+----------------------------------
+isalcoholic
+issmoker
+hassurgery
+surgeries

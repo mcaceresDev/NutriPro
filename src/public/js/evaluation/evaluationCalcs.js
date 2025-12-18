@@ -5,11 +5,6 @@ let globalEvaluation = {
 
 }
 
-let genDiseases = []
-let diagnoseDiseases = []
-let foodAlergies = []
-let drugAlergies = []
-
 // Nivel de actividad (Factor de actividad)
 const activityFactor = {
     low: 1.2,
