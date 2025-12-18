@@ -148,8 +148,8 @@ function evaluatePatient(data, totalFat) {
     const refs = {
         totalFat: 200,
         trigliceridos: 150,
-        sistolica: 130,
-        diastolica: 85,
+        sistolica: 120,
+        diastolica: 80,
         glucose: 110,// 70 a 99 mg/dL. en personas sanas | Entre 100 y 125 mg/dL se considera prediabetes pero algunas referencias varian
         hdl: { M: 40, F: 50 },
         waist: { M: 102, F: 88 },

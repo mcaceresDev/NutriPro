@@ -4,6 +4,8 @@ let foodAlergies = []
 let drugAlergies = []
 
 
+
+
 document
             .getElementById("btn-addGenDisease")
             .addEventListener('click', function () {
@@ -36,6 +38,20 @@ document
             }
                 return
             });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         document
             .getElementById("btn-addDisease")
             .addEventListener('click', function () {
@@ -77,7 +93,7 @@ document
                     .add('border', 'p-3', 'border-danger-subtle');
                 const title = document.getElementById("title-drug")
                 if (!title) {
-                    drugAlergiesContainer.innerHTML = "<h5 id='title-drug' class='text-center'>Alergias Medicamentosas</h5>"
+                    drugAlergiesContainer.innerHTML = "<h5 id='title-drug' class='text-center'>Medicamentosas</h5>"
                 }
 
                 const existDrug = drugAlergies.find(drug => drug.id == drugList.value)

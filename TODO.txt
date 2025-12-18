@@ -35,3 +35,31 @@ isalcoholic
 issmoker
 hassurgery
 surgeries
+weight
+age
+height
+activityfactor
+imc
+geb
+get
+hbt
+totalchol
+triglycerides
+hdlchol
+ldlchol
+hemog
+fastglucose
+sispressure
+diapressure
+waist
+calf
+
+Detalles
+----------------------------------
+title
+value
+section //referencia a la seccion de la vista evaluacion
+tag //hace referencia a la tabla en BD
+id //Id de la BD del elemento guardado 
+userId
+evaluationId
