@@ -28,16 +28,16 @@ document.getElementById("btnCalcFood").addEventListener("click", () => {
         const amount = document.getElementById("amount")
         const portion = document.getElementById("portion")
         if (isEmpty(amount.value) || isEmpty(portion.value)) {
-            throw new Error("Los campos 'cantidad' y 'porcion estimada gr' son obligatorios");
+            throw new Error("Los campos 'cantidad' y 'porcion estimada gr' son obligatorios y deben ser numericos");
         }
         
         if (measure.value == 0) {
             throw new Error("Debes elegir un tipo de medida");
         }
-        if (measure.value == "otra" && measuretype=="") {
-            throw new Error("Si eliges 'Otra' debes especificar el tipo de medida");
-        }
-
+        // if (measure.value === "otra" && isEmpty(measuretype.value)) {
+        //     throw new Error("Si eliges 'Otra' debes especificar el tipo de medida");
+        // }
+        
         const totalGr = amount.value * portion.value
         // console.log(portion);
         const result = calcNutritionValues(totalGr, selectedFood)
@@ -53,7 +53,7 @@ document.getElementById("btnCalcFood").addEventListener("click", () => {
         `
             lista.innerHTML = items
         })
-        const texto = `<h6 class="my-3">${amount.value} ${measure.value} ${altname.value != "" ? altname.value : incapname.value} equivale a ${portion.value}gr y tiene:</h6>`
+        const texto = `<h6 class="my-3">${amount.value} ${measure.value === "otra" ? measuretype.value : measure.value} ${altname.value != "" ? altname.value : incapname.value} equivale a ${amount.value*portion.value}gr y tiene:</h6>`
         foodCalcsContainer.innerHTML = texto
         foodCalcsContainer.appendChild(lista)
 
@@ -64,7 +64,7 @@ document.getElementById("btnCalcFood").addEventListener("click", () => {
         <div class="col-md-12">
             <label for="inputState" class="form-label">Texto en el menu</label>
             <div class="d-flex gap-3">
-                <input type="text" id="foodMenuName" name="" class="form-control form-control-sm" placeholder="" value="${amount.value} ${measure.value} ${altname.value != "" ? altname.value : incapname.value}">
+                <input type="text" id="foodMenuName" name="" class="form-control form-control-sm" placeholder="" value="${amount.value} ${measure.value === "otra" ? measuretype.value : measure.value} ${altname.value != "" ? altname.value : incapname.value}">
             </div>
         </div>
         <div class="col-md-6">
