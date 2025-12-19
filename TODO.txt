@@ -63,3 +63,25 @@ tag //hace referencia a la tabla en BD
 id //Id de la BD del elemento guardado 
 userId
 evaluationId
+
+
+luego de !exist...
+let newElement = {
+    id: drugList.value,
+    name: drugList
+        .options[drugList.selectedIndex]
+        .text
+}
+hacer push de newElement
+
+Modificar a partir de alert.classList.add
+"d-flex", "justify-content-between"
+
+alert.innerHTML:
+innerHTML = `<span>${disease}</span><button type="button" id="genclose-${genDiseaseList.value}" class="btn-close" aria-label="Close"></button>`
+
+LUego de appedChild alert
+document.getElementById(`genclose-${genDiseaseList.value}`).addEventListener("click", () => {
+            alert.remove()
+            genDiseases.splice(genDiseases.indexOf(newElement), 1)
+        })
