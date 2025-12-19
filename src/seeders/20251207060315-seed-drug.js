@@ -15,8 +15,8 @@ module.exports = {
           "pharmaGroupId": 12,
           "presentationId": 5,
           "addedBy": 2,
-          "createdAt": "2025-12-06T04:46:28.900Z",
-          "updatedAt": "2025-12-06T05:32:07.111Z"
+          "createdAt": new Date("2025-12-06T04:46:28.900Z"),
+          "updatedAt": new Date("2025-12-06T05:32:07.111Z")
         },
         {
           "id": 2,
@@ -28,8 +28,8 @@ module.exports = {
           "pharmaGroupId": 12,
           "presentationId": 5,
           "addedBy": 2,
-          "createdAt": "2025-12-06T05:13:59.412Z",
-          "updatedAt": "2025-12-06T05:25:08.148Z"
+          "createdAt": new Date("2025-12-06T05:13:59.412Z"),
+          "updatedAt": new Date("2025-12-06T05:25:08.148Z")
         },
         {
           "id": 3,
@@ -41,8 +41,8 @@ module.exports = {
           "pharmaGroupId": 12,
           "presentationId": 5,
           "addedBy": 2,
-          "createdAt": "2025-12-06T05:51:04.958Z",
-          "updatedAt": "2025-12-06T05:51:04.958Z"
+          "createdAt": new Date("2025-12-06T05:51:04.958Z"),
+          "updatedAt": new Date("2025-12-06T05:51:04.958Z")
         },
         {
           "id": 4,
@@ -54,8 +54,8 @@ module.exports = {
           "pharmaGroupId": 10,
           "presentationId": 5,
           "addedBy": 2,
-          "createdAt": "2025-12-06T15:34:46.924Z",
-          "updatedAt": "2025-12-06T15:34:46.924Z"
+          "createdAt": new Date("2025-12-06T15:34:46.924Z"),
+          "updatedAt": new Date("2025-12-06T15:34:46.924Z")
         },
         {
           "id": 5,
@@ -67,8 +67,8 @@ module.exports = {
           "pharmaGroupId": 10,
           "presentationId": 5,
           "addedBy": 2,
-          "createdAt": "2025-12-06T16:27:29.549Z",
-          "updatedAt": "2025-12-06T16:27:29.549Z"
+          "createdAt": new Date("2025-12-06T16:27:29.549Z"),
+          "updatedAt": new Date("2025-12-06T16:27:29.549Z")
         },
         {
           "id": 6,
@@ -80,8 +80,8 @@ module.exports = {
           "pharmaGroupId": 13,
           "presentationId": 5,
           "addedBy": 2,
-          "createdAt": "2025-12-06T16:45:08.080Z",
-          "updatedAt": "2025-12-06T16:45:08.080Z"
+          "createdAt": new Date("2025-12-06T16:45:08.080Z"),
+          "updatedAt": new Date("2025-12-06T16:45:08.080Z")
         },
         {
           "id": 7,
@@ -93,8 +93,8 @@ module.exports = {
           "pharmaGroupId": 13,
           "presentationId": 5,
           "addedBy": 2,
-          "createdAt": "2025-12-07T05:18:47.241Z",
-          "updatedAt": "2025-12-07T05:18:47.241Z"
+          "createdAt": new Date("2025-12-07T05:18:47.241Z"),
+          "updatedAt": new Date("2025-12-07T05:18:47.241Z")
         },
         {
           "id": 8,
@@ -106,9 +106,61 @@ module.exports = {
           "pharmaGroupId": 13,
           "presentationId": 5,
           "addedBy": 2,
-          "createdAt": "2025-12-07T05:33:57.811Z",
-          "updatedAt": "2025-12-07T05:33:57.811Z"
-        }
+          "createdAt": new Date("2025-12-07T05:33:57.811Z"),
+          "updatedAt": new Date("2025-12-07T05:33:57.811Z")
+        },
+        {
+      "id": 9,
+      "name": "LOTRIAL/ ACETENSIL/ BARIPRIL/  ",
+      "generic": "ENALAPRIL",
+      "description": "El Enalaprilato es un inhibidor de la enzima de conversión de la angiotensina (ECA). La enalapril, es un pro-fármaco del enalaprilato diseñado para su administración oral. La ECA es una peptidil-dipeptidasa que cataliza la conversión de la angiotensina I a la angiotensina II, una sustancia vasoconstrictora. La angiotensina II también estimula la secreción de aldosterona por la corteza suprarrenal. Los efectos beneficiosos de la enalapril en la hipertensión y la insuficiencia cardíaca se deben a la supresión del sistema renina-angiotensina-aldosterona.  La inhibición de la ECA lleva consigo una disminución de los niveles plasmáticos de angiotensina II produciendo una disminución de la respuesta vasopresora y de la secreción de aldosterona. Aunque la disminución de la secreción de aldosterona no es muy grande, ocasiona un pequeño aumento de los niveles plasmáticos de potasio. ",
+      "dosage": "5,10, 20 MG VIA ORAL,Se usa en dependencia de las patologias cardiacas, y grado de tension arterial. ",
+      "treatmentPeriod": "Puede ser una vez, dos veces, tres veces al día o permanente o dependiendo dosis respuesta. ",
+      "pharmaGroupId": 1,
+      "presentationId": 5,
+      "addedBy": 2,
+      "createdAt": new Date("2025-12-10T01:26:55.099Z"),
+      "updatedAt": new Date("2025-12-10T01:26:55.099Z")
+    },
+    {
+      "id": 10,
+      "name": "CAPOTEN/ CAPTRAL/ ALTIVER",
+      "generic": "CAPTOPRIL",
+      "description": "El captopril es un inhibidor de la enzima convertidora de angiotensina (IECA) que actúa bloqueando la proteína peptidasa del centro activo de la misma. El captoprilo inhibe la dipeptidasa de peptidilo, una enzima convertidora que hidroliza la angiotensina I en angiotensina II e inactiva a la bradicina, un potente vasodilatador que actúa al menos en parte por estimulación de la secreción de óxido nítrico y prostaciclina. La actividad hipotensora del captoprilo es resultado de una acción inhibitoria sobre el sistema renina-angiotensina y una estimulante del sistema calcicreína-cinina.",
+      "dosage": "25 a 50 mg , en crisis hipertensiva, o de mantenimiento una vez, dos veces, tres veces al día dependiendo de la patología y grado de control de la presión arterial    ",
+      "treatmentPeriod": "Puede ser una vez, dos veces, tres veces al día o permanente o dependiendo dosis respuesta. o patologia y grado de control de la presión arterial ",
+      "pharmaGroupId": 1,
+      "presentationId": 5,
+      "addedBy": 2,
+      "createdAt": new Date("2025-12-10T02:44:01.339Z"),
+      "updatedAt": new Date("2025-12-10T02:44:01.339Z")
+    },
+    {
+      "id": 11,
+      "name": "ALISI, LOSARTAN CALOX, LOSARTAN MK, ",
+      "generic": "LOSARTAN POTASICO",
+      "description": "El losartán es un fármaco antagonista de los receptores de angiotensina II (ARA II) usado para la hipertensión arterial, la insuficiencia cardíaca, y para proteger los riñones en diabéticos tipo 2, actuando al relajar los vasos sanguíneos y disminuir la presión arterial.   El losartán inhibe la liberación de vasopresina inducida por angiotensina II, la liberación de catecolaminas suprarrenales, las respuestas presoras rápidas y lentas, la sed, la hipertrofia e hiperplasia celular, la neurotransmisión noradrenérgica y el aumento del tono simpático. Propiedades farmacodinámicas: Losartán inhibe el efecto presor de las infusiones de angiotensina II (así como de la angiotensina I). Una dosis de 100 mg inhibe el efecto presor en alrededor del 85% en el pico con el 25-40% de la inhibición persistiendo durante 24 horas.",
+      "dosage": "50 Mg y 100 mg al dia dependiendo del estado de control de la presion arteril y patologia",
+      "treatmentPeriod": "Puede indicarse permanente mente o temporal dependiendo de la patologia y estado de control de la presion arterial",
+      "pharmaGroupId": 1,
+      "presentationId": 5,
+      "addedBy": 2,
+      "createdAt": new Date("2025-12-13T21:43:33.808Z"),
+      "updatedAt": new Date("2025-12-13T21:43:33.808Z")
+    },
+    {
+      "id": 12,
+      "name": "TENSIBER, IVEPRAX, IRBESARTAN CALOX, IRBESARTAN LA SANTE",
+      "generic": "IRBESARTAN ",
+      "description": "El irbesartán pertenece a una clase de medicamentos llamados antagonistas del receptor de la angiotensina II. Su acción consiste en bloquear la acción de determinadas sustancias naturales que tensan los vasos sanguíneos, lo que permite que la sangre fluya más fácilmente y que el corazón bombee con más eficacia. Mecanismo de acción: Irbesartán es un potente antagonista selectivo del receptor de la angiotensina II (tipo AT1), activo por vía oral. Parece bloquear todas las acciones de la angiotensina-II, mediadas por el receptor AT1, con independencia del origen o la vía de síntesis de la angiotensina-II. Es un antagonista competitivo de los receptores de la angiotensina II con actividad Selectiva sobre el sub-tipo AT1, por el cual muestra una afinidad 8.500 veces superior A la registrada por el AT2. Bloquea la unión de la angiotensina II a sus receptores en El músculo liso, glándula suprarrenal y otros tejidos, inhibiendo así el efecto vasopresor Del sistema renina-angiotensina, la síntesis y liberación de aldosterona y la reabsorción De sodio a nivel renal.  ",
+      "dosage": "150- 300 MG AL DIA ",
+      "treatmentPeriod": "Puede indicarse permanente mente o temporal dependiendo de la patologia y estado de control de la presión arterial",
+      "pharmaGroupId": 1,
+      "presentationId": 5,
+      "addedBy": 2,
+      "createdAt": new Date("2025-12-13T21:58:02.706Z"),
+      "updatedAt": new Date("2025-12-13T21:58:02.706Z")
+    }
       ], {});
   },
 

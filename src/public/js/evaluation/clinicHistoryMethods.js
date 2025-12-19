@@ -3,7 +3,7 @@ let diagnoseDiseases = []
 let foodAlergies = []
 let drugAlergies = []
 
-
+let prescriptionDrugs = []
 let interactions = []
 
 const addGenDisease = () => {
@@ -167,7 +167,11 @@ document
                 if (drugAlergies.length > 0) {
                     drugCons.innerHTML="<h6>El paciente esta tomando los siguientes fármacos:</h6>"
 
-                    drugAlergies.forEach((drug)=>{    
+                    prescriptionDrugs = []
+                    drugAlergies.forEach((drug)=>{
+                        prescriptionDrugs.push(drug)
+                        console.log(drug);
+                        
                         const alert = document.createElement("div")
                         alert.classList.add("alert", "alert-danger")
                         alert.innerHTML = `<span>${drug.name}</span>`

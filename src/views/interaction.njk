@@ -264,6 +264,17 @@
         }
     </script>
     <script>
+        function isValidUrl(value) {
+            if (!value || typeof value !== "string") 
+                return false;
+            
+            try {
+                new URL(value);
+                return true;
+            } catch  {
+                return false;
+            }
+        }
         const tableInteractions = {{ interactions | dump | safe}}
         const tabla = new Tabulator("#interactionTable", {
             locale: "es-es",
@@ -303,12 +314,12 @@
                             .getRow()
                             .getData();
 
-                    if(isValidUrl(data.reference)){
-                        return `
+                        if (isValidUrl(data.reference)) {
+                            return `
                     <a href="${data.reference}" target="_blank">${data.reference}</a>
                     `
-                    }
-                    return data.reference ?? "";
+                        }
+                        return data.reference ?? "";
                     }
                 }, {
                     title: "Acciones",
@@ -327,7 +338,7 @@
                             .getRow()
                             .getData();
                         fillModalForm(data);
-                        
+
                     }
                 }
             ]
