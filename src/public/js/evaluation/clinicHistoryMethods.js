@@ -4,7 +4,7 @@ let foodAlergies = []
 let drugAlergies = []
 
 
-let details = []
+let interactions = []
 
 const addGenDisease = () => {
     const genContainer = document.getElementById("geneticDiContainer")
@@ -150,3 +150,39 @@ document
         }
         return
     });
+
+
+    
+    const getInteractions = async () => {
+        try {
+            const res = await fetch(`/interacciones/all`, {
+                method: "GET"
+            });
+            const data = await res.json();
+            
+            if (res.ok) {
+                //Hace referencia a la tabla cargada con tabulator y la actualiza
+                interactions = data.rows
+                
+                if (drugAlergies.length > 0) {
+                    drugCons.innerHTML="<h6>El paciente esta tomando los siguientes fármacos:</h6>"
+
+                    drugAlergies.forEach((drug)=>{    
+                        const alert = document.createElement("div")
+                        alert.classList.add("alert", "alert-danger")
+                        alert.innerHTML = `<span>${drug.name}</span>`
+                        drugCons.appendChild(alert)
+                    })
+                }
+                return
+                
+            } else {
+                sendFeedBack(data.message, alertType.error)
+            }
+        } catch (err) {
+            sendFeedBack(err.message, alertType.error)
+        }
+    }
+
+const btnSaveAll = document.getElementById("btn-saveall")
+btnSaveAll.addEventListener("click", getInteractions)

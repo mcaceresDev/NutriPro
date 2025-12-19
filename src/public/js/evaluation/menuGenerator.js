@@ -19,9 +19,7 @@ const calcNutritionValues = (grComsumed, foodItem) => {
 
     return { energy, protein, totalFat, carbs }
 }
-function isEmpty(val) {
-  return val === undefined || val === null || String(val).trim() === "";
-}
+
 document.getElementById("btnCalcFood").addEventListener("click", () => {
 
     try {

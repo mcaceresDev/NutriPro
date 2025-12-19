@@ -1,3 +1,8 @@
+// FUNCION GLOBAL PARA DETERMINAR CAMPOS VACIOS
+function isEmpty(val) {
+  return val === undefined || val === null || String(val).trim() === "";
+}
+
 let globalEvaluation = {
     clinic: [],
     measures: [],
