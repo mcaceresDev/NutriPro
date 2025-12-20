@@ -167,11 +167,7 @@ document
                 if (drugAlergies.length > 0) {
                     drugCons.innerHTML="<h6>El paciente esta tomando los siguientes fármacos:</h6>"
 
-                    prescriptionDrugs = []
-                    drugAlergies.forEach((drug)=>{
-                        prescriptionDrugs.push(drug)
-                        console.log(drug);
-                        
+                    drugAlergies.forEach((drug)=>{                        
                         const alert = document.createElement("div")
                         alert.classList.add("alert", "alert-danger")
                         alert.innerHTML = `<span>${drug.name}</span>`

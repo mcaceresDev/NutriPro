@@ -56,29 +56,71 @@ document.addEventListener("DOMContentLoaded", () => {
                         .getRow()
                         .getData();
 
-                    let findedDrug = prescriptionDrugs.find((d) => d.id == data.drugId)
-                    if (!findedDrug) {
+                    
+
+                    let findedInteractions = interactions.filter(interaction => interaction.foodId == data.id)
+                    console.log(findedInteractions);
+                    
+                    if (findedInteractions.length === 0) {
                         fillModalForm(data);
                         selectedFood = data
                         return
                     }
-                    let findedInteraction = interactions.find((inter) => inter.foodId == data.id && inter.drugId == findedDrug.id)
-                    if (findedInteraction) {
-                        // console.log(findedInteraction);
-                        // console.log(data);
-                        
-                        let isUrl = isValidUrl(findedInteraction.reference) ? `<a href=${findedInteraction.reference} target="_blank">Revisar fuente</a>` : `<span>${findedInteraction.reference}</span>`
+                    
+                    let alertContent = ""
+                    if (findedInteractions.length > 1) {
+                        findedInteractions.map(findedInteraction => {
+                            let card = document.createElement("div")
+                            //  justify-content-start align-items-start flex-column
+                            let isUrl = isValidUrl(findedInteraction.reference) ? `<a href=${findedInteraction.reference} target="_blank">Revisar fuente</a>` : `<span>${findedInteraction.reference}</span>`
+                            card.classList.add("d-flex", "justify-content-start", "align-items-start", "flex-column", "mb-3", "p-2", "border", "rounded-3", "bg-light-subtle")
+                            card.innerHTML = `<div><b>Efecto:</b> <span>${findedInteraction.type}</span></div>
+                                <div><b>Enfermedad asociada:</b> <span>${findedInteraction.disease.name}</span></div>
+                                <div class="text-start"><b>Resultado:</b> <span>${findedInteraction.effect}</span></div>
+                                <div class="text-start"><b>Fuente:</b> ${isUrl}</div>`
+                            
+                            interactionsContainer.appendChild(card);
+                            alertContent = `<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetailsI">
+                                                Ver todas
+                                            </button>`
+                        })
+
                         Swal.fire({
                             title: "¿Estas seguro que deseas agregar este alimento?",
-                            html: `
-                                <p class="text-center">Hay una interacción con un fármaco que toma este paciente: ${findedInteraction.drug.name}</p>
-                                <div class="d-flex justify-content-start align-items-start flex-column">
-                                    <div><b>Efecto:</b> <span>${findedInteraction.type}</span></div>
-                                    <div><b>Enfermedad asociada:</b> <span>${findedInteraction.disease.name}</span></div>
-                                    <div class="text-start"><b>Resultado:</b> <span>${findedInteraction.effect}</span></div>
-                                    <div class="text-start"><b>Fuente:</b> ${isUrl}</div>
-                                </div>
-                            `,
+                            html: alertContent,
+                            showDenyButton: true,
+                            confirmButtonText: "Si. Agregar",
+                            denyButtonText: `No agregar`
+                        }).then((result) => {
+                            if (result.isDenied) {
+                                return
+                            }
+                            if (result.isConfirmed) {
+                                fillModalForm(data);
+                                selectedFood = data
+                                return
+                            }
+                        });
+                    }
+                    
+                    if (findedInteractions.length == 1) {
+                        console.log("entra al array 1");
+                        
+                        let isUrl = isValidUrl(findedInteractions[0].reference) ? `<a href=${findedInteractions[0].reference} target="_blank">Revisar fuente</a>` : `<span>${findedInteractions[0].reference}</span>`
+                        alertContent = `
+                            <p class="text-center">Hay una interacción con un fármaco que toma este paciente: ${findedInteractions[0].drug.name}</p>
+                            <div class="d-flex justify-content-start align-items-start flex-column">
+                                <div><b>Efecto:</b> <span>${findedInteractions[0].type}</span></div>
+                                <div><b>Enfermedad asociada:</b> <span>${findedInteractions[0].disease.name}</span></div>
+                                <div class="text-start"><b>Resultado:</b> <span>${findedInteractions[0].effect}</span></div>
+                                <div class="text-start"><b>Fuente:</b> ${isUrl}</div>
+                            </div>
+                        `
+                    }
+
+                        Swal.fire({
+                            title: "¿Estas seguro que deseas agregar este alimento?",
+                            html: alertContent,
                             showDenyButton: true,
                             confirmButtonText: "Si. Agregar",
                             denyButtonText: `No agregar`
@@ -90,12 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
                                 fillModalForm(data);
                                 selectedFood = data    
                             }
-                        });
-                    }
-                    else{
-                        fillModalForm(data);
-                        selectedFood = data 
-                    }
+                        }); 
+                    
                 }
             }
         ]
