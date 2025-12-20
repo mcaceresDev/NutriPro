@@ -24,5 +24,8 @@ router.use("/microbiologia", microbiologyRouter)
 router.use("/auth", authRoutes)
 router.use("/enfermedades", diseaseRoutes)
 router.use("/interacciones", interactionRoutes)
+router.get("/inicio", (req, res) => {
+  res.render("home")
+})
 
 module.exports = router

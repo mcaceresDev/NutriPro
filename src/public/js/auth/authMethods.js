@@ -16,7 +16,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
         if (res.ok) {
             sendFeedBackBox(data.message)
             setTimeout(()=>{
-                window.location.href = "/nutrientes";
+                window.location.href = "/inicio";
             }, 800)
         } else {
             // sendFeedBack(data.message, alertType.error)

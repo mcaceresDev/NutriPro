@@ -159,7 +159,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   // res.render('index', { title: 'Mi Proyecto con Nunjucks', name: 'Juan' });
   if (req.session.user) {
-    return res.redirect("nutrientes")
+    return res.redirect("/inicio")
   }
   res.render('login');
 });
